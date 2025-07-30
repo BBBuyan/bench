@@ -1,4 +1,4 @@
-from db_ops import Operation, resolve_operation, time_insert
+from operations import Operation, resolve_operation, time_insert
 from resources import calculate_diffs, createIndexes, delete_insert_data, delete_update_mocks, deleteData, dropIndexes, import_data, insert_delete_mocks, prepare_update_test, refresh_update
 from psycopg2.pool import ThreadedConnectionPool
 from threading import Thread

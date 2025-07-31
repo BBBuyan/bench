@@ -1,8 +1,9 @@
-import matplotlib.pyplot as plt
-import numpy as np
+from psycopg2.pool import ThreadedConnectionPool
+from benchmarking import reset_database
 
-xpoints = np.array([0, 6])
-ypoints = np.array([0, 250])
 
-plt.plot(xpoints, ypoints)
-plt.savefig("test.png")
+pool = ThreadedConnectionPool( 1 ,4 , database="postdeep" , host="localhost" , user="user" , password="mypass",)
+
+reset_database(pool)
+
+pool.closeall()

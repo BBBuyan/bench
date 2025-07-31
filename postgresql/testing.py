@@ -1,9 +1,3 @@
-from psycopg2.pool import ThreadedConnectionPool
-from benchmarking import reset_database
+import psycopg2
 
 
-pool = ThreadedConnectionPool( 1 ,4 , database="postdeep" , host="localhost" , user="user" , password="mypass",)
-
-reset_database(pool)
-
-pool.closeall()

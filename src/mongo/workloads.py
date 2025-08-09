@@ -74,7 +74,7 @@ def run_update_heavy(type: CollType):
                 result[depth] += operations.time_read(depth, sub_id, type, colls[depth])
             else:
                 print("u, ", end="" , flush=True)
-                result[depth] += operations.time_read(depth, sub_id, type, colls[depth])
+                result[depth] += operations.time_update(depth, sub_id, type, colls[depth])
         print("---")
     return result
 

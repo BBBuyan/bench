@@ -101,3 +101,8 @@ def save_result(old: list[float], new: list[float], operation: str):
 
         f.write("\n")
 
+def mark_end():
+    with open("result.txt", "a") as f:
+        f.write(f"{'':-<45}")
+        f.write("\n")
+

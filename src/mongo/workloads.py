@@ -1,20 +1,20 @@
-from random import random
+from random import randint, random
 from coll_type import CollType
-import helper
-from paths import depth_list
+import helper 
+from paths import depth_list 
 import operations
 
-num_of_ops = 1
+num_of_ops = 10
 
 # 90% Read, 10 % Update
 def run_read_heavy(type: CollType):
     print(f"---{'READ HEAVY'}---")
     colls = helper.resolve_colls(type)
     result = [0.0] * len(colls)
-    sub_id = 1
+    sub_id = randint(0, 9999)
 
     for depth in range(len(colls)):
-        print(f"depth: {depth_list[depth]}")
+        print(f"depth: {depth_list[depth]} | ", end=" ", flush=True)
 
         for _ in range(num_of_ops):
             prob = random()
@@ -35,7 +35,7 @@ def run_avg(type: CollType):
     result = [0.0] * len(colls)
 
     for depth in range(len(colls)):
-        print(f"depth: {depth_list[depth]}")
+        print(f"depth: {depth_list[depth]} | ", end=" ", flush=True)
         for _ in range(3):
             print("a, ", end="", flush=True)
             result[depth] += operations.time_avg(depth, type, colls[depth])
@@ -49,7 +49,7 @@ def run_group(type: CollType):
     result = [0.0] * len(colls)
 
     for depth in range(len(colls)):
-        print(f"depth: {depth_list[depth]}")
+        print(f"depth: {depth_list[depth]} | ", end=" ", flush=True)
         for _ in range(3):
             print("g, ", end="", flush=True)
             result[depth] += operations.time_group(depth, type, colls[depth])
@@ -57,19 +57,19 @@ def run_group(type: CollType):
 
     return result
 
-# 40% read, 60% update
+# 10% read, 90% update
 def run_update_heavy(type: CollType):
     print("---UPDATE HEAVY---")
     colls = helper.resolve_colls(type)
     result = [0.0] * len(colls)
-    sub_id = 1
+    sub_id = randint(0, 9999)
 
     for depth in range(len(colls)):
-        print(f"depth: {depth_list[depth]}")
+        print(f"depth: {depth_list[depth]} | ", end=" ", flush=True)
         for _ in range(num_of_ops):
             prob = random()
 
-            if prob<0.4:
+            if prob<0.1:
                 print("r, ", end="", flush=True)
                 result[depth] += operations.time_read(depth, sub_id, type, colls[depth])
             else:
@@ -78,18 +78,19 @@ def run_update_heavy(type: CollType):
         print("---")
     return result
 
-# 40% read 60% insert
+# 10% read 90% insert
 def run_insert_heavy(type: CollType):
     print("---INSERT HEAVY---")
     colls = helper.resolve_colls(type)
     result = [0.0] * len(colls)
-    sub_id = 1
+    sub_id = randint(0, 9999)
 
     for depth in range(len(colls)):
-        print(f"depth: {depth_list[depth]}")
+        print(f"depth: {depth_list[depth]} | ", end=" ", flush=True)
+
         for _ in range(num_of_ops):
             prob = random()
-            if prob<0.6:
+            if prob<0.1:
                 print("r, ", end="", flush=True)
                 result[depth] += operations.time_read(depth, sub_id, type, colls[depth])
             else:
@@ -105,9 +106,10 @@ def run_mixed(type: CollType):
     print("---MIXED---")
     colls = helper.resolve_colls(type)
     result = [0.0] * len(colls)
-    sub_id = 1
+    sub_id = randint(0, 9999)
     for depth in range(len(colls)):
-        print(f"depth: {depth_list[depth]}")
+        print(f"depth: {depth_list[depth]} | ", end=" ", flush=True)
+
         for _ in range(num_of_ops):
             prob = random()
             if prob<0.4:

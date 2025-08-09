@@ -13,7 +13,7 @@ def time_read(depth: int, sub_id: int, type: CollType, coll: Collection)-> float
 
     return (end - start) * 1000
 
-def time_update(depth: int, sub_id: int, type: CollType,coll: Collection)-> float:
+def time_update(depth: int, sub_id: int, type: CollType, coll: Collection)-> float:
     where_clause = builders.update_where_builder(type, depth, sub_id)
     update_clause = builders.update_clause_builder(type, depth)
 
@@ -24,7 +24,7 @@ def time_update(depth: int, sub_id: int, type: CollType,coll: Collection)-> floa
     return (end - start) * 1000
 
 def time_insert(coll: Collection)-> float:
-    batch = helper.generate_insert_batch(coll, 500)
+    batch = helper.generate_insert_batch(500, coll)
 
     start = perf_counter()
     coll.insert_many(batch)

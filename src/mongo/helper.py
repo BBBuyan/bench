@@ -56,6 +56,7 @@ def delete_inserted(type: CollType):
 def calc_diffs(old: list[float], new: list[float]):
     print(f"{'':-<45}")
     print(f"|{'depth':^10}|{'w/o index':^10}|{'w index':^10}|{'diff':^10}|")
+    print(f"|{'':-^10}|{'':-^10}|{'':-^10}|{'':-^10}|")
     for i in range(len(old)):
         old_val = old[i]
         new_val = new[i]
@@ -76,9 +77,15 @@ def unwind_up_to(depth: int)-> list:
 
     return unwind
 
-def generate_insert_batch(coll: Collection, size: int):
+def generate_insert_batch(size: int, coll: Collection):
     offset = randint(0, 9000)
-    new_objs = list(coll.find({}, {"_id": 0}).skip(offset).limit(size))
+    new_device = randint(0, 9000)
+
+    new_objs = list(coll.find({}, {"_id": 0, "device": 0}).skip(offset).limit(size))
+
     for el in new_objs:
         el["inserted"] = True
+        el["device"] = new_device
+
     return new_objs
+

@@ -49,4 +49,3 @@ for type in op_types:
 # pprint(generate_insert_batch(db.flat, 1)
 
 
-

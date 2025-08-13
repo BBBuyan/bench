@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from pymongo.collection import Collection
 
-connectionString ="mongodb://192.168.2.87:27017"
+connectionString ="mongodb://10.214.0.21:27017"
 
 cl = MongoClient(connectionString)
 db = cl["deep"]

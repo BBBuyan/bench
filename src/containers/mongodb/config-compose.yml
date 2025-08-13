@@ -1,0 +1,21 @@
+services:
+  cofig-a:
+    image: mongo
+    container_name: conf_a
+    ports:
+      - "27001:27019"
+    command: ["mongod", "--configsvr", "--replSet", "confSet", "--port", "27019", "--bind_ip_all"]
+  
+  cofig-b:
+    image: mongo
+    container_name: conf_b
+    ports:
+      - "27002:27019"
+    command: ["mongod", "--configsvr", "--replSet", "confSet", "--port", "27019", "--bind_ip_all"]
+
+  cofig-c:
+    image: mongo
+    container_name: conf_c
+    ports:
+      - "27003:27019"
+    command: ["mongod", "--configsvr", "--replSet", "confSet", "--port", "27019", "--bind_ip_all"]

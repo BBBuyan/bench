@@ -1,0 +1,14 @@
+services:
+  mongoshard:
+    image: mongo
+    container_name: shard
+    ports:
+      - "27018:27018"
+    volumes:
+      - shard_db:/data/db
+      - shard_conf:/data/configdb
+    command: ["mongod", "--shardsvr", "--replSet", "shardSet", "--port", "27018", "--bind_ip_all"]
+
+volumes:
+  shard_conf:
+  shard_db:

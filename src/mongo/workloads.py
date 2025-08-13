@@ -127,7 +127,7 @@ def run_mixed(type: CollType):
     return result
 
 # 100% insert
-def run_insert_heavy(type: CollType):
+def run_insert_only(type: CollType):
     print("---INSERT HEAVY---")
     colls = helper.resolve_colls(type)
     result = [0.0] * len(colls)

@@ -4,7 +4,7 @@ import helper
 from paths import depth_list 
 import operations
 
-num_of_ops = 10
+num_of_ops = 3
 
 # 90% Read, 10 % Update
 def run_read_heavy(type: CollType):
@@ -121,6 +121,23 @@ def run_mixed(type: CollType):
             else:
                 print("i, ", end="" , flush=True)
                 result[depth] += operations.time_insert(colls[depth])
+        print("---")
+
+    helper.delete_inserted(type)
+    return result
+
+# 100% insert
+def run_insert_heavy(type: CollType):
+    print("---INSERT HEAVY---")
+    colls = helper.resolve_colls(type)
+    result = [0.0] * len(colls)
+
+    for depth in range(len(colls)):
+        print(f"depth: {depth_list[depth]} | ", end=" ", flush=True)
+
+        for _ in range(num_of_ops):
+            print("i, ", end="" , flush=True)
+            result[depth] += operations.time_insert(colls[depth])
         print("---")
 
     helper.delete_inserted(type)

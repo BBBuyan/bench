@@ -4,7 +4,7 @@ import helper
 from paths import depth_list 
 import operations
 
-num_of_ops = 3
+num_of_ops = 10
 
 # 90% Read, 10 % Update
 def run_read_heavy(type: CollType):
@@ -27,7 +27,7 @@ def run_read_heavy(type: CollType):
 
         print("---")
 
-    return result
+    return result / num_of_ops
 
 def run_avg(type: CollType):
     print("---AVERAGE---")
@@ -41,7 +41,7 @@ def run_avg(type: CollType):
             result[depth] += operations.time_avg(depth, type, colls[depth])
         print("---")
 
-    return result
+    return result / num_of_ops
 
 def run_group(type: CollType):
     print("---GROUP---")
@@ -55,7 +55,7 @@ def run_group(type: CollType):
             result[depth] += operations.time_group(depth, type, colls[depth])
         print("---")
 
-    return result
+    return result / num_of_ops
 
 # 10% read, 90% update
 def run_update_heavy(type: CollType):
@@ -76,7 +76,8 @@ def run_update_heavy(type: CollType):
                 print("u, ", end="" , flush=True)
                 result[depth] += operations.time_update(depth, sub_id, type, colls[depth])
         print("---")
-    return result
+
+    return result / num_of_ops
 
 # 10% read 90% insert
 def run_insert_heavy(type: CollType):
@@ -99,7 +100,9 @@ def run_insert_heavy(type: CollType):
         print("---")
 
     helper.delete_inserted(type)
-    return result
+
+    return result / num_of_ops
+
 
 # 40% read 30% update 30% insert
 def run_mixed(type: CollType):
@@ -124,7 +127,7 @@ def run_mixed(type: CollType):
         print("---")
 
     helper.delete_inserted(type)
-    return result
+    return result / num_of_ops
 
 # 100% insert
 def run_insert_only(type: CollType):
@@ -134,11 +137,10 @@ def run_insert_only(type: CollType):
 
     for depth in range(len(colls)):
         print(f"depth: {depth_list[depth]} | ", end=" ", flush=True)
-
         for _ in range(num_of_ops):
             print("i, ", end="" , flush=True)
             result[depth] += operations.time_insert(colls[depth])
         print("---")
 
     helper.delete_inserted(type)
-    return result
+    return result / num_of_ops

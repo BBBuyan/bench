@@ -2,9 +2,10 @@ from coll_type import CollType
 import workloads
 import helper
 
-op_type = CollType.flat
 
 def main():
+    op_type = CollType.arr
+
     print("---Benchmark Started---")
     old_read = workloads.run_read_heavy(op_type)
     old_update = workloads.run_update_heavy(op_type)
@@ -12,7 +13,7 @@ def main():
     old_group = workloads.run_group(op_type)
     old_insert = workloads.run_insert_heavy(op_type)
     old_mixed = workloads.run_mixed(op_type)
-    old_insert_only = workloady.run_insert_only(op_type)
+    old_insert_only = workloads.run_insert_only(op_type)
 
     print("---creating indexes---")
     helper.create_indexes(op_type)
@@ -23,11 +24,12 @@ def main():
     new_group = workloads.run_group(op_type)
     new_insert = workloads.run_insert_heavy(op_type)
     new_mixed = workloads.run_mixed(op_type)
-    new_insert_only = workloady.run_insert_only(op_type)
+    new_insert_only = workloads.run_insert_only(op_type)
 
     helper.delete_indexes(op_type)
 
     print("---Benchmark Ended---")
+    helper.mark_operation(op_type)
     print("---------READ---------")
     helper.save_result(old_read, new_read, "read")
     print("---------UPDATE---------")

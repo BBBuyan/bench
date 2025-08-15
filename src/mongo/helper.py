@@ -109,4 +109,4 @@ def mark_end():
 def mark_operation(op: CollType):
     with open("result.txt", "a") as f:
         f.write("\n")
-        f.write(f"{op.name:-<45}")
+        f.write(f"{op.name:-^45}\n")

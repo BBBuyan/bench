@@ -29,20 +29,15 @@ def main():
     helper.delete_indexes(op_type)
 
     print("---Benchmark Ended---")
+
+    print("---Writing Results---")
     helper.mark_operation(op_type)
-    print("---------READ---------")
     helper.save_result(old_read, new_read, "read")
-    print("---------UPDATE---------")
     helper.save_result(old_update, new_update, "update")
-    print("---------GROUP---------")
     helper.save_result(old_group, new_group, "group")
-    print("---------AVG---------")
     helper.save_result(old_avg, new_avg, "avg")
-    print("---------INSERT---------")
     helper.save_result(old_insert, new_insert, "insert")
-    print("---------MIXED---------")
     helper.save_result(old_mixed, new_mixed, "mixed")
-    print("---------INSERT ONLY---------")
     helper.save_result(old_insert_only, new_insert_only, "insert only")
 
 if __name__ == "__main__":

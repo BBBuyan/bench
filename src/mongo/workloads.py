@@ -27,7 +27,7 @@ def run_read_heavy(type: CollType):
 
         print("---")
 
-    return result / num_of_ops
+    return result
 
 def run_avg(type: CollType):
     print("---AVERAGE---")
@@ -41,7 +41,7 @@ def run_avg(type: CollType):
             result[depth] += operations.time_avg(depth, type, colls[depth])
         print("---")
 
-    return result / num_of_ops
+    return result
 
 def run_group(type: CollType):
     print("---GROUP---")
@@ -55,7 +55,7 @@ def run_group(type: CollType):
             result[depth] += operations.time_group(depth, type, colls[depth])
         print("---")
 
-    return result / num_of_ops
+    return result
 
 # 10% read, 90% update
 def run_update_heavy(type: CollType):
@@ -77,7 +77,7 @@ def run_update_heavy(type: CollType):
                 result[depth] += operations.time_update(depth, sub_id, type, colls[depth])
         print("---")
 
-    return result / num_of_ops
+    return result
 
 # 10% read 90% insert
 def run_insert_heavy(type: CollType):
@@ -101,7 +101,7 @@ def run_insert_heavy(type: CollType):
 
     helper.delete_inserted(type)
 
-    return result / num_of_ops
+    return result
 
 
 # 40% read 30% update 30% insert
@@ -127,7 +127,7 @@ def run_mixed(type: CollType):
         print("---")
 
     helper.delete_inserted(type)
-    return result / num_of_ops
+    return result
 
 # 100% insert
 def run_insert_only(type: CollType):
@@ -143,4 +143,4 @@ def run_insert_only(type: CollType):
         print("---")
 
     helper.delete_inserted(type)
-    return result / num_of_ops
+    return result

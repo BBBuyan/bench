@@ -4,7 +4,12 @@ from coll_type import CollType
 import builders
 import helper
 
-def time_read(depth: int, sub_id: int, type: CollType, coll: Collection)-> float:
+def time_read(
+        depth: int, 
+        sub_id: int, 
+        type: CollType, 
+        coll: Collection
+)-> float:
     where_clause = builders.read_where_builder(type, depth, sub_id)
 
     start = perf_counter()
@@ -13,7 +18,12 @@ def time_read(depth: int, sub_id: int, type: CollType, coll: Collection)-> float
 
     return (end - start) * 1000
 
-def time_update(depth: int, sub_id: int, type: CollType, coll: Collection)-> float:
+def time_update(
+        depth: int, 
+        sub_id: int, 
+        type: CollType, 
+        coll: Collection
+)-> float:
     where_clause = builders.update_where_builder(type, depth, sub_id)
     update_clause = builders.update_clause_builder(type, depth)
 
@@ -32,7 +42,11 @@ def time_insert(coll: Collection)-> float:
 
     return (end - start) * 1000
 
-def time_group(depth: int, type: CollType, coll: Collection)-> float:
+def time_group(
+        depth: int, 
+        type: CollType, 
+        coll: Collection
+)-> float:
     group_pipe = builders.group_pipe_builder(type, depth)
 
     start = perf_counter()
@@ -41,7 +55,11 @@ def time_group(depth: int, type: CollType, coll: Collection)-> float:
 
     return (end - start) * 1000
 
-def time_avg(depth: int, type: CollType, coll: Collection)-> float:
+def time_avg(
+        depth: int, 
+        type: CollType, 
+        coll: Collection
+)-> float:
     avg_pipe = builders.avg_pipe_builder(type, depth)
 
     start = perf_counter()

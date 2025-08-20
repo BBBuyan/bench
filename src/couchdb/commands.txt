@@ -1,0 +1,39 @@
+NAME     ZONE             MACHINE_TYPE  PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
+alone    europe-west10-c  e2-medium                  10.214.0.22                TERMINATED
+bench    europe-west10-c  e2-medium                  10.214.0.20  34.32.74.235  RUNNING
+config   europe-west10-c  e2-medium                  10.214.0.19                TERMINATED
+router   europe-west10-c  e2-medium                  10.214.0.21  34.32.69.6    RUNNING
+
+shard-a  europe-west10-c  e2-medium                  10.214.0.16  34.32.32.98   RUNNING
+shard-b  europe-west10-c  e2-medium                  10.214.0.17  34.32.43.171  RUNNING
+shard-c  europe-west10-c  e2-medium                  10.214.0.18  34.32.59.135  RUNNING
+
+34.32.32.98
+34.32.43.171
+34.32.59.135
+
+
+10.214.0.16
+10.214.0.17
+10.214.0.18
+
+# Enable Cluster
+curl -X POST -H "Content-Type: application/json" http://admin:secret@localhost:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"secret", "node_count":"3"}'
+
+
+#
+curl -X POST -H "Content-Type: application/json" http://admin:secret@10.214.0.16:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"secret", "port": 5984, "node_count": "3", "remote_node": "couchdb@10.214.0.17", "remote_current_user": "admin", "remote_current_password": "secret" }'
+
+curl -X POST -H "Content-Type: application/json" http://admin:secret@10.214.0.16:5984/_cluster_setup -d '{"action": "add_node", "host":"10.214.0.17", "port": 5984, "username": "admin", "password":"secret"}'
+
+
+curl -X POST -H "Content-Type: application/json" http://admin:secret@10.214.0.16:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"secret", "port": 5984, "node_count": "3", "remote_node": "couchdb@10.214.0.18", "remote_current_user": "admin", "remote_current_password": "secret" }'
+
+curl -X POST -H "Content-Type: application/json" http://admin:secret@10.214.0.16:5984/_cluster_setup -d '{"action": "add_node", "host":"10.214.0.18", "port": 5984, "username": "admin", "password":"secret"}'
+
+
+#
+curl -X POST -H "Content-Type: application/json" http://admin:secret@10.214.0.16:5984/_cluster_setup -d '{"action": "finish_cluster"}'
+
+
+curl http://admin:secret@10.214.0.18:5984/_users

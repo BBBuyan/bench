@@ -36,20 +36,26 @@ def import_data(file_names: list[str], batch_limit: int):
     for i in range(len(file_names)):
         name = file_names[i]
         with open(f"../../data/{name}.json", "r") as f:
+            print(f"importing {name}")
+            counter = 0
+
             for line in f:
                 json_data = loads(line)
                 batch.append(json_data)
 
                 if(len(batch) >= batch_limit):
                     execute_import(name, batch)
-                    print(f"{batch_limit},", end=" ", flush=True)
                     batch.clear()
+                    counter += 1
+                    if counter > 10:
+                        print(f"inserted {counter * batch_limit}")
+                        counter = 0
 
         if batch:
             execute_import(name, batch)
 
 # create_databases()
-# import_data(flat_names, 100000)
-import_data(obj_names, 50000)
+import_data(flat_names, 1000)
+# import_data(obj_names, 1000)
 # import_data(arr_names, 1000)
 

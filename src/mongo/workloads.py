@@ -20,10 +20,10 @@ def run_read_heavy(type: CollType):
             prob = random()
             if prob<0.9:
                 print("r, ", end="", flush=True)
-                result[depth] = operations.time_read(depth, sub_id, type, colls[depth])
+                result[depth] += operations.time_read(depth, sub_id, type, colls[depth])
             else:
                 print("u, ", end="" , flush=True)
-                result[depth] = operations.time_update(depth, sub_id, type, colls[depth])
+                result[depth] += operations.time_update(depth, sub_id, type, colls[depth])
 
         print("---")
 

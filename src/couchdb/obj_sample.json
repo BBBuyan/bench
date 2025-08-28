@@ -1,0 +1,90 @@
+{
+  "device":1329,
+  "app":"finally",
+  "l1":{
+    "device":9933,
+    "app":"amount",
+    "total_volume_bytes":1194,
+    "number_of_records":695,
+    "subscribers":2952
+  }
+}
+
+{
+  "device":2538,
+  "app":"hospital",
+  "l1":{
+    "device":5644,
+    "app":"agent",
+    "l2":{
+      "device":5254,
+      "app":"however",
+      "total_volume_bytes":7738,
+      "number_of_records":420,
+      "subscribers":5478
+    }
+  }
+}
+
+{
+  "device":1895,
+  "app":"traditional",
+  "l1":{
+    "device":7220,
+    "app":"economy",
+    "l2":{
+      "device":2950,
+      "app":"live",
+      "l3":{
+        "device":786,
+        "app":"national",
+        "l4":{
+          "device":5863,
+          "app":"either",
+          "total_volume_bytes":4569,
+          "number_of_records":643,
+          "subscribers":5085
+        }
+      }
+    }
+  }
+}
+{
+  "device":5872,
+  "app":"whole",
+  "l1":{
+    "device":8529,
+    "app":"ever",
+    "l2":{
+      "device":5957,
+      "app":"out",
+      "l3":{
+        "device":9347,
+        "app":"lead",
+        "l4":{
+          "device":8895,
+          "app":"partner",
+          "l5":{
+            "device":898,
+            "app":"under",
+            "l6":{
+              "device":6271,
+              "app":"listen",
+              "l7":{
+                "device":6608,
+                "app":"these",
+                "l8":{
+                  "device":5783,
+                  "app":"air",
+                  "total_volume_bytes":5706,
+                  "number_of_records":989,
+                  "subscribers":1199
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

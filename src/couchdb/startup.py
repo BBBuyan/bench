@@ -1,6 +1,5 @@
 from couchdb import Server 
 
-
 def create_databases():
     couch_url = "http://admin:secret@192.168.2.87:5984"
     couch = Server(url=couch_url)

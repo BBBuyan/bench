@@ -3,18 +3,16 @@ from time import perf_counter
 import requests
 import helper
 from Base import Base
-from pprint import pprint
 
 def time_read(op_type: Base):
     url = op_type.url + "_find"
     query = op_type.get_device_query()
-    print(query)
 
     start = perf_counter()
     res = requests.post(url, json=query)
     end = perf_counter()
 
-    return (end - start)
+    return (end - start) * 1000
 
 def time_update(op_type: Base):
     url = op_type.url + "_bulk_docs"
@@ -25,7 +23,7 @@ def time_update(op_type: Base):
     res = requests.post(url, json=updated_data)
     end = perf_counter()
 
-    return (end - start)
+    return (end - start) * 1000
 
 def time_insert(op_type: Base):
     url = op_type.url + "_bulk_docs"
@@ -36,8 +34,7 @@ def time_insert(op_type: Base):
     res = requests.post(url, json=insert_data)
     end = perf_counter()
 
-    return (end - start)
-
+    return (end - start) * 1000
 
 def time_group(op_type: Base):
     url = op_type.url + "_design/analytic/_view/group?group=true"
@@ -51,13 +48,13 @@ def time_group(op_type: Base):
     # docs = data["rows"]
     # pprint(len(docs))
 
-    return (end - start)
+    return (end - start) * 1000
 
 def time_avg(op_type: Base):
     sub_id = randint(0,9999)
     url = op_type.url + "_design/analytic/_view/average?group=true"
     url += f"&key={sub_id}"
-    # url += "&limit=10"
+    url += "&limit=9999"
     start = perf_counter()
     res = requests.get(url)
     end = perf_counter()
@@ -66,4 +63,4 @@ def time_avg(op_type: Base):
     # docs = data["rows"]
     # pprint(data)
 
-    return (end - start)
+    return (end - start) * 1000

@@ -1,4 +1,5 @@
 from Base import Base
+from random import randint
 
 class Flat(Base):
     name = "flat"
@@ -10,8 +11,13 @@ class Flat(Base):
 
         self.subscribers_path = "subscribers"
         self.volume_path = "total_volume_bytes"
-        self.update_path = "subscribers"
+        self.update_path = "device"
         self.device_path = "device"
 
         self.group_map_func = "function(doc) { if(doc.subscribers !== undefined) emit(doc.subscribers, null)}"
         self.average_map_func = "function(doc) { if(doc.total_volume_bytes !== undefined) emit(doc.subscribers, doc.total_volume_bytes)}"
+
+
+    def update_innermost_device(self, data: dict):
+        data["device"] = randint(0,9999)
+

@@ -51,3 +51,9 @@ def import_objs():
 def import_flat():
     import_data("flat", 1000)
 
+def import_all():
+    import_arrs()
+    import_objs()
+    import_flat()
+
+import_all()

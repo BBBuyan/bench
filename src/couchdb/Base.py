@@ -1,14 +1,14 @@
 from random import randint
+from Conn import root_url
 
 class Base:
-    base_url = "http://admin:secret@192.168.2.87:5984/"
+    base_url = root_url
     name=""
     url=""
     max_offset=0
     use_index=False
 
     device_path=""
-    update_path=""
     subscribers_path=""
     volume_path=""
 
@@ -30,3 +30,17 @@ class Base:
             query["use_index"] = f"{self.name}-device-index"
 
         return query
+
+    def get_index_query(self):
+        query = {
+            "index": {
+                "fields": [f"{self.device_path}"]
+            },
+            "name": f"{self.name}-device-index",
+            "type": "json"
+        }
+        return query
+
+    def update_innermost_device(self, data: dict):
+        raise NotImplementedError("must be implemented in subclasses")
+

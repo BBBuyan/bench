@@ -6,33 +6,43 @@ from json import loads
 
 fetch_limit = 1
 
-def get_updated_data(op_type: Base):
-    first_batch = fetch_update_data(op_type)
-    second_batch = fetch_update_data(op_type)
-
-    for i in range(len(first_batch)):
-        first_batch[i][op_type.update_path] = second_batch[i][op_type.update_path]
-
-    return first_batch
-
-def fetch_update_data(op_type: Base):
+def fetch_random_batch(op_type: Base):
     url = op_type.url + "_find"
-    query = op_type.get_device_query()
-    query["limit"] = 3
+    offset = randint(0,9000)
+    query = {
+        "selector": {},
+        "limit": fetch_limit,
+        "skip": offset
+    }
     res = requests.post(url, json=query)
     data = res.json()
 
     return data["docs"]
 
+
+def get_updated_data(op_type: Base):
+    updating_batch = fetch_random_batch(op_type)
+
+    for el in updating_batch:
+        op_type.update_innermost_device(el)
+
+    return updating_batch
+
 def fetch_insert_data(op_type: Base):
     data = []
     path = f"../../data/{op_type.name}.json"
+    offset = randint(0, 5000)
     i = 0
 
     with open(path, "r") as f:
+        for _ in range(offset):
+            next(f, None)
+
         for line in f:
             json_data = loads(line)
+            json_data["inserted"]=True
             data.append(json_data)
+
             i += 1
             if i >= fetch_limit:
                 break
@@ -84,25 +94,21 @@ def calc_diffs(old: list[float], new: list[float]):
         old_val = old[i]
         new_val = new[i]
         diff = ((new_val - old_val)/old_val)*100
-        print(f"|{depth_list[i]:^10}|{old[i] * 1000:>10.0f}|{new[i] * 1000:>10.0f}|{diff:>10.0f}|")
+        print(f"|{depth_list[i]:^10}|{old[i]:>10.0f}|{new[i]:>10.0f}|{diff:>10.0f}|")
     print(f"{'':-<45}")
 
 def create_indexes(op_types: list[Base]):
+    print("---Creating Indexes, ", end="", flush=True)
     for op_type in op_types:
         url = op_type.url + "_index"
 
-        query = {
-            "index": {
-                "fields": [f"{op_type.device_path}"]
-            },
-            "name": f"{op_type.name}-device-index",
-            "type": "json"
-        }
+        query = op_type.get_index_query()
+        requests.post(url, json=query)
 
-        res = requests.post(url, json=query)
-        print(res.text)
+    print("done---")
 
 def delete_indexes(op_types: list[Base]):
+    print("---Deleting Indexes, ", end="", flush=True)
     for op_type in op_types:
         url = op_type.url + "_index"
         res = requests.get(url)
@@ -112,7 +118,8 @@ def delete_indexes(op_types: list[Base]):
         for ind in my_indexes:
             url += f"/{ind["ddoc"]}/json/{ind["name"]}"
             res = requests.delete(url)
-            pprint(res.text)
+
+    print("done---")
 
 def delete_databases(op_types: list[Base]):
     for op_type in op_types:

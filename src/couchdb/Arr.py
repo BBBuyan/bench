@@ -44,11 +44,33 @@ class Arr(Base):
                 }
             }
 
-        result = {
+        query: dict = {
             "selector": nest
         }
-        return result
 
+        if self.use_index:
+            query["use_index"] = f"{self.name}-device-index"
+
+        return query
+
+    def get_index_query(self):
+        index_path = self._build_arr_index_path()
+        query = {
+            "index": {
+                "fields": [f"{index_path}"]
+            },
+            "name": f"{self.name}-device-index",
+            "type": "json"
+        }
+        return query
+
+
+    def _build_arr_index_path(self):
+        index_path = "device"
+        for level in self.levels:
+            index_path = f"{level}.[].{index_path}"
+
+        return index_path
 
     def _generate_group_map_func(self):
         depth = len(self.levels)
@@ -72,6 +94,3 @@ class Arr(Base):
         base = f"function (doc) {{ doc.{self.levels[-1]}.forEach( function({self.levels[-1]}) {{ {base} }} )}}"
 
         return base
-
-
-

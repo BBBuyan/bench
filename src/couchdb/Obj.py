@@ -1,4 +1,5 @@
 from Base import Base
+from random import randint
 
 class Obj(Base):
     subscribers_map = {
@@ -21,14 +22,25 @@ class Obj(Base):
     }
 
     def __init__(self, level: int) -> None:
+        all_levels = ["l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8"]
+        self.level = level
+        self.levels: list[str] = all_levels[:(level)]
+
         self.name = f"obj{level}"
         self.url = self.base_url + self.name + "/"
         self.max_offset = 999500
 
         self.device_path = self.device_map[level]
-        self.update_path = "l1"
         self.subscribers_path = self.subscribers_map[level]
         self.volume_path = self.volume_map[level]
 
         self.group_map_func = f"function (doc) {{ if(doc.{self.subscribers_path} !== undefined) emit(doc.{self.subscribers_path}, null) }}"
         self.average_map_func = f"function (doc) {{ if(doc.{self.volume_path} !== undefined) emit(doc.{self.subscribers_path}, doc.{self.volume_path})}}"
+
+
+    def update_innermost_device(self, data: dict):
+        for k in self.levels[:-1]:
+            data = data[k]
+
+        data[self.levels[-1]]["device"] = randint(0,9999)
+

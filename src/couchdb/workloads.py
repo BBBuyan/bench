@@ -17,9 +17,21 @@ def run_read_heavy(types: list[Base]):
                 print("r,", end=" ", flush=True)
                 result[i] += op.time_read(types[i])
             else:
-                pass
                 print("u,", end=" ", flush=True)
-                op.time_update(types[i])
+                result[i] += op.time_update(types[i])
+        print("---")
+
+    return result
+
+def run_read_only(types: list[Base]):
+    print("---Read Only---")
+    result = [0.0] * len(types)
+
+    for i in range(len(types)):
+        print(f"depth: {types[i].name} | ", end=" ", flush=True)
+        for _ in range(num_of_tries):
+            print("r,", end=" ", flush=True)
+            result[i] += op.time_read(types[i])
         print("---")
 
     return result
@@ -109,6 +121,31 @@ def run_mixed(types: list[Base]):
 
     return result
 
+def run_mixed_special(types: list[Base]):
+    print("---Mixed Special---")
+    result = [0.0] * len(types)
+
+    for i in range(len(types)):
+        print(f"depth: {types[i].name} | ", end=" ", flush=True)
+        for _ in range(num_of_tries):
+            prob = random()
+
+            if prob < 0.4:
+                print("r,", end=" ", flush=True)
+                result[i] += op.time_read(types[i])
+            elif prob < 0.7:
+                print("u,", end=" ", flush=True)
+                op.time_update(types[i])
+                result[i] += op.time_read(types[i])
+            else:
+                print("i,", end=" ", flush=True)
+                op.time_insert(types[i])
+                result[i] += op.time_read(types[i])
+
+        print("---")
+
+    return result
+
 def run_group(types: list[Base]):
     result = [0.0] * len(types)
 
@@ -127,3 +164,36 @@ def run_avg(types: list[Base]):
     print("---")
     return result
 
+def run_warmup(types: list[Base]):
+    print("---Warming Up---")
+    for i in range(len(types)):
+        for _ in range((num_of_tries//2)):
+            op.time_insert(types[i])
+            op.time_update(types[i])
+    print("---Warming Up, Done---")
+
+def run_read_after_update(types: list[Base]):
+    print("---Read after Update---")
+    result = [0.0] * len(types)
+
+    for i in range(len(types)):
+        print(f"depth: {types[i].name} | ", end=" ", flush=True)
+        for _ in range(num_of_tries):
+            print("u,", end=" ", flush=True)
+            op.time_update(types[i])
+            result[i] += op.time_read(types[i])
+        print("---")
+    return result
+
+def run_read_after_insert(types: list[Base]):
+    print("---Read after Insert---")
+    result = [0.0] * len(types)
+
+    for i in range(len(types)):
+        print(f"depth: {types[i].name} | ", end=" ", flush=True)
+        for _ in range(num_of_tries):
+            print("i,", end=" ", flush=True)
+            op.time_insert(types[i])
+            result[i] += op.time_read(types[i])
+        print("---")
+    return result

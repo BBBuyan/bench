@@ -1,20 +1,12 @@
-from couchdb import Server 
+import helper
+from Databases import all_dbs, create_database, create_databases
+import import_data
 
-def create_databases():
-    couch_url = "http://admin:secret@192.168.2.87:5984"
-    couch = Server(url=couch_url)
-    couch.create("flat")
+def startup():
+    create_databases()
+    for db in all_dbs:
+        import_data.import_data(db)
 
-    couch.create("arr1")
-    couch.create("arr2")
-    couch.create("arr4")
-    couch.create("arr8")
-
-    couch.create("obj1")
-    couch.create("obj2")
-    couch.create("obj4")
-    couch.create("obj8")
-
-
-create_databases()
+if __name__ == "__main__":
+    startup()
 

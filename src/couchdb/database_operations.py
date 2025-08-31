@@ -1,11 +1,21 @@
+from Base import Base
 import requests
 from json import loads
 from time import time
+from Databases import all_dbs
 
+batch_limit = 1000
 
-def execute_import(name: str, json_data: list[dict]):
-    couch_url = "http://admin:secret@192.168.2.87:5984"
-    url = f"{couch_url}/{name}/_bulk_docs"
+def delete_database(db: Base):
+    res = requests.delete(db.url)
+    print(res.text)
+
+def create_database(db: Base):
+    res = requests.put(db.url)
+    print(res.text)
+
+def execute_import(type: Base, json_data: list[dict]):
+    url = f"{type.url}_bulk_docs"
 
     payload = {"docs": json_data}
     r = requests.post(url, json=payload)
@@ -13,7 +23,8 @@ def execute_import(name: str, json_data: list[dict]):
     if r.status_code >= 400:
         raise ValueError(r.text)
 
-def import_data(name: str, batch_limit: int):
+def import_docs(db: Base):
+    name = db.name
     batch = []
     start = time()
     print(f"importing {name}")
@@ -26,7 +37,7 @@ def import_data(name: str, batch_limit: int):
             batch.append(json_data)
 
             if(len(batch) >= batch_limit):
-                execute_import(name, batch)
+                execute_import(db, batch)
                 batch.clear()
                 iteration += 1
                 if iteration >= 250:
@@ -36,24 +47,18 @@ def import_data(name: str, batch_limit: int):
     end = time()
     print(f"took: {end - start:.0f} s")
 
-def import_arrs():
-    import_data("arr1", 1000)
-    import_data("arr2", 1000)
-    import_data("arr4", 1000)
-    import_data("arr8", 1000)
+def reset(db: Base):
+    delete_database(db)
+    create_database(db)
 
-def import_objs():
-    import_data("obj1", 1000)
-    import_data("obj2", 1000)
-    import_data("obj4", 1000)
-    import_data("obj8", 1000)
+def reset_all():
+    for db in all_dbs:
+        reset(db)
 
-def import_flat():
-    import_data("flat", 1000)
+def delete_databases():
+    for db in all_dbs:
+        delete_database(db)
 
-def import_all():
-    import_arrs()
-    import_objs()
-    import_flat()
-
-import_all()
+def create_databases():
+    for db in all_dbs:
+        create_database(db)

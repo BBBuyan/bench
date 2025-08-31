@@ -1,15 +1,8 @@
 from Base import Base
 from random import randint
 
-
 class Arr(Base):
     levels: list[str] = []
-    cutoff = {
-        1: 7,
-        2: 6,
-        4: 4,
-        8: 0,
-    }
 
     device_map = {
         1: "a1.device",
@@ -27,7 +20,6 @@ class Arr(Base):
         self.max_offset = 9500
 
         self.device_path = self.device_map[level]
-        self.update_path = "a1"
         self.levels = all_levels[(8-level):]
         self.group_map_func = self._generate_group_map_func()
         self.average_map_func = self._generate_average_map_func()
@@ -48,29 +40,7 @@ class Arr(Base):
             "selector": nest
         }
 
-        if self.use_index:
-            query["use_index"] = f"{self.name}-device-index"
-
         return query
-
-    def get_index_query(self):
-        index_path = self._build_arr_index_path()
-        query = {
-            "index": {
-                "fields": [f"{index_path}"]
-            },
-            "name": f"{self.name}-device-index",
-            "type": "json"
-        }
-        return query
-
-
-    def _build_arr_index_path(self):
-        index_path = "device"
-        for level in self.levels:
-            index_path = f"{level}.[].{index_path}"
-
-        return index_path
 
     def _generate_group_map_func(self):
         depth = len(self.levels)

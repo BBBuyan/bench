@@ -19,13 +19,11 @@ class Base:
     average_reduce="_stats"
 
     def get_device_query(self):
-        new_id = randint(0, 9999)
         query: dict = {
             "selector": {
-                self.device_path: new_id
+                self.device_path: randint(0,9999)
             },
         }
-
         if self.use_index:
             query["use_index"] = f"{self.name}-device-index"
 
@@ -36,11 +34,12 @@ class Base:
             "index": {
                 "fields": [f"{self.device_path}"]
             },
+            "ddoc": "custom-indexes",
             "name": f"{self.name}-device-index",
             "type": "json"
         }
         return query
 
-    def update_innermost_device(self, data: dict):
+    def update_innermost_num_of_records(self, data: dict):
         raise NotImplementedError("must be implemented in subclasses")
 

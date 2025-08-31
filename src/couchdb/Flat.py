@@ -17,7 +17,5 @@ class Flat(Base):
         self.group_map_func = "function(doc) { if(doc.subscribers !== undefined) emit(doc.subscribers, null)}"
         self.average_map_func = "function(doc) { if(doc.total_volume_bytes !== undefined) emit(doc.subscribers, doc.total_volume_bytes)}"
 
-
-    def update_innermost_device(self, data: dict):
-        data["device"] = randint(0,9999)
-
+    def update_innermost_num_of_records(self, data: dict):
+        data["number_of_records"] = randint(0,999)

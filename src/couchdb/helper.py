@@ -4,27 +4,25 @@ from Base import Base
 from pprint import pprint
 from json import loads
 
-fetch_limit = 1
+fetch_limit = 50
 
 def fetch_random_batch(op_type: Base):
     url = op_type.url + "_find"
-    offset = randint(0,9000)
     query = {
         "selector": {},
         "limit": fetch_limit,
-        "skip": offset
+        "skip": randint(0, 9500)
     }
     res = requests.post(url, json=query)
     data = res.json()
 
     return data["docs"]
 
-
 def get_updated_data(op_type: Base):
     updating_batch = fetch_random_batch(op_type)
 
     for el in updating_batch:
-        op_type.update_innermost_device(el)
+        op_type.update_innermost_num_of_records(el)
 
     return updating_batch
 
@@ -101,10 +99,9 @@ def create_indexes(op_types: list[Base]):
     print("---Creating Indexes, ", end="", flush=True)
     for op_type in op_types:
         url = op_type.url + "_index"
-
         query = op_type.get_index_query()
         requests.post(url, json=query)
-
+        op_type.use_index = True
     print("done---")
 
 def delete_indexes(op_types: list[Base]):
@@ -120,8 +117,3 @@ def delete_indexes(op_types: list[Base]):
             res = requests.delete(url)
 
     print("done---")
-
-def delete_databases(op_types: list[Base]):
-    for op_type in op_types:
-        res = requests.delete(op_type.url)
-        print(res.text)

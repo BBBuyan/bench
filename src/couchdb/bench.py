@@ -1,12 +1,12 @@
 import workloads
 from Base import Base
-from Arr import Arr
-from Obj import Obj
-from Flat import Flat
+from Databases import flat_list, arr_list, obj_list
 import helper
 import logger
 
 def bench(db_list: list[Base]):
+    # workloads.run_warmup(db_list)
+
     old_read = workloads.run_read_heavy(db_list)
     old_update = workloads.run_update_heavy(db_list)
     old_update_only = workloads.run_update_only(db_list)
@@ -16,11 +16,8 @@ def bench(db_list: list[Base]):
 
     helper.create_indexes(db_list)
 
-    Base.use_index = True
-
-    
-    #warmup
-    workloads.run_read_heavy(db_list)
+    # warmup
+    # workloads.run_warmup(db_list)
 
     new_read = workloads.run_read_heavy(db_list)
     new_update = workloads.run_update_heavy(db_list)
@@ -53,24 +50,21 @@ def bench(db_list: list[Base]):
 
     print("mixed")
     helper.calc_diffs(old_mixed, new_mixed)
-    logger.save_result(old_mixed, new_mixed, "read")
+    logger.save_result(old_mixed, new_mixed, "mixed")
 
     logger.mark_end()
 
 
 def bench_obj():
-    obj: list[Base] = [Obj(1), Obj(2), Obj(4), Obj(8)]
     logger.mark_operation("obj")
-    bench(obj)
+    bench(obj_list)
 
 def bench_arr():
-    arr: list[Base] = [Arr(1), Arr(2), Arr(4), Arr(8)]
     logger.mark_operation("arr")
-    bench(arr)
+    bench(arr_list)
 
 def bench_flat():
-    flat: list[Base] = [Flat()]
     logger.mark_operation("flat")
-    bench(flat)
+    bench(flat_list)
 
-bench_flat()
+bench_obj()

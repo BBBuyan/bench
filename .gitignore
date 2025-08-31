@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 # specific only for this project. the data is generated instead of shared via github
 data/
+result.txt
 
 # C extensions
 *.so

@@ -1,7 +1,6 @@
 from random import randint
 import requests
 from Base import Base
-from pprint import pprint
 from json import loads
 
 fetch_limit = 50
@@ -82,8 +81,9 @@ def delete_analytic_views(op_type: Base):
         del_res = requests.delete(delete_url+rev)
         print(del_res.text)
 
-def calc_diffs(old: list[float], new: list[float]):
+def calc_diffs(old: list[float], new: list[float], operation: str):
     depth_list = [1, 2, 4, 8]
+    print(f"##{operation}")
     print(f"{'':-<45}")
     print(f"|{'depth':^10}|{'w/o index':^10}|{'w index':^10}|{'diff':^10}|")
     print(f"|{'':-^10}|{'':-^10}|{'':-^10}|{'':-^10}|")

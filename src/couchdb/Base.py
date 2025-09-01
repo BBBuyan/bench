@@ -8,6 +8,7 @@ class Base:
     max_offset=0
     use_index=False
     debug = False
+    num_of_tries = 10
 
     device_path=""
     subscribers_path=""

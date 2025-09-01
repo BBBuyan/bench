@@ -28,43 +28,39 @@ def bench(db_list: list[Base]):
 
     helper.delete_indexes(db_list)
 
-    print("read")
-    helper.calc_diffs(old_read, new_read)
-    logger.save_result(old_read, new_read, "read")
+    helper.calc_diffs(old_read, new_read, "read")
+    logger.save_result(old_read, new_read, "read", "result")
 
-    print("update heavy")
-    helper.calc_diffs(old_update, new_update)
-    logger.save_result(old_update, new_update, "update heavy")
+    helper.calc_diffs(old_update, new_update, "update_heavy")
+    logger.save_result(old_update, new_update, "update heavy", "result")
 
-    print("update only")
-    helper.calc_diffs(old_update_only, new_update_only)
-    logger.save_result(old_update_only, new_update_only, "update only")
+    helper.calc_diffs(old_update_only, new_update_only, "update_only")
+    logger.save_result(old_update_only, new_update_only, "update only", "result")
 
-    print("insert heavy")
-    helper.calc_diffs(old_insert, new_insert)
-    logger.save_result(old_insert, new_insert, "insert")
+    helper.calc_diffs(old_insert, new_insert, "insert_heavy")
+    logger.save_result(old_insert, new_insert, "insert heavy", "result")
 
-    print("insert only")
-    helper.calc_diffs(old_insert_only, new_insert_only)
-    logger.save_result(old_insert_only, new_insert_only, "insert only")
+    helper.calc_diffs(old_insert_only, new_insert_only, "insert_only")
+    logger.save_result(old_insert_only, new_insert_only, "insert only", "result")
 
-    print("mixed")
-    helper.calc_diffs(old_mixed, new_mixed)
-    logger.save_result(old_mixed, new_mixed, "mixed")
+    helper.calc_diffs(old_mixed, new_mixed, "mixed")
+    logger.save_result(old_mixed, new_mixed, "mixed", "result")
 
-    logger.mark_end()
 
 
 def bench_obj():
     logger.mark_operation("obj")
     bench(obj_list)
+    logger.mark_end()
 
 def bench_arr():
     logger.mark_operation("arr")
     bench(arr_list)
+    logger.mark_end()
 
 def bench_flat():
     logger.mark_operation("flat")
     bench(flat_list)
+    logger.mark_end()
 
 bench_obj()

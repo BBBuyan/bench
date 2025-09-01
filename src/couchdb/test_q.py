@@ -1,6 +1,7 @@
 import requests
 import operations 
 import workloads
+import workloads_analytic as work_a
 from pprint import pprint
 import database_operations
 from Base import Base
@@ -23,7 +24,6 @@ obj = obj_list[0]
 # pprint(helper.build_analytic_view_doc(flat_list[0]))
 # pprint(flat_list[0].get_index_query())
 # helper.create_analytic_views(flat_list[0])
-Base.debug = True
 
-operations.time_group(flat_list[0])
+
 

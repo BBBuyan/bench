@@ -1,12 +1,10 @@
-import helper
-from Databases import all_dbs, create_database, create_databases
-import import_data
+from Databases import all_dbs
+import database_operations as db_ops
 
 def startup():
-    create_databases()
+    db_ops.create_databases()
     for db in all_dbs:
-        import_data.import_data(db)
+        db_ops.import_docs(db)
 
 if __name__ == "__main__":
     startup()
-

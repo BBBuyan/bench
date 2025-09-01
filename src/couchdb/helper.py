@@ -85,7 +85,7 @@ def calc_diffs(old: list[float], new: list[float], operation: str):
     depth_list = [1, 2, 4, 8]
     print(f"##{operation}")
     print(f"{'':-<45}")
-    print(f"|{'depth':^10}|{'w/o index':^10}|{'w index':^10}|{'diff':^10}|")
+    print(f"|{'depth':^10}|{'before':^10}|{'after':^10}|{'diff':^10}|")
     print(f"|{'':-^10}|{'':-^10}|{'':-^10}|{'':-^10}|")
     for i in range(len(old)):
         old_val = old[i]

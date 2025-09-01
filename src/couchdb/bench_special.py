@@ -1,10 +1,9 @@
 import helper
 import workloads as work
 from Base import Base
-from Databases import flat_list
+from Databases import flat_list, obj_list
 
 def bench(dbs: list[Base]):
-
     helper.create_indexes(dbs)
     read_only = work.run_read_only(dbs)
 
@@ -18,4 +17,4 @@ def bench(dbs: list[Base]):
 
     helper.delete_indexes(dbs)
 
-bench(flat_list)
+bench(obj_list)

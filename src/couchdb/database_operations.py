@@ -4,8 +4,6 @@ from json import loads
 from time import time
 from Databases import all_dbs
 
-batch_limit = 1000
-
 def delete_database(db: Base):
     res = requests.delete(db.url)
     print(res.text)
@@ -36,7 +34,7 @@ def import_docs(db: Base):
             json_data = loads(line)
             batch.append(json_data)
 
-            if(len(batch) >= batch_limit):
+            if(len(batch) >= db.batch_limit):
                 execute_import(db, batch)
                 batch.clear()
                 iteration += 1

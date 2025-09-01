@@ -197,3 +197,4 @@ def run_read_after_insert(types: list[Base]):
             result[i] += op.time_read(types[i])
         print("---")
     return result
+

@@ -38,29 +38,26 @@ def time_insert(op_type: Base):
 
 def time_group(op_type: Base):
     url = op_type.url + "_design/analytic/_view/group?group=true"
-    # url += "&limit=10"
+    url += f"&key={randint(0,9999)}"
 
     start = perf_counter()
     res = requests.get(url)
     end = perf_counter()
 
-    # data = res.json()
-    # docs = data["rows"]
-    # pprint(len(docs))
+    if op_type.debug:
+        print(res.text)
 
     return (end - start) * 1000
 
 def time_avg(op_type: Base):
-    sub_id = randint(0,9999)
     url = op_type.url + "_design/analytic/_view/average?group=true"
-    url += f"&key={sub_id}"
-    url += "&limit=9999"
+    url += f"&key={randint(0, 9999)}"
+
     start = perf_counter()
     res = requests.get(url)
     end = perf_counter()
 
-    # data = res.json()
-    # docs = data["rows"]
-    # pprint(data)
+    if op_type.debug:
+        print(res.text)
 
     return (end - start) * 1000

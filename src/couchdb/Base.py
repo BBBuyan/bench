@@ -7,6 +7,7 @@ class Base:
     url=""
     max_offset=0
     use_index=False
+    debug = False
 
     device_path=""
     subscribers_path=""
@@ -17,6 +18,7 @@ class Base:
 
     group_reduce="_count"
     average_reduce="_stats"
+    batch_limit = 1000
 
     def get_device_query(self):
         query: dict = {
@@ -34,7 +36,6 @@ class Base:
             "index": {
                 "fields": [f"{self.device_path}"]
             },
-            "ddoc": "custom-indexes",
             "name": f"{self.name}-device-index",
             "type": "json"
         }

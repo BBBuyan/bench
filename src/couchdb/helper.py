@@ -55,7 +55,6 @@ def create_analytic_views(op_type: Base):
 
 def build_analytic_view_doc(op_type: Base):
     doc = {
-        "_id": "_design/analytic",
         "views": {
             "group": {
                 "map": op_type.group_map_func,
@@ -69,7 +68,7 @@ def build_analytic_view_doc(op_type: Base):
     }
     return doc
 
-def delete_design_docs(op_type: Base):
+def delete_analytic_views(op_type: Base):
     fetch_url = op_type.url + "_design_docs"
     delete_url = op_type.url + "_design/analytic?rev="
 
@@ -101,6 +100,7 @@ def create_indexes(op_types: list[Base]):
         url = op_type.url + "_index"
         query = op_type.get_index_query()
         requests.post(url, json=query)
+
         op_type.use_index = True
     print("done---")
 

@@ -1,7 +1,8 @@
+import datetime
 def save_result(old: list[float], new: list[float], operation: str, file_name: str):
     depth_list = [1,2,4,8]
 
-    with open(f"{file_name}.txt", "a") as f:
+    with open(f"result/{file_name}.txt", "a") as f:
         f.write(f"##{operation}\n")
         f.write(f"|{'depth':^10}|{'w/o index':^10}|{'w index':^10}|{'diff':^10}|\n")
         f.write(f"|{'':-^10}|{'':-^10}|{'':-^10}|{'':-^10}|\n")
@@ -14,13 +15,16 @@ def save_result(old: list[float], new: list[float], operation: str, file_name: s
 
         f.write("\n")
 
-def mark_end():
-    with open("result.txt", "a") as f:
+def mark_end(file_name: str):
+    with open(f"result/{file_name}.txt", "a") as f:
         f.write(f"{'':-<45}")
         f.write("\n")
 
 def mark_operation(operation: str, file_name: str):
-    with open(f"{file_name}.txt", "a") as f:
+    now = datetime.datetime.now()
+
+    with open(f"result/{file_name}.txt", "a") as f:
         f.write("\n")
+        f.write(now.strftime("%Y-%m-%d, %H:%M:%S") + "\n")
         f.write(f"{operation:-^45}\n")
 

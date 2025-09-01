@@ -24,11 +24,11 @@ def bench_indexes(dbs: list[Base]):
 def bench_indexes_obj():
     logger.mark_operation("obj special", file_name)
     bench_indexes(obj_list)
-    logger.mark_end()
+    logger.mark_end(file_name)
 
 def bench_indexes_flat():
     logger.mark_operation("flat special", file_name)
     bench_indexes(flat_list)
-    logger.mark_end()
+    logger.mark_end(file_name)
 
 bench_indexes_flat()

@@ -40,4 +40,5 @@ def bench_analytics_flat():
     bench_analytics(flat_list)
     logger.mark_end(file_name)
 
-bench_analytics_flat()
+if __name__ == "__main__":
+    bench_analytics_flat()

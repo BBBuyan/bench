@@ -6,11 +6,15 @@ from Base import Base
 
 def time_read(op_type: Base):
     url = op_type.url + "_find"
+    url += "?stale=ok"
     query = op_type.get_device_query()
 
     start = perf_counter()
     res = requests.post(url, json=query)
     end = perf_counter()
+
+    if op_type.debug:
+        print(res.text)
 
     return (end - start) * 1000
 

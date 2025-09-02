@@ -8,5 +8,13 @@ from Base import Base
 import helper
 from Databases import arr_list, obj_list, flat_list
 
-Base.debug = True
-operations.time_read(obj_list[0])
+
+# helper.get_updated_data(arr_list[0])
+# helper.delete_indexes(arr_list)
+# print(operations.time_read(flat_list[0]))
+
+# helper.create_indexes(flat_list)
+# helper.create_analytic_views(flat_list[0])
+# helper.delete_analytic_views(flat_list[0])
+# operations.time_insert(flat_list[0])
+helper.delete_indexes(flat_list)

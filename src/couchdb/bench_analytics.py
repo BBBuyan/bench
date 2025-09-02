@@ -2,7 +2,7 @@ from Base import Base
 import workloads_analytic as work_a
 import logger
 import helper
-from Databases import flat_list
+from Databases import flat_list, obj_list, arr_list
 
 file_name = "result_analytics"
 
@@ -38,6 +38,16 @@ def bench_analytics(types: list[Base]):
 def bench_analytics_flat():
     logger.mark_operation("flat analytics", file_name)
     bench_analytics(flat_list)
+    logger.mark_end(file_name)
+
+def bench_analytics_obj():
+    logger.mark_operation("obj analytics", file_name)
+    bench_analytics(obj_list)
+    logger.mark_end(file_name)
+
+def bench_analytics_arr():
+    logger.mark_operation("arr analytics", file_name)
+    bench_analytics(arr_list)
     logger.mark_end(file_name)
 
 if __name__ == "__main__":

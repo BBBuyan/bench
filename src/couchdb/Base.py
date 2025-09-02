@@ -42,6 +42,6 @@ class Base:
         }
         return query
 
-    def update_innermost_num_of_records(self, data: dict):
-        raise NotImplementedError("must be implemented in subclasses")
+    def update(self, data: dict, new_data: dict):
+        data.update(new_data)
 

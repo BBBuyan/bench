@@ -2,11 +2,12 @@ import helper
 import logger
 import workloads as work
 from Base import Base
-from Databases import obj_list, flat_list
+from Databases import obj_list, flat_list, arr_list
 
 file_name = "result_special"
 
 def bench_indexes(dbs: list[Base]):
+    work.run_read_only(dbs)
     read_only = work.run_read_only(dbs)
 
     read_update = work.run_read_after_update(dbs)

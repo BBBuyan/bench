@@ -6,7 +6,6 @@ from Base import Base
 
 def time_read(op_type: Base):
     url = op_type.url + "_find"
-    url += "?stale=ok"
     query = op_type.get_device_query()
 
     start = perf_counter()
@@ -31,7 +30,7 @@ def time_update(op_type: Base):
 
 def time_insert(op_type: Base):
     url = op_type.url + "_bulk_docs"
-    insert_data = helper.fetch_insert_data(op_type)
+    insert_data = helper.fetch_data_from_file(op_type)
     insert_data = {"docs": insert_data}
 
     start = perf_counter()

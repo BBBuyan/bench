@@ -23,7 +23,7 @@ def run_group_only(types: list[Base]):
     for i in range(len(types)):
         print(f"depth: {types[i].name} | ", end=" ", flush=True)
         for _ in range(num_of_tries):
-            print("a,", end=" ", flush=True)
+            print("g,", end=" ", flush=True)
             result[i] += op.time_group(types[i])
         print("---")
     return result
@@ -91,7 +91,7 @@ def run_avg_mixed(types: list[Base]):
             prob = random()
 
             if prob < 0.4:
-                print("r,", end=" ", flush=True)
+                print("a,", end=" ", flush=True)
                 result[i] += op.time_avg(types[i])
             elif prob < 0.7:
                 print("u,", end=" ", flush=True)
@@ -116,7 +116,7 @@ def run_group_mixed(types: list[Base]):
             prob = random()
 
             if prob < 0.4:
-                print("r,", end=" ", flush=True)
+                print("g,", end=" ", flush=True)
                 result[i] += op.time_group(types[i])
             elif prob < 0.7:
                 print("u,", end=" ", flush=True)

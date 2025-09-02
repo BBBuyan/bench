@@ -19,13 +19,14 @@ def fetch_random_batch(op_type: Base):
 
 def get_updated_data(op_type: Base):
     updating_batch = fetch_random_batch(op_type)
-
-    for el in updating_batch:
-        op_type.update_innermost_num_of_records(el)
+    new_batch = fetch_data_from_file(op_type)
+    
+    for i in range(len(updating_batch)):
+        op_type.update(updating_batch[i], new_batch[i])
 
     return updating_batch
 
-def fetch_insert_data(op_type: Base):
+def fetch_data_from_file(op_type: Base):
     data = []
     path = f"../../data/{op_type.name}.json"
     offset = randint(0, 5000)
@@ -37,7 +38,6 @@ def fetch_insert_data(op_type: Base):
 
         for line in f:
             json_data = loads(line)
-            json_data["inserted"]=True
             data.append(json_data)
 
             i += 1
@@ -54,6 +54,7 @@ def create_analytic_views(op_type: Base):
 
 def build_analytic_view_doc(op_type: Base):
     doc = {
+        "id": "_design/analytic",
         "views": {
             "group": {
                 "map": op_type.group_map_func,

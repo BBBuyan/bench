@@ -33,4 +33,4 @@ def bench_indexes_flat():
     logger.mark_end(file_name)
 
 if __name__ == "__main__":
-    bench_indexes_flat()
+    bench_indexes_obj()

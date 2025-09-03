@@ -164,14 +164,6 @@ def run_avg(types: list[Base]):
     print("---")
     return result
 
-def run_warmup(types: list[Base]):
-    print("---Warming Up---")
-    for i in range(len(types)):
-        for _ in range((num_of_tries//2)):
-            op.time_insert(types[i])
-            op.time_update(types[i])
-    print("---Warming Up, Done---")
-
 def run_read_after_update(types: list[Base]):
     print("---Read after Update---")
     result = [0.0] * len(types)

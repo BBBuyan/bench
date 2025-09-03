@@ -25,6 +25,8 @@ def time_update(op_type: Base):
     start = perf_counter()
     res = requests.post(url, json=updated_data)
     end = perf_counter()
+    if op_type.debug:
+        print(res.text)
 
     return (end - start) * 1000
 

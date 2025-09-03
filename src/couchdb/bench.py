@@ -4,8 +4,10 @@ from Databases import flat_list, arr_list, obj_list
 import helper
 import logger
 
+file_name = "result"
+
 def bench(db_list: list[Base]):
-    # workloads.run_warmup(db_list)
+    workloads.run_read_only(db_list)
 
     old_read = workloads.run_read_heavy(db_list)
     old_update = workloads.run_update_heavy(db_list)
@@ -13,11 +15,6 @@ def bench(db_list: list[Base]):
     old_insert = workloads.run_insert_heavy(db_list)
     old_insert_only = workloads.run_insert_only(db_list)
     old_mixed = workloads.run_mixed(db_list)
-
-    helper.create_indexes(db_list)
-
-    # warmup
-    # workloads.run_warmup(db_list)
 
     new_read = workloads.run_read_heavy(db_list)
     new_update = workloads.run_update_heavy(db_list)
@@ -49,18 +46,18 @@ def bench(db_list: list[Base]):
 
 
 def bench_obj():
-    logger.mark_operation("obj")
+    logger.mark_operation("obj", file_name)
     bench(obj_list)
-    logger.mark_end()
+    logger.mark_end(file_name)
 
 def bench_arr():
-    logger.mark_operation("arr")
+    logger.mark_operation("arr", file_name)
     bench(arr_list)
-    logger.mark_end()
+    logger.mark_end(file_name)
 
 def bench_flat():
-    logger.mark_operation("flat")
+    logger.mark_operation("flat", file_name)
     bench(flat_list)
-    logger.mark_end()
+    logger.mark_end(file_name)
 
 bench_obj()

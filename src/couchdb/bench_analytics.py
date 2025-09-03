@@ -7,13 +7,17 @@ from Databases import flat_list, obj_list, arr_list
 file_name = "result_analytics"
 
 def bench_analytics(types: list[Base]):
+    #warmup phase
+    work_a.run_avg_only(types)
+    work_a.run_group_only(types)
+
     avg_only = work_a.run_avg_only(types)
     group_only = work_a.run_group_only(types)
 
     avg_after_update = work_a.run_avg_after_update(types)
-    avg_after_insert = work_a.run_avg_after_insert(types)
-
     group_after_update = work_a.run_group_after_update(types)
+
+    avg_after_insert = work_a.run_avg_after_insert(types)
     group_after_insert = work_a.run_group_after_insert(types)
 
     avg_mixed = work_a.run_avg_mixed(types)
@@ -51,4 +55,4 @@ def bench_analytics_arr():
     logger.mark_end(file_name)
 
 if __name__ == "__main__":
-    bench_analytics_arr()
+    bench_analytics_obj()

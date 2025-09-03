@@ -51,4 +51,4 @@ def bench_analytics_arr():
     logger.mark_end(file_name)
 
 if __name__ == "__main__":
-    bench_analytics_flat()
+    bench_analytics_arr()

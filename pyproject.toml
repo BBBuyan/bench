@@ -8,5 +8,6 @@ dependencies = [
     "couchdb>=1.2",
     "psycopg2-binary>=2.9.10",
     "pymongo>=4.13.2",
+    "python-dotenv>=1.1.1",
     "requests>=2.32.4",
 ]

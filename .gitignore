@@ -6,7 +6,7 @@ __pycache__/
 data/
 result/
 test_q.py
-description.json
+descriptions.json
 
 # C extensions
 *.so

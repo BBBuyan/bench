@@ -1,4 +1,5 @@
 from db_types.Base import Base
+from random import choice
 
 class Obj(Base):
     subscribers_map = {
@@ -24,6 +25,7 @@ class Obj(Base):
         all_levels = ["l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8"]
         self.level = level
         self.levels: list[str] = all_levels[:(level)]
+        self.assign_log_threshold = 100000
 
         self.name = f"obj{level}"
         self.url = self.base_url + self.name + "/"
@@ -35,14 +37,7 @@ class Obj(Base):
         self.group_map_func = f"function (doc) {{ if(doc.{self.subscribers_path} !== undefined) emit(doc.{self.subscribers_path}, null) }}"
         self.average_map_func = f"function (doc) {{ if(doc.{self.volume_path} !== undefined) emit(doc.{self.subscribers_path}, doc.{self.volume_path})}}"
 
-    def add_id(self, id: str, data: dict):
+    def add_description(self, descriptions: list[str], data: dict):
         for k in self.levels[:-1]:
             data = data[k]
-
-        data[self.levels[-1]]["_id"] = id
-
-    def add_description(self, description: str, data: dict):
-        for k in self.levels[:-1]:
-            data = data[k]
-
-        data[self.levels[-1]]["description"] = description
+        data[self.levels[-1]]["description"] = choice(descriptions)

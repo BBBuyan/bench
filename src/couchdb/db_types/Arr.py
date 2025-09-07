@@ -1,5 +1,5 @@
 from db_types.Base import Base
-from random import randint
+from random import choice, randint
 
 class Arr(Base):
     levels: list[str] = []
@@ -18,9 +18,11 @@ class Arr(Base):
         self.name = f"arr{level}"
         self.url = self.base_url + self.name + "/"
         self.max_offset = 9500
+        self.assign_log_threshold = 1000
 
         self.device_path = self.device_map[level]
         self.levels = all_levels[(8-level):]
+        self.nest_levels = list(reversed(self.levels))
         self.group_map_func = self._generate_group_map_func()
         self.average_map_func = self._generate_average_map_func()
 
@@ -64,3 +66,14 @@ class Arr(Base):
         base = f"function (doc) {{ doc.{self.levels[-1]}.forEach( function({self.levels[-1]}) {{ {base} }} )}}"
 
         return base
+
+    def add_description(self, descriptions: list[str], data: dict, current_level: int=0):
+        if current_level > len(self.nest_levels):
+            return
+
+        key = self.nest_levels[current_level]
+        for item in data.get(key, []):
+            if current_level == len(self.nest_levels)-1:
+                item["description"] = choice(descriptions)
+            else:
+                self.add_description(descriptions, item, current_level + 1)

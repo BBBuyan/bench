@@ -2,7 +2,7 @@ from random import randint
 from time import perf_counter
 import requests
 import helper
-from Base import Base
+from db_types.Base import Base
 
 def time_read(op_type: Base):
     url = op_type.url + "_find"

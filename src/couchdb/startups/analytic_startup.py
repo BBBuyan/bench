@@ -1,7 +1,5 @@
-from Base import Base
-from Databases import obj_list, flat_list, arr_list
+from db_types.Databases import obj_list, flat_list, arr_list
 import helper
-
 
 def run_obj():
     for db in obj_list:

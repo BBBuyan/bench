@@ -1,4 +1,4 @@
-from Base import Base
+from db_types.Base import Base
 from random import randint
 
 class Arr(Base):

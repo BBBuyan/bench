@@ -1,8 +1,8 @@
-from Base import Base
-import workloads_analytic as work_a
+from db_types.Base import Base
+import workloads.analytic as work_a
 import logger
 import helper
-from Databases import flat_list, obj_list, arr_list
+from db_types.Databases import flat_list, obj_list, arr_list
 
 file_name = "result_analytics"
 
@@ -55,4 +55,4 @@ def bench_analytics_arr():
     logger.mark_end(file_name)
 
 if __name__ == "__main__":
-    bench_analytics_obj()
+    bench_analytics_flat()

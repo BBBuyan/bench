@@ -1,6 +1,6 @@
 from random import random
 import operations as op
-from Base import Base
+from db_types.Base import Base
 
 num_of_tries = 10
 

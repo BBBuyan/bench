@@ -1,8 +1,8 @@
-from Base import Base
+from db_types.Base import Base
 import requests
 from json import loads
 from time import time
-from Databases import all_dbs
+from db_types.Databases import all_dbs
 
 def delete_database(db: Base):
     res = requests.delete(db.url)

@@ -1,8 +1,8 @@
 import helper
 import logger
-import workloads as work
-from Base import Base
-from Databases import obj_list, flat_list, arr_list
+import workloads.workloads as work
+from db_types.Base import Base
+from db_types.Databases import obj_list, flat_list, arr_list
 
 file_name = "result_special"
 

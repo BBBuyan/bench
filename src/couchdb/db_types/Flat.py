@@ -1,5 +1,4 @@
-from Base import Base
-from random import randint
+from db_types.Base import Base
 
 class Flat(Base):
     name = "flat"

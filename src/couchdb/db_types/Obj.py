@@ -1,5 +1,4 @@
-from Base import Base
-from random import randint
+from db_types.Base import Base
 
 class Obj(Base):
     subscribers_map = {
@@ -36,7 +35,14 @@ class Obj(Base):
         self.group_map_func = f"function (doc) {{ if(doc.{self.subscribers_path} !== undefined) emit(doc.{self.subscribers_path}, null) }}"
         self.average_map_func = f"function (doc) {{ if(doc.{self.volume_path} !== undefined) emit(doc.{self.subscribers_path}, doc.{self.volume_path})}}"
 
-    # def update_innermost_num_of_records(self, data: dict):
-    #     for k in self.levels[:-1]:
-    #         data = data[k]
-    #     data[self.levels[-1]]["number_of_records"] = randint(0,999)
+    def add_id(self, id: str, data: dict):
+        for k in self.levels[:-1]:
+            data = data[k]
+
+        data[self.levels[-1]]["_id"] = id
+
+    def add_description(self, description: str, data: dict):
+        for k in self.levels[:-1]:
+            data = data[k]
+
+        data[self.levels[-1]]["description"] = description

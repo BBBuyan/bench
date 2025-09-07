@@ -1,6 +1,6 @@
 from random import randint
 import requests
-from Base import Base
+from db_types.Base import Base
 from json import loads
 
 fetch_limit = 50

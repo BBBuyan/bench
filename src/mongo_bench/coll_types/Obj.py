@@ -8,3 +8,10 @@ class Obj(Base):
         self.level = level
         self.levels = all_levels[:(level)]
 
+        self.vol_path = ".".join(self.levels) + "." + self._vol_field
+        self.num_path = ".".join(self.levels) + "." + self._num_field
+        self.sub_path = ".".join(self.levels) + "." + self._sub_field
+        self.app_path = ".".join(self.levels) + "." + self._app_field
+
+
+

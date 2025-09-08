@@ -1,12 +1,30 @@
 from pymongo.collection import Collection
 
 class Base:
-    where_clause={}
-    sub_path=""
-    vol_path=""
-    num_path=""
-    app_path=""
-
     def __init__(self, coll: Collection) -> None:
         self.coll = coll
+        self.name = coll.name
 
+        self._vol_field = "total_volume_bytes"
+        self._app_field = "app"
+        self._num_field = "number_of_records"
+        self._sub_field = "subscribers"
+
+        self.sub_path=""
+        self.vol_path=""
+        self.num_path=""
+        self.app_path=""
+        self.where_clause={}
+
+    def create_index(self):
+        self.coll.create_index(self.sub_path)
+
+    def delete_index(self):
+        self.coll.drop_indexes()
+
+    def explain(self):
+        print(f"{self.name}")
+        print(f"sub_path: {self.sub_path:20}")
+        print(f"vol_path: {self.vol_path:20}")
+        print(f"app_path: {self.app_path:20}")
+        print(f"num_path: {self.num_path:20}")

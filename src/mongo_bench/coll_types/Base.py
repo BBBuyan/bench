@@ -15,6 +15,7 @@ class Base:
         self.num_path=""
         self.app_path=""
         self.where_clause={}
+        self.batch_limit = 0
 
     def create_index(self):
         self.coll.create_index(self.sub_path)
@@ -24,7 +25,7 @@ class Base:
 
     def explain(self):
         print(f"{self.name}")
-        print(f"sub_path: {self.sub_path:20}")
-        print(f"vol_path: {self.vol_path:20}")
-        print(f"app_path: {self.app_path:20}")
-        print(f"num_path: {self.num_path:20}")
+        print(f"sub_path: {self.sub_path}")
+        print(f"vol_path: {self.vol_path}")
+        print(f"app_path: {self.app_path}")
+        print(f"num_path: {self.num_path}")

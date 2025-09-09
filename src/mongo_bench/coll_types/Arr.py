@@ -14,6 +14,7 @@ class Arr(Base):
         self.app_path = ".".join(self.levels) + "." + self._app_field
 
         self.unwind = self._build_unwind()
+        self.batch_limit = 1000
 
     def _build_unwind(self):
         unwind =[]

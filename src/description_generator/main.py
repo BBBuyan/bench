@@ -1,6 +1,5 @@
 import requests
 from conn import url, headers, my_data
-from uuid import uuid4
 
 def get_descriptions():
     r = requests.post(url, headers=headers, json=my_data)

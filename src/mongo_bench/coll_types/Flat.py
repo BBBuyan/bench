@@ -8,4 +8,5 @@ class Flat(Base):
         self.num_path = self._num_field
         self.sub_path = self._sub_field
         self.app_path = self._app_field
+        self.batch_limit = 1000
 

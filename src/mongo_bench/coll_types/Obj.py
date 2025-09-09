@@ -13,5 +13,5 @@ class Obj(Base):
         self.sub_path = ".".join(self.levels) + "." + self._sub_field
         self.app_path = ".".join(self.levels) + "." + self._app_field
 
-
+        self.batch_limit = 1000
 

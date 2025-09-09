@@ -1,6 +1,6 @@
 import workloads.elementary as work
 from db_types.Base import Base
-from db_types.Databases import flat_list, arr_list, obj_list
+from Databases import flat_list, arr_list, obj_list
 import helper
 import logger
 

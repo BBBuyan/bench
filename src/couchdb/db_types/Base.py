@@ -2,26 +2,27 @@ from random import randint
 from Conn import root_url
 
 class Base:
-    base_url = root_url
-    name=""
-    url=""
-    max_offset=0
-    use_index=False
-    debug = False
-    num_of_tries = 10
+    def __init__(self) -> None:
+        self.base_url = root_url
+        self.name=""
+        self.url=""
+        self.max_offset=0
+        self.use_index=False
+        self.debug = False
+        self.num_of_tries = 10
 
-    device_path=""
-    subscribers_path=""
-    volume_path=""
+        self.device_path=""
+        self.subscribers_path=""
+        self.volume_path=""
 
-    group_map_func=""
-    average_map_func=""
+        self.group_map_func=""
+        self.average_map_func=""
 
-    group_reduce="_count"
-    average_reduce="_stats"
-    batch_limit = 1000
+        self.group_reduce="_count"
+        self.average_reduce="_stats"
 
-    assign_log_threshold = 0
+        self.batch_limit = 1000
+        self.assign_log_threshold = 0
 
     def get_device_query(self):
         query: dict = {

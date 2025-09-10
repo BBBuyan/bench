@@ -13,7 +13,7 @@ class Arr(Base):
     def __init__(self, level: int) -> None:
         super().__init__(f"arr{level}")
         self.level = level
-        self.levels = self.all_levels[(8-level)]
+        self.levels = self.all_levels[:(level)]
         self.device_path = self.device_map[level]
         self.assign_log_threshold = 1000
 

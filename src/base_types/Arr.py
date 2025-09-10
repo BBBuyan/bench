@@ -15,9 +15,10 @@ class Arr(Base):
         self.level = level
         self.levels = self.all_levels[(8-level)]
         self.device_path = self.device_map[level]
+        self.assign_log_threshold = 1000
 
     def add_description(self, descriptions: list[str], data: dict, current_level: int=0):
-        if current_level > len(self.levels):
+        if current_level > self.level:
             return
 
         key = self.levels[current_level]
@@ -26,3 +27,5 @@ class Arr(Base):
                 item["description"] = choice(descriptions)
             else:
                 self.add_description(descriptions, item, current_level + 1)
+
+

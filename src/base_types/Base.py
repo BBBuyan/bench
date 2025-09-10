@@ -1,7 +1,8 @@
 
 class Base:
     def __init__(self, name: str) -> None:
-        self.name= name
+        self.database_name=""
+        self.name = name
         self._vol_field = "total_volume_bytes"
         self._app_field = "app"
         self._num_field = "number_of_records"

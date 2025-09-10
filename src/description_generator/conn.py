@@ -1,10 +1,8 @@
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
 url = "https://hawki2.htwk-leipzig.de/api/ai-req"
 headers = {
-    "Authorization": f"Bearer {os.getenv("API_KEY")}",
+    "Authorization": f"Bearer {os.getenv("AI_API_KEY")}",
     "Content-Type": "application/json",
 }
 

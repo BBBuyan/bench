@@ -1,7 +1,7 @@
 import os
 from json import loads, dumps
 from pathlib import Path
-from base_types.Base import Base
+from base_types import Base
 
 def assign_descriptions(type: Base):
     description_path =  Path(__file__).parent.parent.parent/"data"/"descriptions.json"

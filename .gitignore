@@ -3,7 +3,7 @@ __pycache__/
 *.py[codz]
 *$py.class
 # specific only for this project. the data is generated instead of shared via github
-data/
+data/*
 !data/.gitkeep
 result/
 test_q.py

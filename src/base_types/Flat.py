@@ -1,4 +1,4 @@
-from base_types.Base import Base
+from .Base import Base
 from random import choice
 
 class Flat(Base):

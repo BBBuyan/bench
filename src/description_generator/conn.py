@@ -6,12 +6,10 @@ headers = {
     "Content-Type": "application/json",
 }
 
-command = """
-Create 100 synthetic descriptions of a device in NDJSON format, only the description field. 
+command = """Create 10 synthetic descriptions of a device in NDJSON format, only the description field. 
 Do NOT add ```json ``` or any code block. Output plain NDJSON, one JSON object per line, like:
-{"description": "first description"}
-{"description": "second description"}
-"""
+{"description": "A compact smartphone with a 5.8-inch display, 128GB storage, and dual rear cameras."}
+{"description": "Wireless noise-cancelling headphones with up to 30 hours of battery life and touch control."} """
 
 my_data = {
     "payload": {

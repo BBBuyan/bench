@@ -7,7 +7,7 @@ headers = {
 }
 
 command = """
-Create 100 synthetic descrptions of a device in NDJSON format, only the description field. 
+Create 100 synthetic descriptions of a device in NDJSON format, only the description field. 
 Do NOT add ```json ``` or any code block. Output plain NDJSON, one JSON object per line, like:
 {"description": "first description"}
 {"description": "second description"}

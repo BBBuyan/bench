@@ -1,12 +1,10 @@
 import os
 from pymongo import MongoClient
-from dotenv import load_dotenv
 from coll_types.Arr import Arr
 from coll_types.Flat import Flat
 from coll_types.Obj import Obj
 from coll_types.Base import Base
 
-load_dotenv()
 ip = os.getenv("MONGO_URL")
 port = os.getenv("MONGO_PORT")
 

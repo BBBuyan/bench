@@ -14,7 +14,6 @@ class Base:
         self.vol_path=""
         self.num_path=""
         self.app_path=""
-        self.where_clause={}
         self.batch_limit = 0
 
     def create_index(self):

@@ -7,7 +7,6 @@ data/*
 !data/.gitkeep
 result/
 test_q.py
-descriptions.json
 
 # C extensions
 *.so

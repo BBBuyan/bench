@@ -6,19 +6,40 @@ headers = {
     "Content-Type": "application/json",
 }
 
-command = """Create 40 synthetic descriptions of a device in NDJSON format, only the description field. Descriptions should be more than 100 words long. 
-Do NOT add ```json ``` or any code block. Output plain NDJSON, one JSON object per line, like:
-{"description": "A compact smartphone with a 5.8-inch display, 128GB storage, and dual rear cameras."}
-{"description": "Wireless noise-cancelling headphones with up to 30 hours of battery life and touch control."} """
+info_command = """Create 40 synthetic short info of a device in NDJSON format, only the description field. 
+Do NOT add ```json ``` or any code block. 
+Output plain NDJSON, one JSON object per line, like:
+{"info": "A compact smartphone with a 5.8-inch display, 128GB storage, and dual rear cameras."}
+{"info": "Wireless noise-cancelling headphones with up to 30 hours of battery life and touch control."} """
 
-my_data = {
+info_payload = {
     "payload": {
         "model": "gpt-4o",
         "messages": [
             {
                 "role": "user",
                 "content": {
-                    "text": command
+                    "text": info_command
+                }
+            }
+        ]
+    }
+}
+
+description_command = """Create 40 synthetic descriptions of a device in NDJSON format, only the description field. 
+Descriptions should be more than 100 words long. 
+Do NOT add ```json ``` or any code block. Output plain NDJSON, one JSON object per line, like:
+{"description": "A compact smartphone with a 5.8-inch display, 128GB storage, and dual rear cameras."}
+{"description": "Wireless noise-cancelling headphones with up to 30 hours of battery life and touch control."} """
+
+description_payload = {
+    "payload": {
+        "model": "gpt-4o",
+        "messages": [
+            {
+                "role": "user",
+                "content": {
+                    "text": description_command
                 }
             }
         ]

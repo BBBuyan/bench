@@ -23,3 +23,9 @@ def import_data(db: Base):
     for ok, res in helpers.streaming_bulk(client, get_data(db)):
         if not ok:
             print("Error", res)
+
+
+if __name__ == "__main__":
+    from src.all_types import arr_types
+    print("import")
+    import_data(arr_types[0])

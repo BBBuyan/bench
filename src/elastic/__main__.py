@@ -1,10 +1,7 @@
-from src.base_types import Flat
-from .import_data import get_data
+from src.base_types import Base
+from .es_operations import time_read
+from src.all_types import arr_types
 
-fl = Flat()
-i = 0
-for g in get_data(fl):
-    print(g)
-    i+=1
-    if i > 5:
-        break
+Base.is_debug = True
+print(time_read(arr_types[0]))
+

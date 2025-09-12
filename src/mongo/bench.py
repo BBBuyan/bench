@@ -2,7 +2,6 @@ from coll_type import CollType
 import workloads
 import helper
 
-
 def main():
     op_type = CollType.arr
 

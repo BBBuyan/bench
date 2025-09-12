@@ -2,30 +2,31 @@ from .Base import Base
 from random import choice
 
 class Arr(Base):
-    device_map = {
-        1: "a1.device",
-        2: "a1.a2.device",
-        4: "a1.a2.a3.a4.device",
-        8: "a1.a2.a3.a4.a5.a6.a7.a8.device",
-    }
-    all_levels = ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8"]
-
     def __init__(self, level: int) -> None:
         super().__init__(f"arr{level}")
+
+        all_levels = ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8"]
         self.level = level
-        self.levels = self.all_levels[:(level)]
-        self.device_path = self.device_map[level]
+        self.levels = all_levels[:(level)]
+
         self.assign_log_threshold = 1000
 
-    def add_description(self, descriptions: list[str], data: dict, current_level: int=0):
+        self.device_path = str.join(".", self.levels) + f".{self._device_field}"
+        self.vol_path = str.join(".", self.levels) + f".{self._vol_field}"
+        self.app_path = str.join(".", self.levels) + f".{self._app_field}"
+        self.num_path = str.join(".", self.levels) + f".{self._num_field}"
+        self.sub_path = str.join(".", self.levels) + f".{self._sub_field}"
+        self.description_path = str.join(".", self.levels) + f".{self._description_field}"
+
+    def add_field(self, editing_data: dict, inputs: list[str], field_name: str, current_level: int = 0):
         if current_level > self.level:
             return
 
         key = self.levels[current_level]
-        for item in data.get(key, []):
+        for item in editing_data.get(key, []):
             if current_level == self.level - 1:
-                item["description"] = choice(descriptions)
+                item[field_name] = choice(inputs)
             else:
-                self.add_description(descriptions, item, current_level + 1)
+                self.add_field(editing_data, inputs , field_name, current_level +1)
 
 

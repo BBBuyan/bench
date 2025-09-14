@@ -11,13 +11,16 @@ class Base:
         self._num_field = "number_of_records"
         self._sub_field = "subscribers"
         self._description_field = "description"
+        self._info_field = "info"
 
+        self.path=""
         self.device_path = ""
         self.vol_path = ""
         self.app_path = ""
         self.num_path = ""
         self.sub_path = ""
         self.description_path = ""
+        self.info_path = ""
 
         self.assign_log_threshold = 100_000
 

@@ -2,96 +2,70 @@ from .conn import client
 from random import randint
 from time import perf_counter
 from src.base_types import Base
+from . import es_helper as helper
+from . import es_query
 
-def time_read(type: Base):
+info_match_str = "high"
+description_match_str = "water"
+
+def time_device_read(type: Base):
     start = perf_counter()
-    res = client.search(index=type.name, query={
-        "match": {
-            type.device_path: randint(0,9999)
-        }
-    })
+    num = 1326#randint(0,9999)
+    query_ = es_query.device_query(type, num)
+    res = client.search(index=type.name, query=query_)
     end = perf_counter()
 
     if type.is_debug == True:
-        for i in res["hits"]["hits"]:
-            print(i["_source"])
-        print(f"{'es took':<20}: {res["took"]} ms")
-        print(f"{'count':<20}: {res["hits"]["total"]["value"]}")
-        print(f"{'operation':<20}: {(end - start)*1000:.0f} ms")
+        helper.show_res(res)
 
     return (end-start)*1000
 
-def time_string_read(type: Base):
+def time_info_read(type: Base):
     start = perf_counter()
-    res = client.search(index=type.name, query= {
-        "match": {
-            type.description_path: "waterproof speaker"
-        } 
-    })
-
+    query_ = es_query.info_query(type, info_match_str)
+    res = client.search(index=type.name, query= query_)
     end = perf_counter()
 
     if type.is_debug == True:
-        for i in res["hits"]["hits"]:
-            print(i["_id"], "| description:", i["_source"]["description"])
-        print(f"{'es took':<20}: {res["took"]} ms")
-        print(f"{'count':<20}: {res["hits"]["total"]["value"]}")
-        print(f"{'operation':<20}: {(end - start)*1000:.0f} ms")
+        helper.show_res(res)
+
+    return (end-start)*1000
+
+def time_description_read(type: Base):
+    start = perf_counter()
+    query_ = es_query.description_query(type, description_match_str)
+    res = client.search(index=type.name, query=query_)
+    end = perf_counter()
+
+    if type.is_debug == True:
+        helper.show_res(res)
 
     return (end-start)*1000
 
 def time_avg(type: Base):
-    start = perf_counter()
-    res = client.search(
-        index=type.name,
-        body={
-            "size":3,
-            "query": {
-                "match": {type.device_path: randint(0,9999)}
-            },
-            "aggs": {
-                "average_vol":{
-                    "avg":{
-                        "field": "total_volume_bytes"
-                    }
-                }
+    num = randint(0, 9999)
+    query_ = es_query.avg_query(type, num)
 
-            }
-    })
+    start = perf_counter()
+    res = client.search( index=type.name, body=query_)
     end = perf_counter()
 
     if type.is_debug == True:
-        for i in res["hits"]["hits"]:
-            print(i["_source"])
-
-        print(f"{'es took':<20}: {res["took"]} ms")
-        print(f"{'count':<20}: {res["hits"]["total"]["value"]}")
-        print(f"{'operation':<20}: {(end - start)*1000:.0f} ms")
+        print(res)
+        # helper.show_res(res)
 
     return (end-start)*1000
 
 def time_group(type: Base):
-    start = perf_counter()
-    res = client.search(
-        index=type.name,
-        body={
-            "query": {
-                "match": {"device": randint(0,9999)}
-            },
-            "sort": [
-                {"total_volume_bytes": {"order": "desc"}}
-            ]
+    num = randint(0, 9999)
+    query_ = es_query.group_query(type, num)
 
-    })
+    start = perf_counter()
+    res = client.search(index=type.name, body=query_)
     end = perf_counter()
 
     if type.is_debug == True:
-        for i in res["hits"]["hits"]:
-            print(i["_source"])
-
-        print(f"{'es took':<20}: {res["took"]} ms")
-        print(f"{'count':<20}: {res["hits"]["total"]["value"]}")
-        print(f"{'operation':<20}: {(end - start)*1000:.0f} ms")
+        helper.show_res(res)
 
     return (end-start)*1000
 

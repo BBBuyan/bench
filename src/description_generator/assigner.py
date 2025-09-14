@@ -1,7 +1,7 @@
 import os
 from json import loads, dumps
 from pathlib import Path
-from src import all_types
+from src import all_types, arr_types
 from src.base_types import Base
 from .exec_type import ExecType
 
@@ -10,7 +10,7 @@ def assign_data(type: Base, exec_type: ExecType):
     type_path = Path(__file__).parent.parent.parent/"data"/f"{type.name}.json"
     temp_path = Path(__file__).parent.parent.parent/"data"/f"{type.name}_temp.json"
 
-    print("Assigning descriptions for ", type.name)
+    print(f"---{type.name} {exec_type.value}", end=" ", flush=True)
     inputs =[]
     line_num = 0
     parsed =0
@@ -23,7 +23,6 @@ def assign_data(type: Base, exec_type: ExecType):
                 parsed += 1
             except:
                 pass
-
 
     with \
         open(type_path, "r") as read_file,\
@@ -40,10 +39,4 @@ def assign_data(type: Base, exec_type: ExecType):
 
     os.replace(temp_path, type_path)
     print("---DONE---")
-    print(f"{exec_type.value} HAD {line_num} LINES")
-    print(f"PARSED {parsed}")
 
-if __name__ == "__main__":
-    for type in all_types:
-        assign_data(type, ExecType.INFO)
-        assign_data(type, ExecType.DESCRIPTION)

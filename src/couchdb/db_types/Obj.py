@@ -37,7 +37,3 @@ class Obj(Base):
         self.group_map_func = f"function (doc) {{ if(doc.{self.subscribers_path} !== undefined) emit(doc.{self.subscribers_path}, null) }}"
         self.average_map_func = f"function (doc) {{ if(doc.{self.volume_path} !== undefined) emit(doc.{self.subscribers_path}, doc.{self.volume_path})}}"
 
-    def add_description(self, descriptions: list[str], data: dict):
-        for k in self.levels[:-1]:
-            data = data[k]
-        data[self.levels[-1]]["description"] = choice(descriptions)

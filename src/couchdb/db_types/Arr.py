@@ -66,14 +66,3 @@ class Arr(Base):
         base = f"function (doc) {{ doc.{self.levels[-1]}.forEach( function({self.levels[-1]}) {{ {base} }} )}}"
 
         return base
-
-    def add_description(self, descriptions: list[str], data: dict, current_level: int=0):
-        if current_level > len(self.nest_levels):
-            return
-
-        key = self.nest_levels[current_level]
-        for item in data.get(key, []):
-            if current_level == len(self.nest_levels)-1:
-                item["description"] = choice(descriptions)
-            else:
-                self.add_description(descriptions, item, current_level + 1)

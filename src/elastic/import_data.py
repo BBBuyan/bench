@@ -28,4 +28,3 @@ def import_data(db: Base):
 if __name__ == "__main__":
     from src.all_types import arr_types
     print("import")
-    import_data(arr_types[0])

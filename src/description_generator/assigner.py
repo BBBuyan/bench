@@ -1,6 +1,7 @@
 import os
 from json import loads, dumps
 from pathlib import Path
+from src import all_types
 from src.base_types import Base
 from .exec_type import ExecType
 
@@ -41,3 +42,8 @@ def assign_data(type: Base, exec_type: ExecType):
     print("---DONE---")
     print(f"{exec_type.value} HAD {line_num} LINES")
     print(f"PARSED {parsed}")
+
+if __name__ == "__main__":
+    for type in all_types:
+        assign_data(type, ExecType.INFO)
+        assign_data(type, ExecType.DESCRIPTION)

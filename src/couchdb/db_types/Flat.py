@@ -16,7 +16,3 @@ class Flat(Base):
 
         self.group_map_func = "function(doc) { if(doc.subscribers !== undefined) emit(doc.subscribers, null)}"
         self.average_map_func = "function(doc) { if(doc.total_volume_bytes !== undefined) emit(doc.subscribers, doc.total_volume_bytes)}"
-
-    def add_description(self, descriptions: list[str], data: dict):
-        data["description"] = choice(descriptions)
-

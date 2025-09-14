@@ -1,0 +1,3 @@
+
+class BaseBench:
+    pass

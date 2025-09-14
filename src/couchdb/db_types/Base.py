@@ -46,10 +46,3 @@ class Base:
 
     def update(self, data: dict, new_data: dict):
         data.update(new_data)
-
-    def add_id(self, id: str, data: dict):
-        data["_id"] = id
-
-    def add_description(self, descriptions: list[str], data:dict):
-        raise NotImplementedError("Subclasses should implement")
-

@@ -39,12 +39,12 @@ def import_data(db: Base):
         client.indices.create(index=db.name, mappings=mapping_)
         print("Created---")
 
-    print(f"---Importing {db.name}", end="", flush=True)
+    print(f"---Importing {db.name}", end=" ", flush=True)
     i = 0
     for ok, res in helpers.streaming_bulk(client, get_data(db)):
         i+=1
-        if i % 100 == 0:
-            print(res)
+        if i % 100_000 == 0:
+            print(i, end=" ", flush=True)
         if not ok:
             print("Error", res)
     print(f"  Done---")
@@ -52,5 +52,5 @@ def import_data(db: Base):
 
 if __name__ == "__main__":
     from src.all_types import all_types, arr_types
-    # for type in arr_types:
-    import_data(arr_types[3])
+    for type in all_types:
+        import_data(type)

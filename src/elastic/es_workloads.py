@@ -9,6 +9,7 @@ def run_read_only(types: list[Base]):
 
     for i in range(len(types)):
         print(f"depth: {types[i].name} | ", end=" ", flush=True)
+        op.time_device_read(types[i])
         for _ in range(num_of_tries):
             print("r,", end=" ", flush=True)
             result[i] += op.time_device_read(types[i])
@@ -34,6 +35,7 @@ def run_group_only(types: list[Base]):
 
     for i in range(len(types)):
         print(f"depth: {types[i].name} | ", end=" ", flush=True)
+        op.time_group(types[i])
         for _ in range(num_of_tries):
             print("g,", end=" ", flush=True)
             result[i] += op.time_group(types[i])
@@ -46,6 +48,7 @@ def run_info_search(types: list[Base]):
 
     for i in range(len(types)):
         print(f"depth: {types[i].name} | ", end=" ", flush=True)
+        op.time_info_read(types[i])
         for _ in range(num_of_tries):
             print("g,", end=" ", flush=True)
             result[i] += op.time_info_read(types[i])
@@ -58,6 +61,7 @@ def run_description_search(types: list[Base]):
 
     for i in range(len(types)):
         print(f"depth: {types[i].name} | ", end=" ", flush=True)
+        op.time_description_read(types[i])
         for _ in range(num_of_tries):
             print("g,", end=" ", flush=True)
             result[i] += op.time_description_read(types[i])

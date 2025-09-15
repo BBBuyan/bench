@@ -8,8 +8,10 @@ def description_query(type: Base, match_str: str):
     }
     if isinstance(type, Arr):
         query = {
-            "nested": type.path,
-            "query": query
+            "nested": {
+                "path": type.path,
+                "query": query
+            }
         }
     return query
 

@@ -5,7 +5,7 @@ __pycache__/
 # specific only for this project. the data is generated instead of shared via github
 data/*
 !data/.gitkeep
-result/
+result/*
 !result/.gitkeep
 test_q.py
 

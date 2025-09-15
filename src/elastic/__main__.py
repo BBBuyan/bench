@@ -1,6 +1,6 @@
-from src import arr_types, flat_types, obj_types
-from .es_bench_client import bench_analytics
+from src.elastic import es_bench_client as bench
 
-bench_analytics(flat_types)
-bench_analytics(obj_types)
-bench_analytics(arr_types)
+if __name__ == "__main__":
+    bench.bench_flat()
+    bench.bench_obj()
+    bench.bench_arr()

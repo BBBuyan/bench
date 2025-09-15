@@ -1,4 +1,5 @@
 import datetime
+from pathlib import Path
 
 def save_result(old: list[float], new: list[float], operation: str, file_name: str):
     depth_list = [1,2,4,8]
@@ -23,8 +24,9 @@ def mark_end(file_name: str):
 
 def mark_operation(operation: str, file_name: str):
     now = datetime.datetime.now()
+    file_path = Path(__file__).parent.parent.parent/"result"/f"{file_name}.txt"
 
-    with open(f"result/{file_name}.txt", "a") as f:
+    with open(file_path, "a") as f:
         f.write("\n")
         f.write(now.strftime("%Y-%m-%d, %H:%M:%S") + "\n")
         f.write(f"{operation:-^45}\n")

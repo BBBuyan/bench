@@ -1,7 +1,6 @@
 import os
 from json import loads, dumps
 from pathlib import Path
-from src import all_types, arr_types
 from src.base_types import Base
 from .exec_type import ExecType
 

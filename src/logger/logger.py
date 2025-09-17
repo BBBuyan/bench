@@ -49,7 +49,8 @@ def save_result(
         old: list[float], 
         new: list[float], 
         operation: str, 
-        file_name: str
+        file_name: str,
+        coll_type: str
 ):
     file_path = Path(__file__).parent.parent.parent/"result"/f"{file_name}.json"
     now = datetime.datetime.now()
@@ -58,6 +59,7 @@ def save_result(
     result: dict = {
         "date": now_date,
         "operation": operation,
+        "coll_type": coll_type
     }
 
     old_dict = {}

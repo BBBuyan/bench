@@ -1,21 +1,22 @@
 import datetime
 from pathlib import Path
+import json
 
-def save_result(old: list[float], new: list[float], operation: str, file_name: str):
-    depth_list = [1,2,4,8]
-
-    with open(f"result/{file_name}.txt", "a") as f:
-        f.write(f"##{operation}\n")
-        f.write(f"|{'depth':^10}|{'before':^10}|{'after':^10}|{'diff':^10}|\n")
-        f.write(f"|{'':-^10}|{'':-^10}|{'':-^10}|{'':-^10}|\n")
-
-        for i in range(len(old)):
-            old_val = old[i]
-            new_val = new[i]
-            diff = ((new_val - old_val)/old_val)*100
-            f.write(f"|{depth_list[i]:^10}|{old[i]:>10.0f}|{new[i]:>10.0f}|{diff:>10.0f}|\n")
-
-        f.write("\n")
+# def save_result(old: list[float], new: list[float], operation: str, file_name: str):
+#     depth_list = [1,2,4,8]
+#
+#     with open(f"result/{file_name}.txt", "a") as f:
+#         f.write(f"##{operation}\n")
+#         f.write(f"|{'depth':^10}|{'before':^10}|{'after':^10}|{'diff':^10}|\n")
+#         f.write(f"|{'':-^10}|{'':-^10}|{'':-^10}|{'':-^10}|\n")
+#
+#         for i in range(len(old)):
+#             old_val = old[i]
+#             new_val = new[i]
+#             diff = ((new_val - old_val)/old_val)*100
+#             f.write(f"|{depth_list[i]:^10}|{old[i]:>10.0f}|{new[i]:>10.0f}|{diff:>10.0f}|\n")
+#
+#         f.write("\n")
 
 def mark_end(file_name: str):
     with open(f"result/{file_name}.txt", "a") as f:
@@ -43,3 +44,33 @@ def calc_diffs(old: list[float], new: list[float], operation: str):
         diff = ((new_val - old_val)/old_val)*100
         print(f"|{depth_list[i]:^10}|{old[i]:>10.0f}|{new[i]:>10.0f}|{diff:>10.0f}|")
     print(f"{'':-<45}")
+
+def save_result(
+        old: list[float], 
+        new: list[float], 
+        operation: str, 
+        file_name: str
+):
+    file_path = Path(__file__).parent.parent.parent/"result"/f"{file_name}.json"
+    now = datetime.datetime.now()
+    now_date = now.strftime("%Y-%m-%d, %H:%M:%S")
+
+    result: dict = {
+        "date": now_date,
+        "operation": operation,
+    }
+
+    old_dict = {}
+    new_dict = {}
+    for i in range(len(old)):
+        old_dict[f"depth_{i}"] = round(old[i])
+
+    for i in range(len(new)):
+        new_dict[f"depth_{i}"] = round(new[i])
+
+    result["before"] = old_dict
+    result["after"] = new_dict
+
+    with open(file_path, "a") as f:
+        json.dump(result, f)
+        f.write("\n")

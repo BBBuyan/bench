@@ -38,8 +38,8 @@ def plot(
     file_name = get_file_name()
     fig.savefig(file_name)
 
-def get_es_result():
-    file_path = Path(__file__).parent.parent.parent/"result"/"es_result.json"
+def get_es_result(file_name: str):
+    file_path = Path(__file__).parent.parent.parent/"result"/f"{file_name}.json"
     data = []
     with open(file_path, "r") as f:
         for line in f:
@@ -48,8 +48,7 @@ def get_es_result():
 
     return data
 
-def plot_es_flat():
-    data = get_es_result()
+def plot_es_flat(data: list[dict]):
     write_path = Path(__file__).parent.parent.parent/"result"/"es_figs"/"flat.png"
 
     flat_result = [d for d in data if d["coll_type"] == "flat"]
@@ -71,11 +70,9 @@ def plot_es_flat():
     plt.savefig(write_path)
     plt.close()
 
-
-
-def plot_es_nested():
-    data = get_es_result()
+def plot_es_nested(data:list[dict]):
     base_path = Path(__file__).parent.parent.parent/"result"/"es_figs"
+
     arr_result = [d for d in data if d["coll_type"] == "arr"]
     for arr in arr_result:
         operation = arr["operation"]
@@ -96,4 +93,25 @@ def plot_es_nested():
         plt.close()
 
 
+def plot_nested(data:list[dict], coll_type: str, db_type: str):
+    base_path = Path(__file__).parent.parent.parent/"result"/"figs"
+    filtered_ = [d for d in data if d["coll_type"] == coll_type]
+
+    for f in filtered_:
+        operation = f["operation"]
+        depths = ["1","2","4","8"]
+        durations = []
+        for i in range(len(depths)):
+            durations.append(f[f"depth_{i}"])
+
+        for i, v in enumerate(durations):
+            plt.text(i, v + 0.5, str(v), ha='center', va='bottom')
+
+        plt.bar(depths, durations)
+        plt.title(f"{coll_type}_{operation}")
+        plt.ylabel("Duration / ms")
+
+        write_path=base_path/f"{db_type}_{coll_type}_{operation}.png"
+        plt.savefig(write_path)
+        plt.close()
 

@@ -1,6 +1,5 @@
 from src.base_types.Base import Base
 import src.elastic.es_operations as op
-from src import logger as log
 
 num_of_tries = 10
 

@@ -10,7 +10,13 @@ def get_file_name():
 
     return f"img_{i}.png"
 
-def plot_result(before, after, name: str, depth, w):
+def plot(
+    before: list[float]
+    , after: list[float]
+    , name: str
+    , depth: list[int]
+    , w):
+
     x = np.arange(len(depth))
     fig, ax = plt.subplots()
 
@@ -19,7 +25,6 @@ def plot_result(before, after, name: str, depth, w):
 
     ax.set_title(name)
     ax.set_xticks(x)
-    ax.set_xticklabels(depth)
 
     ax.set_ylabel("Duration / ms")
     ax.set_xlabel("Depth")
@@ -30,3 +35,19 @@ def plot_result(before, after, name: str, depth, w):
 
     file_name = get_file_name()
     fig.savefig(file_name)
+
+
+def plot_es_flat(
+    durations: list[int],
+    operations: list[str],
+):
+    plt.bar(operations, durations)
+    plt.show()
+    pass
+
+def plot_es_nested(
+    before: int,
+    after: int,
+    title: str,
+):
+    pass

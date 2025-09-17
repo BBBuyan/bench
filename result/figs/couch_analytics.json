@@ -1,0 +1,12 @@
+{"coll_type": "flat", "operation": "avg after update", "depth_0": [96,674]}
+{"coll_type": "flat", "operation": "avg after insert", "depth_0": [96,861]}
+{"coll_type": "flat", "operation": "group after update", "depth_0": [62,631]}
+{"coll_type": "flat", "operation": "group after insert", "depth_0": [62, 897]}
+{"coll_type": "obj", "operation": "avg after update", "depth_0": [92,2052], "depth_1": [85,2023], "depth_2": [87,1981], "depth_3": [89,2044]}
+{"coll_type": "obj", "operation": "avg after insert", "depth_0": [92,1056], "depth_1": [85,1015], "depth_2": [87,1028], "depth_3": [89,1123]}
+{"coll_type": "obj", "operation": "group after update", "depth_0": [72,1333], "depth_1": [64,1156], "depth_2": [63,1262], "depth_3": [64,1309]}
+{"coll_type": "obj", "operation": "group after insert", "depth_0": [72,789], "depth_1": [64,708], "depth_2": [63,844], "depth_3": [64,768]}
+{"coll_type": "arr", "operation": "avg after update", "depth_0": [58,  934], "depth_1": [61, 1543], "depth_2": [69, 5304], "depth_3": [78,48467]}
+{"coll_type": "arr", "operation": "avg after insert", "depth_0": [58,  635], "depth_1": [61,  216], "depth_2": [69, 3552], "depth_3": [78,45975]}
+{"coll_type": "arr", "operation": "group after update", "depth_0": [89,  1593], "depth_1": [214, 1865], "depth_2": [217, 4993], "depth_3": [84, 87036]}
+{"coll_type": "arr", "operation": "group after insert", "depth_0": [89,   2431], "depth_1": [214,  2985], "depth_2": [217,  8043], "depth_3": [84, 104315]}

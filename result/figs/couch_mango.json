@@ -1,0 +1,4 @@
+{"coll_type": "flat", "operation": "read after update", "depth_0": [326,456]}
+{"coll_type": "flat", "operation": "read after insert", "depth_0": [326,540]}
+{"coll_type": "obj", "operation": "read after update", "depth_0": [424,664], "depth_1": [474,603], "depth_2": [394,590], "depth_3": [460,648]}
+{"coll_type": "obj", "operation": "read after insert", "depth_0": [424,830], "depth_1": [474,775], "depth_2": [394,691], "depth_3": [460,655]}

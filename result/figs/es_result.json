@@ -1,0 +1,15 @@
+{"date": "2025-09-17, 18:33:28", "coll_type": "flat", "operation": "read", "depth_0": 69}
+{"date": "2025-09-17, 18:33:28", "coll_type": "flat", "operation": "avg", "depth_0": 66}
+{"date": "2025-09-17, 18:33:28", "coll_type": "flat", "operation": "group", "depth_0": 195}
+{"date": "2025-09-17, 18:33:28", "coll_type": "flat", "operation": "info", "depth_0": 82}
+{"date": "2025-09-17, 18:33:28", "coll_type": "flat", "operation": "description", "depth_0": 80}
+{"date": "2025-09-17, 18:33:30", "coll_type": "obj", "operation": "read", "depth_0": 72, "depth_1": 70, "depth_2": 75, "depth_3": 68}
+{"date": "2025-09-17, 18:33:30", "coll_type": "obj", "operation": "avg", "depth_0": 57, "depth_1": 58, "depth_2": 35, "depth_3": 35}
+{"date": "2025-09-17, 18:33:30", "coll_type": "obj", "operation": "group", "depth_0": 197, "depth_1": 189, "depth_2": 185, "depth_3": 173}
+{"date": "2025-09-17, 18:33:30", "coll_type": "obj", "operation": "info", "depth_0": 37, "depth_1": 47, "depth_2": 42, "depth_3": 46}
+{"date": "2025-09-17, 18:33:30", "coll_type": "obj", "operation": "description", "depth_0": 42, "depth_1": 43, "depth_2": 48, "depth_3": 46}
+{"date": "2025-09-17, 18:33:33", "coll_type": "arr", "operation": "read", "depth_0": 39, "depth_1": 75, "depth_2": 38, "depth_3": 90}
+{"date": "2025-09-17, 18:33:33", "coll_type": "arr", "operation": "avg", "depth_0": 67, "depth_1": 64, "depth_2": 37, "depth_3": 37}
+{"date": "2025-09-17, 18:33:33", "coll_type": "arr", "operation": "group", "depth_0": 68, "depth_1": 82, "depth_2": 65, "depth_3": 117}
+{"date": "2025-09-17, 18:33:33", "coll_type": "arr", "operation": "info", "depth_0": 76, "depth_1": 88, "depth_2": 127, "depth_3": 736}
+{"date": "2025-09-17, 18:33:33", "coll_type": "arr", "operation": "description", "depth_0": 71, "depth_1": 85, "depth_2": 121, "depth_3": 626}

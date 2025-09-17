@@ -62,16 +62,12 @@ def save_result(
         "operation": operation,
     }
 
-    old_dict = {}
-    new_dict = {}
     for i in range(len(old)):
-        old_dict[f"depth_{i}"] = round(old[i])
+        result[f"depth_{i}"] = {
+            "before": round(old[i]),
+            "after": round(new[i])
+        }
 
-    for i in range(len(new)):
-        new_dict[f"depth_{i}"] = round(new[i])
-
-    result["before"] = old_dict
-    result["after"] = new_dict
 
     with open(file_path, "a") as f:
         json.dump(result, f)

@@ -68,8 +68,8 @@ def save_es_result(
 
     result: dict = {
         "date": now_date,
-        "operation": operation,
         "coll_type": coll_type,
+        "operation": operation,
     }
 
     for i in range(len(old)):

@@ -57,9 +57,9 @@ def save_result(
     now_date = now.strftime("%Y-%m-%d, %H:%M:%S")
 
     result: dict = {
+        "coll_type": coll_type,
         "date": now_date,
         "operation": operation,
-        "coll_type": coll_type
     }
 
     old_dict = {}

@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-
+from pathlib import Path
+from json import loads
+from pprint import pprint
 
 def get_file_name():
     i = 1
@@ -36,18 +38,62 @@ def plot(
     file_name = get_file_name()
     fig.savefig(file_name)
 
+def get_es_result():
+    file_path = Path(__file__).parent.parent.parent/"result"/"es_result.json"
+    data = []
+    with open(file_path, "r") as f:
+        for line in f:
+            tmp = loads(line)
+            data.append(tmp)
 
-def plot_es_flat(
-    durations: list[int],
-    operations: list[str],
-):
+    return data
+
+def plot_es_flat():
+    data = get_es_result()
+    write_path = Path(__file__).parent.parent.parent/"result"/"es_figs"/"flat.png"
+
+    flat_result = [d for d in data if d["coll_type"] == "flat"]
+    durations = []
+    operations = []
+
+    for r in flat_result:
+        durations.append(r["depth_0"])
+        operations.append(r["operation"])
+
     plt.bar(operations, durations)
-    plt.show()
-    pass
 
-def plot_es_nested(
-    before: int,
-    after: int,
-    title: str,
-):
-    pass
+    for i, v in enumerate(durations):
+        plt.text(i, v + 0.5, str(v), ha='center', va='bottom')
+
+    plt.title("Flat")
+    plt.ylabel("Duration / ms")
+
+    plt.savefig(write_path)
+    plt.close()
+
+
+
+def plot_es_nested():
+    data = get_es_result()
+    base_path = Path(__file__).parent.parent.parent/"result"/"es_figs"
+    arr_result = [d for d in data if d["coll_type"] == "arr"]
+    for arr in arr_result:
+        operation = arr["operation"]
+        depths = ["1","2","4","8"]
+        durations = []
+        for i in range(len(depths)):
+            durations.append(arr[f"depth_{i}"])
+
+        for i, v in enumerate(durations):
+            plt.text(i, v + 0.5, str(v), ha='center', va='bottom')
+
+        plt.bar(depths, durations)
+        plt.title(f"arr_{operation}")
+        plt.ylabel("Duration / ms")
+
+        write_path=base_path/f"arr_{operation}.png"
+        plt.savefig(write_path)
+        plt.close()
+
+
+

@@ -1,5 +1,4 @@
 import workloads as work
-from Colls import arr_list, obj_list, flat_list
 from coll_types.Base import Base
 from logger import save_result, mark_operation, mark_end
 

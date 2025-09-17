@@ -7,6 +7,8 @@ data/*
 !data/.gitkeep
 result/*
 !result/.gitkeep
+!result/figs/
+!result/figs/**
 test_q.py
 
 # C extensions

@@ -1,5 +1,6 @@
 from src.base_types.Base import Base
 import src.elastic.es_operations as op
+from src import logger as log
 
 num_of_tries = 10
 
@@ -14,6 +15,7 @@ def run_read_only(types: list[Base]):
             print("r,", end=" ", flush=True)
             result[i] += op.time_device_read(types[i])
         print("---")
+
     return result
 
 def run_avg_only(types: list[Base]):

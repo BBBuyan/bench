@@ -38,7 +38,7 @@ def plot(
     file_name = get_file_name()
     fig.savefig(file_name)
 
-def get_es_result(file_name: str):
+def get_result(file_name: str):
     file_path = Path(__file__).parent.parent.parent/"result"/f"{file_name}.json"
     data = []
     with open(file_path, "r") as f:
@@ -71,9 +71,9 @@ def plot_es_flat(data: list[dict]):
     plt.close()
 
 def plot_es_nested(data:list[dict]):
-    base_path = Path(__file__).parent.parent.parent/"result"/"es_figs"
+    base_path = Path(__file__).parent.parent.parent/"result"/"figs"/"elastic"
 
-    arr_result = [d for d in data if d["coll_type"] == "arr"]
+    arr_result = [d for d in data if d["coll_type"] == "obj"]
     for arr in arr_result:
         operation = arr["operation"]
         depths = ["1","2","4","8"]
@@ -85,33 +85,121 @@ def plot_es_nested(data:list[dict]):
             plt.text(i, v + 0.5, str(v), ha='center', va='bottom')
 
         plt.bar(depths, durations)
-        plt.title(f"arr_{operation}")
+        plt.title(f"obj_{operation}")
         plt.ylabel("Duration / ms")
 
-        write_path=base_path/f"arr_{operation}.png"
+        write_path=base_path/f"obj_{operation}.png"
         plt.savefig(write_path)
         plt.close()
 
+def plot_flat(data: list[dict], coll_type: str, db_type: str):
+    base_path = Path(__file__).parent.parent.parent/"result"/"figs"
+    filtered = [d for d in data if d["coll_type"] == "flat"]
+
+    durations = []
+    operations = []
+
+    for f in filtered:
+        durations.append(f["depth_0"])
+        operations.append(f["operation"])
+
+    before = []
+    after = []
+    for i in durations:
+        before.append(i[0])
+        after.append(i[1])
+
+    x = np.arange(len(operations))
+    w = 0.25
+
+    fig, ax = plt.subplots()
+
+    bars1 = ax.bar(x-w/2, before, width=w, label="Before")
+    bars2 = ax.bar(x+w/2, after, width=w, label="After")
+
+
+    for bar in list(bars1) + list(bars2):
+        height = bar.get_height()
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            height,
+            f"{height:.0f}",
+            ha="center", va="bottom", fontsize=8
+        )
+    # ax.set_yscale("log")
+    ax.set_title("Flat")
+    ax.set_xticks(x, operations)
+    ax.set_ylabel("Duration / ms")
+
+    write_path=base_path/f"{db_type}_{coll_type}_.png"
+    fig.savefig(write_path)
 
 def plot_nested(data:list[dict], coll_type: str, db_type: str):
-    base_path = Path(__file__).parent.parent.parent/"result"/"figs"
+    base_path = Path(__file__).parent.parent.parent/"result"/"figs"/f"{db_type}"
     filtered_ = [d for d in data if d["coll_type"] == coll_type]
+    depths = ["1","2","4","8"]
 
     for f in filtered_:
         operation = f["operation"]
-        depths = ["1","2","4","8"]
         durations = []
+
         for i in range(len(depths)):
             durations.append(f[f"depth_{i}"])
 
-        for i, v in enumerate(durations):
-            plt.text(i, v + 0.5, str(v), ha='center', va='bottom')
+        before = []
+        after = []
 
-        plt.bar(depths, durations)
-        plt.title(f"{coll_type}_{operation}")
-        plt.ylabel("Duration / ms")
+        for i in durations:
+            before.append(i[0])
+            after.append(i[1])
+
+        fig, ax = plt.subplots()
+        w = 0.35
+        x = np.arange(len(depths))
+
+        bars1 = ax.bar(x-w/2, before, width=w, label="Before")
+        bars2 = ax.bar(x+w/2, after, width=w, label="After")
+
+        for bar in list(bars1) + list(bars2):
+            height = bar.get_height()
+            ax.text(
+                bar.get_x() + bar.get_width() / 2,
+                height,
+                f"{height:.0f}",
+                ha="center", va="bottom", fontsize=8
+            )
+
+        # ax.set_yscale("log")
+        ax.set_title(operation)
+        ax.set_xticks(x,depths)
+        ax.set_ylabel("Duration / ms")
+        ax.set_xlabel("Depth")
 
         write_path=base_path/f"{db_type}_{coll_type}_{operation}.png"
-        plt.savefig(write_path)
-        plt.close()
+        fig.savefig(write_path)
+        plt.close(fig)
+
+
+def plot_result(before, after, name: str, depth, w):
+    x = np.arange(len(depth))
+    fig, ax = plt.subplots()
+
+    ax.bar(x-w/2, before, width=w, label="Before")
+    ax.bar(x+w/2, after, width=w, label="After")
+
+    ax.set_title(name)
+    ax.set_xticks(x)
+    ax.set_xticklabels(depth)
+
+    ax.set_ylabel("Duration / ms")
+    ax.set_xlabel("Depth")
+
+    ax.legend(loc="upper right", bbox_to_anchor=(1,-0.1))
+
+    plt.tight_layout()
+    # plt.show()
+
+    file_name = get_file_name()
+    fig.savefig(file_name)
+
 

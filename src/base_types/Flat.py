@@ -5,11 +5,13 @@ class Flat(Base):
     def __init__(self) -> None:
         super().__init__("flat")
 
-        self.device_path = self._device_field
-        self.vol_path = self._vol_field
+        self.memory_path = self._memory_field
+        self.error_path = self._error_field
+        self.storage_path = self._storage_field
+        self.temp_path = self._temp_field
+        self.uptime_path = self._uptime_field
         self.app_path = self._app_field
-        self.num_path = self._num_field
-        self.sub_path = self._sub_field
+
         self.info_path = self._info_field
         self.description_path = self._description_field
 

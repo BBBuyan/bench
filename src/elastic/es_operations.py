@@ -10,8 +10,8 @@ description_match_str = "water"
 
 def time_device_read(type: Base):
     start = perf_counter()
-    num = 1326#randint(0,9999)
-    query_ = es_query.device_query(type, num)
+    num = randint(0,9999)
+    query_ = es_query.memory_query(type, num)
     res = client.search(index=type.name, query=query_)
     end = perf_counter()
 

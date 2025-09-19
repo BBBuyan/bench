@@ -11,11 +11,14 @@ class Obj(Base):
         self.levels = all_levels[:(level)]
 
         self.path = str.join(".", self.levels) 
-        self.device_path = self.path + f".{self._device_field}"
-        self.vol_path = self.path + f".{self._vol_field}"
+
+        self.memory_path = self.path + f".{self._memory_field}"
+        self.error_path = self.path + f".{self._error_field}"
+        self.storage_path = self.path + f".{self._storage_field}"
+        self.temp_path = self.path + f".{self._temp_field}"
+        self.uptime_path = self.path + f".{self._uptime_field}"
         self.app_path = self.path + f".{self._app_field}"
-        self.num_path = self.path + f".{self._num_field}"
-        self.sub_path = self.path + f".{self._sub_field}"
+
         self.description_path = self.path + f".{self._description_field}"
         self.info_path = self.path + f".{self._info_field}"
 

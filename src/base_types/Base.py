@@ -5,20 +5,23 @@ class Base:
         self.database_name=""
         self.name = name
 
-        self._device_field = "device"
-        self._vol_field = "total_volume_bytes"
+        self._memory_field = "memory_usage_mb"
+        self._error_field = "error_count"
+        self._storage_field = "total_storage_gb"
+        self._temp_field = "temp"
+        self._uptime_field = "uptime_hours"
         self._app_field = "app"
-        self._num_field = "number_of_records"
-        self._sub_field = "subscribers"
-        self._description_field = "description"
         self._info_field = "info"
+        self._description_field = "description"
 
         self.path=""
-        self.device_path = ""
-        self.vol_path = ""
+        self.memory_path = ""
+        self.error_path = ""
+        self.storage_path = ""
+        self.temp_path = ""
+        self.uptime_path = ""
         self.app_path = ""
-        self.num_path = ""
-        self.sub_path = ""
+
         self.description_path = ""
         self.info_path = ""
 

@@ -30,17 +30,17 @@ def info_query(type: Base, match_str: str):
         }
     return query
 
-def device_query(type: Base, num: int):
+def memory_query(type: Base, num: int):
     query = {
-        "term": { type._device_field: num }
+        "term": { type._memory_field: num }
     }
     return query
 
 def avg_query(type: Base, num: int):
-    filter_ = device_query(type, num)
+    filter_ = memory_query(type, num)
     average_ = {
         "average_vol": {
-            "avg": { "field": type.vol_path }
+            "avg": { "field": type._storage_field}
         }
     }
     if isinstance(type, Arr):
@@ -60,12 +60,12 @@ def avg_query(type: Base, num: int):
     return query
 
 def group_query(type: Base, num: int): 
-    filter_ = device_query(type, num)
+    filter_ = memory_query(type, num)
     order_clause: dict = {"order": "desc"}
     if isinstance(type, Arr):
         order_clause["nested"] = {"path": type.path}
 
-    sort_ = [ {type.vol_path: order_clause} ]
+    sort_ = [ {type.storage_path: order_clause} ]
 
     query = {
         "query": filter_,

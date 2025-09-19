@@ -61,7 +61,7 @@ def avg_query(type: Base, num: int):
 
 def group_query(type: Base, num: int): 
     filter_ = memory_query(type, num)
-    order_clause: dict = {"order": "desc"}
+    order_clause: dict = {"order": "asc"}
     if isinstance(type, Arr):
         order_clause["nested"] = {"path": type.path}
 

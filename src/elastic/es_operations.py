@@ -8,7 +8,7 @@ from . import es_query
 info_match_str = "high"
 description_match_str = "water"
 
-def time_device_read(type: Base):
+def time_memory_read(type: Base):
     start = perf_counter()
     num = randint(0,9999)
     query_ = es_query.memory_query(type, num)
@@ -52,7 +52,6 @@ def time_avg(type: Base):
 
     if type.is_debug == True:
         print(res)
-        # helper.show_res(res)
 
     return (end-start)*1000
 
@@ -68,5 +67,4 @@ def time_group(type: Base):
         helper.show_res(res)
 
     return (end-start)*1000
-
 

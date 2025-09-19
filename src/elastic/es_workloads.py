@@ -9,10 +9,10 @@ def run_read_only(types: list[Base]):
 
     for i in range(len(types)):
         print(f"depth: {types[i].name} | ", end=" ", flush=True)
-        op.time_device_read(types[i])
+        op.time_memory_read(types[i])
         for _ in range(num_of_tries):
             print("r,", end=" ", flush=True)
-            result[i] += op.time_device_read(types[i])
+            result[i] += op.time_memory_read(types[i])
         print("---")
 
     return result

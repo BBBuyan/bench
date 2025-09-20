@@ -1,24 +1,25 @@
-from coll_types.Base import Base
 from time import perf_counter
-import builder
-import helper
+from src.mongo_bench import mongo_helper as helper
+from src.mongo_bench.mongo_types.BaseMongo import BaseMongo
+from src.mongo_bench import mongo_query as query
 
-def time_read(type: Base):
-    where_clause = builder.where_sub_clause(type)
+
+def time_read(type: BaseMongo):
+    where_clause = query.where_error_clause(type)
     start = perf_counter()
     result = list(type.coll.find(where_clause))
     end = perf_counter()
     return (end - start) * 1000
 
-def time_update(type: Base):
-    where_clause = builder.where_sub_clause(type)
-    update_clause = builder.update_num_clause(type)
+def time_update(type: BaseMongo):
+    where_clause = query.where_error_clause(type)
+    update_clause = query.update_storage(type)
     start = perf_counter()
     type.coll.update_many(where_clause, update_clause)
     end = perf_counter()
     return (end - start) * 1000
 
-def time_insert(type: Base):
+def time_insert(type: BaseMongo):
     batch = helper.fetch_data_from_file(type)
 
     start = perf_counter()
@@ -27,7 +28,7 @@ def time_insert(type: Base):
 
     return (end - start) * 1000
 
-def time_group(type: Base):
+def time_group(type: BaseMongo):
     group_pipe = builder.group_pipe(type)
 
     start = perf_counter()
@@ -36,7 +37,7 @@ def time_group(type: Base):
 
     return (end - start) * 1000
 
-def time_avg(type: Base):
+def time_avg(type: BaseMongo):
     avg_pipe = builder.avg_pipe(type)
     start = perf_counter()
     result = list(type.coll.aggregate(avg_pipe))

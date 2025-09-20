@@ -1,5 +1,3 @@
-from coll_types.Base import Base
-from coll_types.Arr import Arr
 from random import randint
 
 def where_sub_clause(type: Base):

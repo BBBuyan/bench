@@ -32,15 +32,22 @@ def info_query(type: Base, match_str: str):
 
 def memory_query(type: Base, num: int):
     query = {
-        "term": { type._memory_field: num }
+        "term": { type.memory_path: num }
     }
+    if isinstance(type, Arr):
+        query = {
+            "nested": {
+                "path": type.path,
+                "query": query
+            }
+        }
     return query
 
 def avg_query(type: Base, num: int):
     filter_ = memory_query(type, num)
     average_ = {
-        "average_vol": {
-            "avg": { "field": type._storage_field}
+        "average_storage": {
+            "avg": { "field": type.storage_path}
         }
     }
     if isinstance(type, Arr):
@@ -62,9 +69,9 @@ def avg_query(type: Base, num: int):
 def group_query(type: Base, num: int): 
     filter_ = memory_query(type, num)
     order_clause: dict = {"order": "asc"}
+
     if isinstance(type, Arr):
         order_clause["nested"] = {"path": type.path}
-
     sort_ = [ {type.storage_path: order_clause} ]
 
     query = {

@@ -1,6 +1,8 @@
-from src.base_types import Arr
+from pymongo.collection import Collection
+from src.mongo_bench.BaseMongo import BaseMongo
 
-class ArrMongo(Arr):
-    def __init__(self, level: int) -> None:
-        super().__init__(level)
+class ArrMongo(BaseMongo):
+    def __init__( self , name: str , coll: Collection , level: int) -> None:
+        super().__init__(name, coll)
+        self.level = level
 

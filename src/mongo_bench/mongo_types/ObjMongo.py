@@ -1,6 +1,6 @@
 from src.base_types import Obj
 from pymongo.collection import Collection
-from src.mongo_bench.mongo_types.BaseMongo import BaseMongo
+from .BaseMongo import BaseMongo
 
 class ObjMongo(BaseMongo, Obj):
     def __init__(self, level: int, coll) -> None:

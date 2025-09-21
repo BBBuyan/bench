@@ -1,11 +1,11 @@
-from src.base_types import Base
 from random import randint
 from json import loads
 from pathlib import Path
+from .mongo_types import BaseMongo
 
 fetch_limit = 50
 
-def fetch_data_from_file(type: Base):
+def fetch_data_from_file(type: BaseMongo):
     data =[]
     path = Path(__file__).parent.parent.parent/"data"/f"{type.name}.json"
     offset = randint(0, 5000)
@@ -24,3 +24,11 @@ def fetch_data_from_file(type: Base):
                 break
 
     return data
+
+def create_indexes(types: list[BaseMongo]):
+    for type in types:
+        type.coll.create_index(type.error_path)
+
+def drop_indexes(types: list[BaseMongo]):
+    for type in types:
+        type.coll.drop_indexes()

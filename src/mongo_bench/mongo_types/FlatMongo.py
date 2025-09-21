@@ -1,6 +1,6 @@
 from src.base_types import Flat
 from pymongo.collection import Collection
-from src.mongo_bench.mongo_types.BaseMongo import BaseMongo
+from .BaseMongo import BaseMongo
 
 class FlatMongo(BaseMongo, Flat):
     def __init__(self, coll: Collection) -> None:

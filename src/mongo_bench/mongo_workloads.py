@@ -10,6 +10,9 @@ def run_read_heavy(types: list[BaseMongo]):
     result = [0.0] * len(types)
 
     for i in range(len(types)):
+        #warmup
+        op.time_read(types[i])
+
         print(f"{types[i].name} | ", end=" ", flush=True)
         for _ in range(num_of_ops):
             prob = random()
@@ -19,6 +22,22 @@ def run_read_heavy(types: list[BaseMongo]):
             else:
                 print("u, ", end="" , flush=True)
                 result[i] += op.time_update(types[i])
+        print("---")
+
+    return result
+
+def run_read_only(types: list[BaseMongo]):
+    print(f"---{'READ ONLY'}---")
+    result = [0.0] * len(types)
+
+    for i in range(len(types)):
+        #warmup
+        op.time_read(types[i])
+
+        print(f"{types[i].name} | ", end=" ", flush=True)
+        for _ in range(num_of_ops):
+            print("r, ", end="", flush=True)
+            result[i] += op.time_read(types[i])
         print("---")
 
     return result
@@ -54,6 +73,9 @@ def run_update_heavy(types: list[BaseMongo]):
     result = [0.0] * len(types)
 
     for i in range(len(types)):
+        #warmup
+        op.time_read(types[i])
+
         print(f"{types[i].name} | ", end=" ", flush=True)
         for _ in range(num_of_ops):
             prob = random()
@@ -67,14 +89,29 @@ def run_update_heavy(types: list[BaseMongo]):
 
     return result
 
+def run_update_only(types: list[BaseMongo]):
+    print("---UPDATE ONLY---")
+    result = [0.0] * len(types)
+
+    for i in range(len(types)):
+        print(f"{types[i].name} | ", end=" ", flush=True)
+        for _ in range(num_of_ops):
+            print("u, ", end="" , flush=True)
+            result[i] += op.time_update(types[i])
+        print("---")
+
+    return result
+
+
 # 10% read 90% insert
 def run_insert_heavy(types: list[BaseMongo]):
     print("---INSERT HEAVY---")
     result = [0.0] * len(types)
 
     for i in range(len(types)):
-        print(f"{types[i].name} | ", end=" ", flush=True)
+        op.time_read(types[i])
 
+        print(f"{types[i].name} | ", end=" ", flush=True)
         for _ in range(num_of_ops):
             prob = random()
             if prob<0.1:
@@ -92,8 +129,9 @@ def run_mixed(types: list[BaseMongo]):
     print("---MIXED---")
     result = [0.0] * len(types)
     for i in range(len(types)):
-        print(f"{types[i].name} | ", end=" ", flush=True)
+        op.time_read(types[i])
 
+        print(f"{types[i].name} | ", end=" ", flush=True)
         for _ in range(num_of_ops):
             prob = random()
             if prob<0.4:
@@ -111,7 +149,7 @@ def run_mixed(types: list[BaseMongo]):
 
 # 100% insert
 def run_insert_only(types: list[BaseMongo]):
-    print("---INSERT HEAVY---")
+    print("---INSERT ONLY---")
     result = [0.0] * len(types)
     for i in range(len(types)):
         print(f"{types[i].name} | ", end=" ", flush=True)

@@ -26,6 +26,7 @@ class Base:
         self.info_path = ""
 
         self.assign_log_threshold = 100_000
+        self.max_docs = 100000
 
     def add_field(self, editing_data: dict, inputs: list[str], field_name: str):
         raise NotImplementedError("Subclasses should implement")

@@ -6,11 +6,11 @@ from .mongo_types import BaseMongo
 fetch_limit = 50
 
 def fetch_data_from_file(type: BaseMongo):
-    data =[]
     path = Path(__file__).parent.parent.parent/"data"/f"{type.name}.json"
-    offset = randint(0, 5000)
+    offset = randint(0, type.max_docs)
     i = 0
 
+    data =[]
     with open(path, "r") as f:
         for _ in range(offset):
             next(f, None)

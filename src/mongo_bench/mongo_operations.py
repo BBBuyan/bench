@@ -35,7 +35,7 @@ def time_insert(type: BaseMongo):
     end = perf_counter()
 
     if BaseMongo.is_debug:
-        print(result)
+        print(len(result.inserted_ids))
 
     return (end - start) * 1000
 

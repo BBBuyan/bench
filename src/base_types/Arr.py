@@ -22,6 +22,8 @@ class Arr(Base):
         self.description_path = self.path + f".{self._description_field}"
         self.info_path = self.path + f".{self._info_field}"
 
+        self.max_docs = 1000
+
     def add_field(
             self
             , editing_data: dict

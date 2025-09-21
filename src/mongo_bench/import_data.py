@@ -1,6 +1,6 @@
 from json import loads
 from .mongo_types import BaseMongo
-from .conn import arr_list, obj_list, flat_list
+from .conn import arr_list, obj_list, flat_list, all_list
 from pathlib import Path
 
 def execute_import(type: BaseMongo, json_data: list[dict]):
@@ -30,5 +30,5 @@ if __name__ == "__main__":
     # import_docs(flat_list[0])
     # for i in arr_list:
     #     import_docs(i)
-    for i in obj_list:
+    for i in all_list:
         import_docs(i)

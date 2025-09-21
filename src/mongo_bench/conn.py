@@ -16,3 +16,4 @@ levels = [1,2,4,8]
 flat_list: list[BaseMongo]= [FlatMongo(db["flat"])]
 obj_list: list[BaseMongo] = [ObjMongo(i, db[f"obj{i}"]) for i in levels]
 arr_list: list[BaseMongo] = [ArrMongo(i, db[f"arr{i}"]) for i in levels]
+all_list: list[BaseMongo] = flat_list + obj_list + arr_list

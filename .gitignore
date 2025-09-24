@@ -8,6 +8,12 @@ data/*
 !data/.gitkeep
 
 result/**
+
+!result/couchdb
+!result/mongodb
+!result/pgsql
+!result/elastic
+
 !result/couchdb/.gitkeep
 !result/mongodb/.gitkeep
 !result/pgsql/.gitkeep

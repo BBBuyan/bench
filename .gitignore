@@ -6,8 +6,13 @@ __pycache__/
 # specific only for this project. the data is generated instead of shared via github
 data/*
 !data/.gitkeep
-result/*
-!result/.gitkeep
+
+result/**
+!result/couchdb/.gitkeep
+!result/mongodb/.gitkeep
+!result/pgsql/.gitkeep
+!result/elastic/.gitkeep
+
 test_q.py
 
 # C extensions

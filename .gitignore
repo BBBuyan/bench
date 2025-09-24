@@ -2,13 +2,12 @@
 __pycache__/
 *.py[codz]
 *$py.class
+
 # specific only for this project. the data is generated instead of shared via github
 data/*
 !data/.gitkeep
 result/*
 !result/.gitkeep
-!result/figs/
-!result/figs/**
 test_q.py
 
 # C extensions

@@ -23,7 +23,6 @@ class MongoBench():
         read_only_1 = work.run_read_only(types)
         update_non_indexed_1 = work.run_update_non_indexed_field(types)
         update_indexed = work.run_update_indexed_field(types)
-        update_shard_key = work.run_update_shard_key(types)
 
         avg_1 = work.run_avg(types)
         group_1 = work.run_group(types)

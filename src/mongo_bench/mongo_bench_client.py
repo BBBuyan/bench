@@ -4,7 +4,7 @@ from src.logger import logger
 from .conn import flat_list, obj_list, arr_list
 from .mongo_helper import create_indexes, drop_indexes
 
-file = "mongodb/mongo_result"
+file = "mongo_result"
 
 class MongoBench():
     def _run_bench(self, types: list[BaseMongo], coll: str):

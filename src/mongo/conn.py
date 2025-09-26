@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from os import getenv
-from src.mongo_bench.mongo_types import BaseMongo, ObjMongo, ArrMongo, FlatMongo
+from .mongo_types import BaseMongo, ObjMongo, ArrMongo, FlatMongo
 
 load_dotenv()
 ip = getenv("MONGO_URL")

@@ -12,12 +12,38 @@ def time_read(type: BaseMongo):
     if BaseMongo.is_debug:
         print(result[0])
         print(len(result))
+    return (end - start) * 1000
+
+# Storage field is non indexed and not shard key
+def time_update_storage(type: BaseMongo):
+    where_clause = query.where_error_clause(type)
+    update_clause = query.update_storage(type)
+    start = perf_counter()
+    result = type.coll.update_many(where_clause, update_clause)
+    end = perf_counter()
+
+    if BaseMongo.is_debug:
+        print(result.matched_count)
 
     return (end - start) * 1000
 
-def time_update(type: BaseMongo):
+# Error_count field is indexed field, but not shard keay
+def time_update_error_count(type: BaseMongo):
     where_clause = query.where_error_clause(type)
-    update_clause = query.update_storage(type)
+    update_clause = query.update_error_count(type)
+    start = perf_counter()
+    result = type.coll.update_many(where_clause, update_clause)
+    end = perf_counter()
+
+    if BaseMongo.is_debug:
+        print(result.matched_count)
+
+    return (end - start) * 1000
+
+# Memory_usage field is shard key, thus indexed
+def time_update_memory(type: BaseMongo):
+    where_clause = query.where_error_clause(type)
+    update_clause = query.update_memory(type)
     start = perf_counter()
     result = type.coll.update_many(where_clause, update_clause)
     end = perf_counter()

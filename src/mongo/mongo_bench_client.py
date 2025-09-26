@@ -10,6 +10,7 @@ class MongoBench():
     def _run_bench(self, types: list[BaseMongo], coll: str):
 
         read_only_0 = work.run_read_only(types)
+        read_by_shard_key = work.run_read_only_by_shard_key(types)
         update_non_indexed_0 = work.run_update_non_indexed_field(types)
         avg_0 = work.run_avg(types)
         group_0 = work.run_group(types)
@@ -30,6 +31,7 @@ class MongoBench():
 
         logger.mark_empty_space(file)
         logger.save_result(read_only_0, read_only_1, "read_only", file, coll)
+        logger.save_result(read_only_0, read_by_shard_key, "read_by_shard_key", file, coll)
         logger.save_result(update_non_indexed_0, update_non_indexed_1, "update_non_indexed", file, coll)
         logger.save_result(update_non_indexed_1, update_indexed, "update_indexed", file, coll)
         logger.save_result(avg_0, avg_1, "avg", file, coll)

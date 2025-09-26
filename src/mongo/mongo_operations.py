@@ -14,6 +14,17 @@ def time_read(type: BaseMongo):
         print(len(result))
     return (end - start) * 1000
 
+def time_read_by_shard_key(type: BaseMongo):
+    where_clause = query.where_memory_clause(type)
+    start = perf_counter()
+    result = list(type.coll.find(where_clause))
+    end = perf_counter()
+
+    if BaseMongo.is_debug:
+        print(result[0])
+        print(len(result))
+    return (end - start) * 1000
+
 # Storage field is non indexed and not shard key
 def time_update_storage(type: BaseMongo):
     where_clause = query.where_error_clause(type)

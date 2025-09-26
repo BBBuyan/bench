@@ -27,6 +27,28 @@ def run_read_only(types: list[BaseMongo]):
 
     return result
 
+def run_read_only_by_shard_key(types: list[BaseMongo]):
+    print(f"---READ ONLY---")
+    result = [0.0] * len(types)
+
+    for i in range(len(types)):
+        #warmup
+        op.time_read_by_shard_key(types[i])
+
+        type_results = []
+        print(f"{types[i].name} | ", end=" ", flush=True)
+        for _ in range(num_of_ops):
+            print("r, ", end="", flush=True)
+            tmp = op.time_read_by_shard_key(types[i])
+            type_results.append(tmp)
+        print("---")
+
+        print([f"{x:.1f}" for x in type_results])
+
+        result[i] = sum(type_results)/len(type_results)
+
+    return result
+
 def run_update_non_indexed_field(types: list[BaseMongo]):
     print("---UPDATE NON INDEXED FIELD---")
     result = [0.0] * len(types)

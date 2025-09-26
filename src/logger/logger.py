@@ -2,6 +2,11 @@ import datetime
 from pathlib import Path
 import json
 
+def mark_empty_space(file_name):
+    file_path = Path(__file__).parent.parent.parent/"result"/f"{file_name}.json"
+    with open(file_path, "a") as f:
+        f.write("\n")
+
 def save_result(
     old: list[float], 
     new: list[float], 

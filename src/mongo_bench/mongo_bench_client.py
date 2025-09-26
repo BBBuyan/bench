@@ -30,6 +30,8 @@ class MongoBench():
 
         drop_indexes(types)
 
+        logger.mark_empty_space(file)
+
         logger.save_result(read_only_0, read_only_1, "read_only", file, coll)
 
         logger.save_result(update_non_indexed_0, update_non_indexed_1, "update_non_indexed", file, coll)

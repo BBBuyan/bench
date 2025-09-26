@@ -46,19 +46,6 @@ def run_update_indexed_field(types: list[BaseMongo]):
 
     return result
 
-def run_update_shard_key(types: list[BaseMongo]):
-    print("---UPDATE SHARD KEY---")
-    result = [0.0] * len(types)
-
-    for i in range(len(types)):
-        print(f"{types[i].name} | ", end=" ", flush=True)
-        for _ in range(num_of_ops):
-            print("u, ", end="" , flush=True)
-            result[i] += op.time_update_memory(types[i])
-        print("---")
-
-    return result
-
 # 40% read 30% update 30% insert
 # def run_mixed(types: list[BaseMongo]):
 #     print("---MIXED---")

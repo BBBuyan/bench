@@ -40,19 +40,6 @@ def time_update_error_count(type: BaseMongo):
 
     return (end - start) * 1000
 
-# Memory_usage field is shard key, thus indexed
-def time_update_memory(type: BaseMongo):
-    where_clause = query.where_error_clause(type)
-    update_clause = query.update_memory(type)
-    start = perf_counter()
-    result = type.coll.update_many(where_clause, update_clause)
-    end = perf_counter()
-
-    if BaseMongo.is_debug:
-        print(result.matched_count)
-
-    return (end - start) * 1000
-
 def time_insert(type: BaseMongo):
     batch = helper.fetch_data_from_file(type)
 

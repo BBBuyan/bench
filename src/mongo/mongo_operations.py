@@ -51,6 +51,18 @@ def time_update_error_count(type: BaseMongo):
 
     return (end - start) * 1000
 
+def time_update_by_shard_key(type: BaseMongo):
+    where_clause = query.where_memory_clause(type)
+    update_clause = query.update_storage(type)
+    start = perf_counter()
+    result = type.coll.update_many(where_clause, update_clause)
+    end = perf_counter()
+
+    if BaseMongo.is_debug:
+        print(result.matched_count)
+
+    return (end - start) * 1000
+
 def time_insert(type: BaseMongo):
     batch = helper.fetch_data_from_file(type)
 

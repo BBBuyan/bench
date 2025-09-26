@@ -28,7 +28,7 @@ def run_read_only(types: list[BaseMongo]):
     return result
 
 def run_read_only_by_shard_key(types: list[BaseMongo]):
-    print(f"---READ ONLY---")
+    print(f"---READ ONLY BY SHARD KEY---")
     result = [0.0] * len(types)
 
     for i in range(len(types)):
@@ -79,6 +79,25 @@ def run_update_indexed_field(types: list[BaseMongo]):
         for _ in range(num_of_ops):
             print("u, ", end="" , flush=True)
             tmp = op.time_update_error_count(types[i])
+            type_results.append(tmp)
+        print("---")
+
+        print([f"{x:.1f}" for x in type_results])
+
+        result[i] = sum(type_results)/len(type_results)
+
+    return result
+
+def run_update_by_shard_key(types: list[BaseMongo]):
+    print("---UPDATE BY SHARD KEY---")
+    result = [0.0] * len(types)
+
+    for i in range(len(types)):
+        type_results = []
+        print(f"{types[i].name} | ", end=" ", flush=True)
+        for _ in range(num_of_ops):
+            print("u, ", end="" , flush=True)
+            tmp = op.time_update_by_shard_key(types[i])
             type_results.append(tmp)
         print("---")
 

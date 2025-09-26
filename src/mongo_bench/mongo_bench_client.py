@@ -35,7 +35,6 @@ class MongoBench():
         logger.save_result(update_non_indexed_0, update_non_indexed_1, "update_non_indexed", file, coll)
 
         logger.save_result(update_non_indexed_1, update_indexed, "update_indexed", file, coll)
-        logger.save_result(update_non_indexed_1, update_shard_key, "update_shard_key", file, coll)
 
         logger.save_result(avg_0, avg_1, "avg", file, coll)
         logger.save_result(group_0, group_1, "group", file, coll)

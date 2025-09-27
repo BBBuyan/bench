@@ -9,7 +9,12 @@ data/*
 
 result/**
 !result/.gitkeep
-!result/mongodb/.gitkeep
+!result/mongodb
+
+!result/mongodb
+!result/mongodb/flat
+!result/mongodb/arr
+!result/mongodb/obj
 !result/mongodb/flat/.gitkeep
 !result/mongodb/arr/.gitkeep
 !result/mongodb/obj/.gitkeep

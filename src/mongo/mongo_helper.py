@@ -3,24 +3,20 @@ from json import loads
 from pathlib import Path
 from .mongo_types import BaseMongo
 
-fetch_limit = 50_000
-
 def fetch_data_from_file(type: BaseMongo):
     path = Path(__file__).parent.parent.parent/"data"/f"{type.name}.json"
-    offset = randint(0, type.max_docs)
-    i = 0
-
+    offset = randint(0, type.max_docs-type.fetch_limit)
     data =[]
     with open(path, "r") as f:
         for _ in range(offset):
             next(f, None)
 
+        i = 0
         for line in f:
             json_data = loads(line)
             data.append(json_data)
-
             i += 1
-            if i >= fetch_limit:
+            if i >= type.fetch_limit:
                 break
 
     return data

@@ -107,23 +107,11 @@ def run_update_by_shard_key(types: list[BaseMongo]):
 
     return result
 
-# 100% insert
 def run_insert_only(types: list[BaseMongo]):
     print("---INSERT ONLY---")
     result = [0.0] * len(types)
     for i in range(len(types)):
-        type_results = []
-
-        print(f"{types[i].name} | ", end=" ", flush=True)
-        for _ in range(num_of_ops):
-            print("i, ", end="" , flush=True)
-            tmp = op.time_insert(types[i])
-            type_results.append(tmp)
-        print("---")
-
-        print([f"{x:.1f}" for x in type_results])
-
-        result[i] = sum(type_results)/len(type_results)
+        result[i] = op.time_insert(types[i])
     return result
 
 def run_avg(types: list[BaseMongo]):

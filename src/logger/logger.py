@@ -9,7 +9,7 @@ def save_result(
     db_type: str,
     coll_type: str
 ):
-    file_path = Path(__file__).parent.parent.parent/"result"/db_type/f"{coll_type}_{operation}.json"
+    file_path = Path(__file__).parent.parent.parent/"result"/db_type/coll_type/f"{operation}.json"
     now = datetime.datetime.now()
     now_date = now.strftime("%Y-%m-%d, %H:%M:%S")
 

@@ -8,6 +8,10 @@ data/*
 !data/.gitkeep
 
 result/**
+!result/.gitkeep
+!result/mongodb/flat/.gitkeep
+!result/mongodb/arr/.gitkeep
+!result/mongodb/obj/.gitkeep
 test_q.py
 
 # C extensions

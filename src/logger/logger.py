@@ -2,19 +2,14 @@ import datetime
 from pathlib import Path
 import json
 
-def mark_empty_space(file_name):
-    file_path = Path(__file__).parent.parent.parent/"result"/f"{file_name}.json"
-    with open(file_path, "a") as f:
-        f.write("\n")
-
 def save_result(
     old: list[float], 
     new: list[float], 
     operation: str, 
-    file_name: str,
+    db_type: str,
     coll_type: str
 ):
-    file_path = Path(__file__).parent.parent.parent/"result"/f"{file_name}.json"
+    file_path = Path(__file__).parent.parent.parent/"result"/db_type/f"{coll_type}_{operation}.json"
     now = datetime.datetime.now()
     now_date = now.strftime("%Y-%m-%d, %H:%M:%S")
 
@@ -32,7 +27,7 @@ def save_result(
 
     with open(file_path, "a") as f:
         json.dump(result, f)
-        f.write("\n")
+        f.write("\n\n")
 
 def save_es_result(
     old: list[float], 

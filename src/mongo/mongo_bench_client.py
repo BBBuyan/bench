@@ -5,6 +5,7 @@ from .conn import flat_list, obj_list, arr_list
 from .mongo_helper import create_indexes, drop_indexes
 
 file = "mongo_result"
+db_type = "mongodb"
 
 class MongoBench():
     def _run_bench(self, types: list[BaseMongo], coll: str):
@@ -30,17 +31,16 @@ class MongoBench():
 
         drop_indexes(types)
 
-        logger.mark_empty_space(file)
-        logger.save_result(read_only_0, read_only_1, "read_only", file, coll)
-        logger.save_result(read_only_0, read_by_shard_key, "read_by_shard_key", file, coll)
+        logger.save_result(read_only_0, read_only_1, "read_only", db_type, coll)
+        logger.save_result(read_only_0, read_by_shard_key, "read_by_shard_key", db_type, coll)
 
-        logger.save_result(update_non_indexed_0, update_non_indexed_1, "update_non_indexed", file, coll)
-        logger.save_result(update_non_indexed_1, update_indexed, "update_indexed", file, coll)
-        logger.save_result(update_non_indexed_1, update_by_shard_key, "update_by_shard_key", file, coll)
+        logger.save_result(update_non_indexed_0, update_non_indexed_1, "update_non_indexed", db_type, coll)
+        logger.save_result(update_non_indexed_1, update_indexed, "update_indexed", db_type, coll)
+        logger.save_result(update_non_indexed_1, update_by_shard_key, "update_by_shard_key", db_type, coll)
 
-        logger.save_result(avg_0, avg_1, "avg", file, coll)
-        logger.save_result(group_0, group_1, "group", file, coll)
-        logger.save_result(insert_only_0, insert_only_1, "insert_only", file, coll)
+        logger.save_result(avg_0, avg_1, "avg", db_type, coll)
+        logger.save_result(group_0, group_1, "group", db_type, coll)
+        logger.save_result(insert_only_0, insert_only_1, "insert_only", db_type, coll)
 
     def bench_flat(self):
         self._run_bench(flat_list, "flat")

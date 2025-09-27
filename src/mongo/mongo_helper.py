@@ -3,7 +3,7 @@ from json import loads
 from pathlib import Path
 from .mongo_types import BaseMongo
 
-fetch_limit = 50
+fetch_limit = 50_000
 
 def fetch_data_from_file(type: BaseMongo):
     path = Path(__file__).parent.parent.parent/"data"/f"{type.name}.json"

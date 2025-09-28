@@ -3,7 +3,7 @@ from json import loads
 from pathlib import Path
 from .mongo_types import BaseMongo
 
-def fetch_data_from_file(type: BaseMongo):
+def fetch_data_from_file(type: BaseMongo, limit: int):
     path = Path(__file__).parent.parent.parent/"data"/f"{type.name}.json"
     data =[]
     with open(path, "r") as f:
@@ -12,7 +12,7 @@ def fetch_data_from_file(type: BaseMongo):
             json_data = loads(line)
             data.append(json_data)
             i += 1
-            if i >= type.fetch_limit:
+            if i >= limit:
                 break
     return data
 

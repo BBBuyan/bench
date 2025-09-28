@@ -64,7 +64,7 @@ def time_update_by_shard_key(type: BaseMongo):
     return (end - start) * 1000
 
 def time_insert(type: BaseMongo):
-    batch = helper.fetch_data_from_file(type)
+    batch = helper.fetch_data_from_file(type, type.fetch_limit)
 
     start = perf_counter()
     result = type.coll.insert_many(batch)

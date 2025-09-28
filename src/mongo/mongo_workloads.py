@@ -1,5 +1,6 @@
 from random import random
 from src.base_types import Base
+from .warmup import insert_warmup
 from . import mongo_operations as op
 from .mongo_types import BaseMongo
 
@@ -111,7 +112,10 @@ def run_insert_only(types: list[BaseMongo]):
     print("---INSERT ONLY---")
     result = [0.0] * len(types)
     for i in range(len(types)):
+        insert_warmup(types[i])
+        print(f"{types[i].name}")
         result[i] = op.time_insert(types[i])
+    print("---DONE---")
     return result
 
 def run_avg(types: list[BaseMongo]):

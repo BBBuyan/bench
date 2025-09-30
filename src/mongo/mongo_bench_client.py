@@ -20,8 +20,11 @@ class MongoBench():
         update_storage = work.run_update_non_indexed_field(types)
         logger.save_result(update_storage, "update non indexed", coll_name)
 
-        # update_indexed_field = work.run_update_non_indexed_field(types)
-        # logger.save_result(update_indexed_field, "update indexed", coll_name)
+        update_by_shard_key = work.run_update_by_shard_key(types)
+        logger.save_result(update_by_shard_key, "update by shard key", coll_name)
+
+        update_indexed_field = work.run_update_non_indexed_field(types)
+        logger.save_result(update_indexed_field, "update indexed", coll_name)
 
         avg = work.run_avg(types)
         logger.save_result(avg, "average", coll_name)

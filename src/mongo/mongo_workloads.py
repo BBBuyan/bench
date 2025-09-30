@@ -1,9 +1,7 @@
 from random import random
-from src.base_types import Base
-from .warmup import insert_warmup
+from . import warmup
 from . import mongo_operations as op
 from .mongo_types import BaseMongo
-from .mongo_logger import save_result
 
 num_of_ops = 10
 
@@ -13,7 +11,7 @@ def run_read_only(types: list[BaseMongo]):
 
     for i in range(len(types)):
         #warmup
-        op.time_read(types[i])
+        warmup.read_warmup(types[i])
 
         type_results = []
         print(f"{types[i].name} | ", end=" ", flush=True)
@@ -34,7 +32,7 @@ def run_read_only_by_shard_key(types: list[BaseMongo]):
 
     for i in range(len(types)):
         #warmup
-        op.time_read_by_shard_key(types[i])
+        warmup.read_by_shard_key(types[i])
 
         type_results = []
         print(f"{types[i].name} | ", end=" ", flush=True)
@@ -112,7 +110,7 @@ def run_insert_only(types: list[BaseMongo]):
     print("---INSERT ONLY---")
     result = [0.0] * len(types)
     for i in range(len(types)):
-        insert_warmup(types[i])
+        warmup.insert_warmup(types[i])
         print(f"{types[i].name}")
         result[i] = op.time_insert(types[i])
     print("---DONE---")

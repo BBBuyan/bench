@@ -9,8 +9,10 @@ def save_result(
     coll_type: str
 ):
     file_path = Path(__file__).parent.parent.parent/"result"/"mongodb"/coll_type/result_name
+    rounded = [round(d) for d in durations]
+
     with open(file_path, "a") as f:
-        f.write(f"{operation:<20}: {str(durations)}\n")
+        f.write(f"{operation:<20}: {str(rounded)}\n")
 
 
 def mark_operation(coll_type: str):
@@ -18,7 +20,8 @@ def mark_operation(coll_type: str):
     now = datetime.now()
     now_date = now.strftime("%Y-%m-%d, %H:%M:%S")
     with open(file_path, "a") as f:
-        f.write("\n" + now_date + "\n")
+        f.write(f"{'':-<40}\n")
+        f.write(now_date + "\n")
 
 def mark_message(coll_type: str, msg: str):
     file_path = Path(__file__).parent.parent.parent/"result"/"mongodb"/coll_type/result_name

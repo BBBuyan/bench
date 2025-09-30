@@ -4,7 +4,6 @@ import json
 
 def save_result(
     old: list[float], 
-    new: list[float], 
     operation: str, 
     db_type: str,
     coll_type: str
@@ -13,21 +12,12 @@ def save_result(
     now = datetime.datetime.now()
     now_date = now.strftime("%Y-%m-%d, %H:%M:%S")
 
-    result: dict = {
-        "date": now_date,
-        "operation": operation,
-        "coll_type": coll_type,
-    }
-
-    for i in range(len(old)):
-        result[f"depth_{i}"] = {
-            "before": round(old[i]),
-            "after": round(new[i])
-        }
-
     with open(file_path, "a") as f:
-        json.dump(result, f)
-        f.write("\n\n")
+        f.write(now_date + "\n")
+
+        for i in range(len(old)):
+            f.write(f"d_{i}")
+
 
 def save_es_result(
     old: list[float], 

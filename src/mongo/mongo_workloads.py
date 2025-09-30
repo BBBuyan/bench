@@ -3,6 +3,7 @@ from src.base_types import Base
 from .warmup import insert_warmup
 from . import mongo_operations as op
 from .mongo_types import BaseMongo
+from .mongo_logger import save_result
 
 num_of_ops = 10
 
@@ -25,7 +26,6 @@ def run_read_only(types: list[BaseMongo]):
         print([f"{x:.1f}" for x in type_results])
 
         result[i] = sum(type_results)/len(type_results)
-
     return result
 
 def run_read_only_by_shard_key(types: list[BaseMongo]):

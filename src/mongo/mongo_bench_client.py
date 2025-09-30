@@ -1,44 +1,30 @@
 from .mongo_types import BaseMongo
 from . import mongo_workloads as work
-from src.logger import logger 
 from .conn import flat_list, obj_list, arr_list
 from .mongo_helper import create_indexes, drop_indexes
+from . import mongo_logger as logger
 
-file = "mongo_result"
 db_type = "mongodb"
 
 class MongoBench():
-    def _run_bench(self, types: list[BaseMongo], coll: str):
+    def _run_bench(self, types: list[BaseMongo], coll_name: str):
 
-        # read_only_0 = work.run_read_only(types)
-        # read_by_shard_key = work.run_read_only_by_shard_key(types)
-        # update_non_indexed_0 = work.run_update_non_indexed_field(types)
-        # avg_0 = work.run_avg(types)
-        # group_0 = work.run_group(types)
-        insert_only_0 = work.run_insert_only(types)
+        read_error_field = work.run_read_only(types)
+        read_by_shard_key = work.run_read_only_by_shard_key(types)
+        update_storage = work.run_update_non_indexed_field(types)
+        update_indexed_field = work.run_update_non_indexed_field(types)
+        avg = work.run_avg(types)
+        group = work.run_group(types)
+        insert = work.run_insert_only(types)
 
-        # create_indexes(types)
+        logger.save_result(read_error_field, "read by error", coll_name)
+        logger.save_result(read_by_shard_key, "read by shard key", coll_name)
+        logger.save_result(update_storage, "update non indexed", coll_name)
+        logger.save_result(update_indexed_field, "update indexed", coll_name)
+        logger.save_result(avg, "average", coll_name)
+        logger.save_result(group, "group", coll_name)
+        logger.save_result(insert, "insert", coll_name)
 
-        # read_only_1 = work.run_read_only(types)
-        # update_non_indexed_1 = work.run_update_non_indexed_field(types)
-        # update_indexed = work.run_update_indexed_field(types)
-        # update_by_shard_key = work.run_update_by_shard_key(types)
-        # avg_1 = work.run_avg(types)
-        # group_1 = work.run_group(types)
-        # insert_only_1 = work.run_insert_only(types)
-
-        # drop_indexes(types)
-
-        # logger.save_result(read_only_0, read_only_1, "read_only", db_type, coll)
-        # logger.save_result(read_only_0, read_by_shard_key, "read_by_shard_key", db_type, coll)
-        #
-        # logger.save_result(update_non_indexed_0, update_non_indexed_1, "update_non_indexed", db_type, coll)
-        # logger.save_result(update_non_indexed_1, update_indexed, "update_indexed", db_type, coll)
-        # logger.save_result(update_non_indexed_1, update_by_shard_key, "update_by_shard_key", db_type, coll)
-        #
-        # logger.save_result(avg_0, avg_1, "avg", db_type, coll)
-        # logger.save_result(group_0, group_1, "group", db_type, coll)
-        logger.save_result(insert_only_0, insert_only_0, "insert_only", db_type, coll)
 
     def bench_flat(self):
         self._run_bench(flat_list, "flat")

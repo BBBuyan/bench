@@ -10,19 +10,24 @@ class MongoBench():
     def _run_bench(self, types: list[BaseMongo], coll_name: str):
 
         read_error_field = work.run_read_only(types)
-        read_by_shard_key = work.run_read_only_by_shard_key(types)
-        update_storage = work.run_update_non_indexed_field(types)
-        update_indexed_field = work.run_update_non_indexed_field(types)
-        avg = work.run_avg(types)
-        group = work.run_group(types)
-        insert = work.run_insert_only(types)
-
         logger.save_result(read_error_field, "read by error", coll_name)
+
+        read_by_shard_key = work.run_read_only_by_shard_key(types)
         logger.save_result(read_by_shard_key, "read by shard key", coll_name)
+
+        update_storage = work.run_update_non_indexed_field(types)
         logger.save_result(update_storage, "update non indexed", coll_name)
-        logger.save_result(update_indexed_field, "update indexed", coll_name)
+
+        # update_indexed_field = work.run_update_non_indexed_field(types)
+        # logger.save_result(update_indexed_field, "update indexed", coll_name)
+
+        avg = work.run_avg(types)
         logger.save_result(avg, "average", coll_name)
+
+        group = work.run_group(types)
         logger.save_result(group, "group", coll_name)
+
+        insert = work.run_insert_only(types)
         logger.save_result(insert, "insert", coll_name)
 
 

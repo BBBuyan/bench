@@ -8,9 +8,9 @@ db_type = "mongodb"
 
 class MongoBench():
     def _run_bench(self, types: list[BaseMongo], coll_name: str):
-
         logger.mark_operation(coll_name)
         logger.mark_message(coll_name, "")
+
         read_error_field = work.run_read_only(types)
         logger.save_result(read_error_field, "read by error", coll_name)
 

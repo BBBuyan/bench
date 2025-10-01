@@ -6,7 +6,7 @@ from .mongo_types import BaseMongo
 num_of_ops = 10
 
 def run_read_only(types: list[BaseMongo]):
-    print(f"---READ ONLY---")
+    print(f"---READ ONLY", end=" ", flush=True)
     result = [0.0] * len(types)
 
     for i in range(len(types)):
@@ -27,7 +27,7 @@ def run_read_only(types: list[BaseMongo]):
     return result
 
 def run_read_only_by_shard_key(types: list[BaseMongo]):
-    print(f"---READ ONLY BY SHARD KEY---")
+    print(f"---READ ONLY BY SHARD KEY", end=" ", flush=True)
     result = [0.0] * len(types)
 
     for i in range(len(types)):
@@ -49,7 +49,7 @@ def run_read_only_by_shard_key(types: list[BaseMongo]):
     return result
 
 def run_update_non_indexed_field(types: list[BaseMongo]):
-    print("---UPDATE NON INDEXED FIELD---")
+    print("---UPDATE NON INDEXED FIELD", end=" ", flush=True)
     result = [0.0] * len(types)
 
     for i in range(len(types)):
@@ -70,7 +70,7 @@ def run_update_non_indexed_field(types: list[BaseMongo]):
     return result
 
 def run_update_indexed_field(types: list[BaseMongo]):
-    print("---UPDATE INDEXED FIELD---")
+    print("---UPDATE INDEXED FIELD", end=" ", flush=True)
     result = [0.0] * len(types)
 
     for i in range(len(types)):
@@ -90,7 +90,7 @@ def run_update_indexed_field(types: list[BaseMongo]):
     return result
 
 def run_update_by_shard_key(types: list[BaseMongo]):
-    print("---UPDATE BY SHARD KEY---")
+    print("---UPDATE BY SHARD KEY", end=" ", flush=True)
     result = [0.0] * len(types)
 
     for i in range(len(types)):
@@ -110,7 +110,7 @@ def run_update_by_shard_key(types: list[BaseMongo]):
     return result
 
 def run_insert_only(types: list[BaseMongo]):
-    print("---INSERT ONLY---")
+    print("---INSERT ONLY", end=" ", flush=True)
     result = [0.0] * len(types)
     for i in range(len(types)):
         warmup.insert_warmup(types[i])

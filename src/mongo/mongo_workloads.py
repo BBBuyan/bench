@@ -53,6 +53,7 @@ def run_update_non_indexed_field(types: list[BaseMongo]):
     result = [0.0] * len(types)
 
     for i in range(len(types)):
+        warmup.update_non_indexed_field(types[i])
         type_results = []
 
         print(f"{types[i].name} | ", end=" ", flush=True)
@@ -73,6 +74,7 @@ def run_update_indexed_field(types: list[BaseMongo]):
     result = [0.0] * len(types)
 
     for i in range(len(types)):
+        warmup.update_indexed_field(types[i])
         type_results = []
         print(f"{types[i].name} | ", end=" ", flush=True)
         for _ in range(num_of_ops):
@@ -92,6 +94,7 @@ def run_update_by_shard_key(types: list[BaseMongo]):
     result = [0.0] * len(types)
 
     for i in range(len(types)):
+        warmup.update_by_shard_key(types[i])
         type_results = []
         print(f"{types[i].name} | ", end=" ", flush=True)
         for _ in range(num_of_ops):

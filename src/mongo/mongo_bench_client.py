@@ -23,8 +23,8 @@ class MongoBench():
         update_by_shard_key = work.run_update_by_shard_key(types)
         logger.save_result(update_by_shard_key, "update by shard key", coll_name)
 
-        update_indexed_field = work.run_update_non_indexed_field(types)
-        logger.save_result(update_indexed_field, "update indexed", coll_name)
+        # update_indexed_field = work.run_update_indexed_field(types)
+        # logger.save_result(update_indexed_field, "update indexed", coll_name)
 
         avg = work.run_avg(types)
         logger.save_result(avg, "average", coll_name)
@@ -32,8 +32,8 @@ class MongoBench():
         group = work.run_group(types)
         logger.save_result(group, "group", coll_name)
 
-        insert = work.run_insert_only(types)
-        logger.save_result(insert, "insert", coll_name)
+        # insert = work.run_insert_only(types)
+        # logger.save_result(insert, "insert", coll_name)
 
 
     def bench_flat(self):

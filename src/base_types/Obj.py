@@ -22,6 +22,8 @@ class Obj(Base):
         self.description_path = self.path + f".{self._description_field}"
         self.info_path = self.path + f".{self._info_field}"
 
+        self.coll_type = "obj"
+
     def add_field(self, editing_data: dict, inputs: list[str], field_name: str):
         for k in self.levels[:-1]:
             editing_data = editing_data[k]

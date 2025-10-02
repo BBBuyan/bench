@@ -25,6 +25,8 @@ class Arr(Base):
         self.max_docs = 10_000
         self.fetch_limit = 500
 
+        self.coll_type = "arr"
+
     def add_field(
             self
             , editing_data: dict

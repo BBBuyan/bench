@@ -2,6 +2,7 @@ from random import random
 from . import warmup
 from . import mongo_operations as op
 from .mongo_types import BaseMongo
+from . import mongo_logger as log
 
 num_of_ops = 10
 
@@ -24,6 +25,8 @@ def run_read_only(types: list[BaseMongo]):
         print([f"{x:.1f}" for x in type_results])
 
         result[i] = sum(type_results)/len(type_results)
+
+    log.save_result(result, "read by error", types[0].coll_type) 
     return result
 
 def run_read_only_by_shard_key(types: list[BaseMongo]):
@@ -46,6 +49,7 @@ def run_read_only_by_shard_key(types: list[BaseMongo]):
 
         result[i] = sum(type_results)/len(type_results)
 
+    log.save_result(result, "read by shard key", types[0].coll_type) 
     return result
 
 def run_update_non_indexed_field(types: list[BaseMongo]):
@@ -67,6 +71,7 @@ def run_update_non_indexed_field(types: list[BaseMongo]):
 
         result[i] = sum(type_results)/len(type_results)
 
+    log.save_result(result, "update non indexed", types[0].coll_type) 
     return result
 
 def run_update_indexed_field(types: list[BaseMongo]):
@@ -87,6 +92,7 @@ def run_update_indexed_field(types: list[BaseMongo]):
 
         result[i] = sum(type_results)/len(type_results)
 
+    log.save_result(result, "update indexed", types[0].coll_type) 
     return result
 
 def run_update_by_shard_key(types: list[BaseMongo]):
@@ -107,6 +113,7 @@ def run_update_by_shard_key(types: list[BaseMongo]):
 
         result[i] = sum(type_results)/len(type_results)
 
+    log.save_result(result, "update by shard key", types[0].coll_type) 
     return result
 
 def run_insert_only(types: list[BaseMongo]):
@@ -117,6 +124,7 @@ def run_insert_only(types: list[BaseMongo]):
         print(f"{types[i].name}")
         result[i] = op.time_insert(types[i])
     print("---DONE---")
+    log.save_result(result, "insert", types[0].coll_type) 
     return result
 
 def run_avg(types: list[BaseMongo]):
@@ -136,6 +144,8 @@ def run_avg(types: list[BaseMongo]):
         print([f"{x:.1f}" for x in type_results])
 
         result[i] = sum(type_results)/len(type_results)
+
+    log.save_result(result, "average", types[0].coll_type) 
     return result
 
 def run_group(types: list[BaseMongo]):
@@ -156,6 +166,7 @@ def run_group(types: list[BaseMongo]):
 
         result[i] = sum(type_results)/len(type_results)
 
+    log.save_result(result, "group", types[0].coll_type) 
     return result
 
 # 40% read 30% update 30% insert

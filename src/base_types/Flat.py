@@ -15,5 +15,7 @@ class Flat(Base):
         self.info_path = self._info_field
         self.description_path = self._description_field
 
+        self.coll_type = "flat"
+
     def add_field(self, editing_data: dict, inputs: list[str], field_name: str):
         editing_data[field_name] = choice(inputs)

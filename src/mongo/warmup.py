@@ -5,7 +5,7 @@ from . import mongo_operations as op
 def insert_warmup(type: BaseMongo):
     print(f"warmup {type.name}", end=" ", flush=True)
     batch = helper.fetch_for_warmup(type)
-    type.coll.insert_many(batch)
+    type.coll.insert_many(batch, ordered=False)
     print("DONE---")
 
 def read_warmup(type: BaseMongo):

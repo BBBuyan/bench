@@ -67,7 +67,7 @@ def time_insert(type: BaseMongo):
     batch = helper.fetch_data_from_file(type)
 
     start = perf_counter()
-    result = type.coll.insert_many(batch)
+    result = type.coll.insert_many(batch, ordered=False)
     end = perf_counter()
 
     if BaseMongo.is_debug:

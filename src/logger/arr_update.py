@@ -1,14 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-a_no_index=[1162, 1038, 1126, 3262]
-a_w_index=[96, 104, 96, 90]
-a_indexed=[115, 112, 113, 122]
+a_update_no_index=[26,47,210,14920]
+a_update_w_index=[3,2,20,1532]
+a_update_indexed_field=[3,6,27,1833]
 
-s_no_index=[439, 409, 518, 637]
-s_w_index=[41, 50, 85, 38]
-s_indexed= [46, 49, 61, 51]
-s_shard_key=[91, 83, 90, 90]
+s_update_no_index=[16,28,109,1409]
+s_update_w_index=[4,5,12,457]
+s_update_indexed_field=[6,5,19,606]
+
+update_by_shard_key=[17,33,127,1769]
 
 w = 0.35
 x = np.arange(4)
@@ -17,16 +18,16 @@ xr=x+w/2
 
 fig, axs = plt.subplots(1,4, sharey=True, constrained_layout=True, figsize=(12,6))
 
-bars01 = axs[0].bar(xl, a_no_index, width=w, label="alone")
-bars02 = axs[0].bar(xr, s_no_index, width=w, label="sharded")
+bars01 = axs[0].bar(xl, a_update_no_index, width=w, label="alone")
+bars02 = axs[0].bar(xr, s_update_no_index, width=w, label="sharded")
 
-bars11 = axs[1].bar(xl, a_w_index, width=w, label="alone")
-bars12 = axs[1].bar(xr, s_w_index, width=w, label="sharded")
+bars11 = axs[1].bar(xl, a_update_w_index, width=w, label="alone")
+bars12 = axs[1].bar(xr, s_update_w_index, width=w, label="sharded")
 
-bars21 = axs[2].bar(xl, a_indexed, width=w, label="alone")
-bars22 = axs[2].bar(xr, s_indexed, width=w, label="sharded")
+bars21 = axs[2].bar(xl, a_update_indexed_field, width=w, label="alone")
+bars22 = axs[2].bar(xr, s_update_indexed_field, width=w, label="sharded")
 
-bars31 = axs[3].bar(x, s_shard_key, width=w, label="sharded", color="C1")
+bars31 = axs[3].bar(x, update_by_shard_key, width=w, label="sharded", color="C1")
 
 for bar in list(bars01) + list(bars02):
     height = bar.get_height()
@@ -80,4 +81,4 @@ axs[3].set_xticks(x, [1,2,4,8])
 fig.supxlabel("Depth")
 fig.supylabel("Duration / ms (log scale)")
 
-fig.savefig("./figs/obj_update.pdf", bbox_inches="tight")
+fig.savefig("./figs/arr_update.pdf", bbox_inches="tight")

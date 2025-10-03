@@ -1,37 +1,39 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-shard_avg_no_index = [725, 776, 2028, 905]
-shard_avg_with_index = [33, 26, 25, 15]
+a_no_index_s=[2,3,19,216]
+a_w_index_s=[3,4,24,422]
 
-shard_group_no_index = [548, 731, 1130, 1768]
-shard_group_with_index =[27, 26, 26, 16]
+a_no_index_b=[11,24,168,3363]
+a_w_index_b=[34,31,352,3926]
 
-alone_avg_no_index = [778, 1400, 1310, 2997]
-alone_avg_with_index = [67, 40, 52, 69]
 
-alone_group_no_index = [1186, 1292, 1412, 2000]
-alone_group_with_index = [62, 48, 67, 60]
+s_no_index_s=[8,12,52,590]
+s_w_index_s=[26,11,26,657]
+
+s_no_index_b=[34,47,281,5742]
+s_w_index_b=[47,76,392,6913]
+
 
 w = 0.35
 x = np.arange(4)
 xl=x-w/2
 xr=x+w/2
 
-
 fig, axs = plt.subplots(2,2, constrained_layout=True, figsize=(12,6))
 
-a = axs[0,0].bar(xl, alone_avg_no_index, width=w, label="no index")
-b = axs[0,0].bar(xr, alone_avg_with_index, width=w, label="with index")
+a = axs[0,0].bar(xl, a_no_index_s, width=w, label="no index")
+b = axs[0,0].bar(xr, a_w_index_s, width=w, label="with index")
 
-c= axs[1,0].bar(xl, shard_avg_no_index,width=w, label="no index")
-d= axs[1,0].bar(xr, shard_avg_with_index, width=w, label="with index")
+c= axs[1,0].bar(xl, s_no_index_s, width=w, label="no index")
+d= axs[1,0].bar(xr, s_w_index_s, width=w, label="with index")
 
-e= axs[0,1].bar(xl, alone_group_no_index, width=w, label="no index")
-f= axs[0,1].bar(xr, alone_group_with_index, width=w, label="with index")
+e= axs[0,1].bar(xl, a_no_index_b, width=w, label="no index")
+f= axs[0,1].bar(xr, a_w_index_b, width=w, label="with index")
 
-g= axs[1,1].bar(xl, shard_group_no_index, width=w, label="no index")
-h= axs[1,1].bar(xr, shard_group_with_index, width=w, label="with index")
+g= axs[1,1].bar(xl, s_no_index_b, width=w, label="no index")
+h= axs[1,1].bar(xr, s_w_index_b, width=w, label="with index")
+
 
 for bar in list(a) + list(b):
     height = bar.get_height()
@@ -73,20 +75,19 @@ axs[0,1].set_xticks(x, [1,2,4,8])
 axs[1,0].set_xticks(x, [1,2,4,8])
 axs[1,1].set_xticks(x, [1,2,4,8])
 
-axs[0,0].set_title("average")
-axs[0,1].set_title("group")
-
 axs[0,0].sharey(axs[0,1])
 axs[1,0].sharey(axs[1,1])
-
-axs[0,0].set_ylabel("alone")
-axs[1,0].set_ylabel("sharded")
 
 axs[0,0].set_yscale("log")
 axs[1,0].set_yscale("log")
 
+axs[0,0].set_title("little data")
+axs[0,1].set_title("big data")
+
+axs[0,0].set_ylabel("alone")
+axs[1,0].set_ylabel("sharded")
 axs[0,0].legend(loc="lower right", bbox_to_anchor=(0.2,1))
 
 fig.supylabel("Duration / ms")
 
-fig.savefig("./figs/obj_analytic.pdf", bbox_inches="tight")
+fig.savefig("./figs/arr_insert.pdf", bbox_inches="tight")

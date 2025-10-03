@@ -1,17 +1,17 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-shard_avg_no_index = [725, 776, 2028, 905]
-shard_avg_with_index = [33, 26, 25, 15]
+shard_avg_no_index =[81, 167, 561, 4764]
+shard_avg_with_index = [106, 255, 989, 4895]
 
-shard_group_no_index = [548, 731, 1130, 1768]
-shard_group_with_index =[27, 26, 26, 16]
+shard_group_no_index = [46, 94, 462, 8096]
+shard_group_with_index =[48, 118, 468, 5131]
 
-alone_avg_no_index = [778, 1400, 1310, 2997]
-alone_avg_with_index = [67, 40, 52, 69]
+alone_avg_no_index = [149, 265, 1316, 32020]#[38, 93, 445, 22521]
+alone_avg_with_index = [74, 218, 1293, 23623]#[41, 90, 461, 29055]
 
-alone_group_no_index = [1186, 1292, 1412, 2000]
-alone_group_with_index = [62, 48, 67, 60]
+alone_group_no_index = [128, 253, 1186, 28897]#[82, 168, 898, 31421]
+alone_group_with_index = [80, 174, 788, 28114]#[81, 177, 908, 31730]
 
 w = 0.35
 x = np.arange(4)
@@ -89,4 +89,4 @@ axs[0,0].legend(loc="lower right", bbox_to_anchor=(0.2,1))
 
 fig.supylabel("Duration / ms")
 
-fig.savefig("./figs/obj_analytic.pdf", bbox_inches="tight")
+fig.savefig("./figs/arr_analytic.pdf", bbox_inches="tight")

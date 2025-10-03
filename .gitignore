@@ -19,6 +19,7 @@ result/**
 !result/mongodb/arr/.gitkeep
 !result/mongodb/obj/.gitkeep
 test_q.py
+*.pdf
 
 # C extensions
 *.so

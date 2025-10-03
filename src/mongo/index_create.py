@@ -10,4 +10,4 @@ def create_indexes(types: list[BaseMongo]):
     print("DONE---")
 
 if __name__ == "__main__":
-    create_indexes(flat_list)
+    create_indexes(all_list)

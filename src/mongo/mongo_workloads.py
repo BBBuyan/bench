@@ -136,6 +136,10 @@ def run_avg(types: list[BaseMongo]):
 
         print(f"{types[i].name} | ", end=" ", flush=True)
         for _ in range(3):
+            print("wa, ", end="", flush=True)
+            op.time_avg(types[i])
+
+        for _ in range(3):
             print("a, ", end="", flush=True)
             tmp = op.time_avg(types[i])
             type_results.append(tmp)
@@ -156,6 +160,10 @@ def run_group(types: list[BaseMongo]):
         type_results = []
 
         print(f"{types[i].name} | ", end=" ", flush=True)
+        for _ in range(3):
+            print("wg, ", end="", flush=True)
+            op.time_group(types[i])
+
         for _ in range(3):
             print("g, ", end="", flush=True)
             tmp = op.time_group(types[i])

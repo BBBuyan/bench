@@ -10,4 +10,4 @@ def drop_indexes(types: list[BaseMongo]):
     print("DONE---")
 
 if __name__ == "__main__":
-    drop_indexes(flat_list)
+    drop_indexes(all_list)

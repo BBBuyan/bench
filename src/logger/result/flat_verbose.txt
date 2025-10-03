@@ -1,0 +1,137 @@
+
+2025-09-30, 21:15:41
+
+read by error       : [515.3816696954891]
+read by shard key   : [5.864175572060049]
+update non indexed  : [393.64703870378435]
+average             : [291.34463767210644]
+group               : [349.28180269586545]
+insert              : [116542.28485981002]
+----------------------------------------
+2025-09-30, 21:31:56
+read by error       : [400]
+read by shard key   : [6]
+update non indexed  : [419]
+average             : [303]
+group               : [368]
+insert              : [112465]
+----------------------------------------
+2025-09-30, 21:38:11
+indexed
+read by error       : [4]
+read by shard key   : [6]
+update non indexed  : [38]
+average             : [6]
+group               : [6]
+insert              : [107037]
+----------------------------------------
+2025-09-30, 21:48:06
+indexed
+read by shard key   : [16]
+update non indexed  : [524]
+update by shard key : [12]
+----------------------------------------
+2025-09-30, 21:49:51
+indexed
+read by error       : [4]
+read by shard key   : [7]
+update non indexed  : [8]
+update by shard key : [12]
+update indexed      : [9]
+average             : [4]
+group               : [6]
+----------------------------------------
+2025-09-30, 21:51:37
+non indexed
+read by error       : [383]
+read by shard key   : [5]
+update non indexed  : [418]
+update by shard key : [11]
+average             : [311]
+group               : [387]
+----------------------------------------
+2025-10-01, 08:45:53
+no index
+read by error       : [352]
+read by shard key   : [21]
+update non indexed  : [393]
+update by shard key : [13]
+average             : [287]
+group               : [359]
+----------------------------------------
+2025-10-01, 08:47:21
+no index
+read by error       : [355]
+read by shard key   : [7]
+update non indexed  : [395]
+update by shard key : [12]
+average             : [294]
+group               : [366]
+----------------------------------------
+2025-10-01, 08:48:42
+with index
+read by error       : [4]
+read by shard key   : [6]
+update non indexed  : [8]
+update by shard key : [11]
+update indexed      : [9]
+average             : [5]
+group               : [6]
+----------------------------------------
+2025-10-01, 08:51:51
+with index
+insert              : [119857]
+----------------------------------------
+2025-10-01, 08:56:36
+no index
+insert              : [118653]
+----------------------------------------
+2025-10-01, 09:03:34
+no index little data
+insert              : [9946]
+----------------------------------------
+2025-10-01, 09:05:29
+index little data
+insert              : [10489]
+----------------------------------------
+2025-10-01, 16:10:56
+alone
+no index
+read by error       : [1008]
+update non indexed  : [811]
+average             : [491]
+group               : [670]
+----------------------------------------
+2025-10-01, 16:27:28
+alone
+index
+read by error       : [64]
+update non indexed  : [71]
+update indexed      : [62]
+average             : [68]
+group               : [56]
+----------------------------------------
+2025-10-01, 16:36:15
+alone
+no index insert, big data
+insert              : [1337]
+----------------------------------------
+2025-10-01, 16:37:07
+alone
+no index insert, small data
+insert              : [153]
+----------------------------------------
+2025-10-01, 16:40:50
+alone
+index insert, big data
+insert              : [1781]
+----------------------------------------
+2025-10-01, 16:41:59
+alone
+index insert, small data
+insert              : [145]
+----------------------------------------
+2025-10-02, 07:33:47
+alone
+index insert, small data
+update non indexed  : [1499]

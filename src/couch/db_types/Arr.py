@@ -11,6 +11,7 @@ class Arr(Base):
 
         self.max_offset = 9500
         self.assign_log_threshold = 1000
+        self.batch_limit = 100
 
         self.path = str.join(".", self.levels)
         self.memory_path = self.path + f".{self._memory_field}"

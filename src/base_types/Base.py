@@ -5,7 +5,7 @@ class Base:
         self.database_name=""
         self.name = name
 
-        self._memory_field = "memory_usage_mb"
+        self._memory_field = "model_number"
         self._error_field = "error_count"
         self._storage_field = "total_storage_gb"
         self._temp_field = "temp"

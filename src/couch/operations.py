@@ -6,6 +6,9 @@ from .db_types.Base import Base
 from .db_types.Arr import Arr
 
 def time_read(op_type: Base):
+    if isinstance(op_type, Arr):
+        return 0
+
     url = op_type.url + "_find"
     query = op_type.get_error_query()
 
@@ -49,6 +52,7 @@ def time_insert(op_type: Base):
 def time_group(op_type: Base):
     if isinstance(op_type, Arr):
         return 0
+
     url = op_type.url + "_find"
     query = op_type.get_sort_query()
 

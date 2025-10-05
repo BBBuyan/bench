@@ -41,8 +41,6 @@ class Base:
                 self.error_path: randint(0,9999)
             },
         }
-        query["use_index"] = f"{self.name}-analytics-index"
-
         return query
 
     def get_sort_query(self):

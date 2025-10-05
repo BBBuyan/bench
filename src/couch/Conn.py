@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=".env")
+load_dotenv()
 
 ip = os.getenv("COUCH_IP")
 port = os.getenv("COUCH_PORT")

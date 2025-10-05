@@ -2,6 +2,7 @@ from random import randint
 import requests
 from .db_types.Base import Base
 from json import loads
+from pathlib import Path
 
 fetch_limit = 50
 
@@ -19,7 +20,7 @@ def fetch_random_batch(op_type: Base):
 
 def fetch_data_from_file(op_type: Base):
     data = []
-    path = f"../../data/{op_type.name}.json"
+    path = Path(__file__).parent.parent.parent/"data"/f"{op_type.name}.json"
     offset = randint(0, 5000)
     i = 0
 

@@ -30,6 +30,7 @@ def time_update(op_type: Base):
     start = perf_counter()
     res = requests.post(url, json=updated_data)
     end = perf_counter()
+
     if op_type.debug:
         print(res.text)
 
@@ -62,11 +63,12 @@ def time_group(op_type: Base):
 
     if op_type.debug:
         print(res.text)
+        print(query)
 
     return (end - start) * 1000
 
 def time_avg(op_type: Base):
-    url = op_type.url + "_design/analytic/_view/average?group=true"
+    url = op_type.url + "_design/avg/_view/average?group=true"
     url += f"&key={randint(0, 9999)}"
 
     start = perf_counter()

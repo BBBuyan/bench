@@ -4,7 +4,7 @@ import requests
 
 def build_analytic_view_doc(op_type: Base):
     doc = {
-        "id": "_design/analytic",
+        "id": "_design/avg",
         "views": {
             "average": {
                 "map": op_type.average_map_func,
@@ -15,11 +15,11 @@ def build_analytic_view_doc(op_type: Base):
     return doc
 
 def create_analytic_views(op_type: Base):
-    url = op_type.url +"_design/analytic"
+    url = op_type.url +"_design/avg"
     doc = build_analytic_view_doc(op_type)
     res = requests.put(url, json=doc)
     print(res.text)
 
 if __name__ == "__main__":
     for db in all_dbs:
-        build_analytic_view_doc(db)
+        create_analytic_views(db)

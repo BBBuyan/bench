@@ -7,7 +7,7 @@ db_type = "mongodb"
 
 def run_bench(types: list[BaseMongo]):
     logger.mark_operation(types[0].coll_type)
-    logger.mark_message(types[0].coll_type, "shard, no index")
+    logger.mark_message(types[0].coll_type, "shard, index, insert small")
 
     # work.run_read_only(types)
     # work.run_read_only_by_shard_key(types)
@@ -16,7 +16,7 @@ def run_bench(types: list[BaseMongo]):
     # work.run_update_indexed_field(types)
     # work.run_avg(types)
     # work.run_group(types)
-    # work.run_insert_only(types)
+    work.run_insert_only(types)
 
 def bench_flat():
     run_bench(flat_list)

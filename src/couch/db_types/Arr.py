@@ -42,6 +42,8 @@ class Arr(Base):
         query = {
             "selector": nest
         }
+        query["use_index"] = f"{self.name}-analytics-index"
+
         return query
 
     def _generate_emit(self):

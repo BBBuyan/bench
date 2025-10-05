@@ -3,11 +3,11 @@ from pathlib import Path
 from .mongo_types import BaseMongo
 from src.base_types import Arr
 
-arr_limit = 500
-# arr_limit = 50
+# arr_limit = 500
+arr_limit = 50
 
-base_limit = 50_000
-# base_limit = 5000
+# base_limit = 50_000
+base_limit = 5000
 
 def fetch_data_from_file(type: BaseMongo):
     path = Path(__file__).parent.parent.parent/"data"/f"{type.name}.json"

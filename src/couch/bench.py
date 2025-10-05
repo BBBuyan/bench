@@ -6,7 +6,7 @@ from .workloads import elementary as work
 
 
 file_name = "result"
-message =""
+message ="3, with index"
 
 def bench(db_list: list[Base]):
     work.run_read_only(db_list)
@@ -23,12 +23,12 @@ def bench_obj():
 
 def bench_arr():
     logger.mark_operation("arr")
-    logger.mark_message("obj", message)
+    logger.mark_message("arr", message)
     bench(arr_list)
 
 def bench_flat():
     logger.mark_operation("flat")
-    logger.mark_message("obj", message)
+    logger.mark_message("flat", message)
     bench(flat_list)
 
 bench_flat()

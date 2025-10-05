@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import datetime
 
-suffix = "result_insert"
+suffix = "insert_unordered"
 
 def save_result(durations: list[float], operation: str, coll_type: str):
     file_name = f"{coll_type}_{suffix}.txt"

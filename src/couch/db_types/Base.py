@@ -41,8 +41,7 @@ class Base:
                 self.error_path: randint(0,9999)
             },
         }
-        if self.use_index:
-            query["use_index"] = f"{self.name}-error-index"
+        query["use_index"] = f"{self.name}-analytics-index"
 
         return query
 

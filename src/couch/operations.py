@@ -8,13 +8,13 @@ from .db_types.Arr import Arr
 def time_read(op_type: Base):
     url = op_type.url + "_find"
     query = op_type.get_error_query()
-    print(query)
 
     start = perf_counter()
     res = requests.post(url, json=query)
     end = perf_counter()
 
     if op_type.debug:
+        print(query)
         print(res.text)
 
     return (end - start) * 1000

@@ -87,6 +87,6 @@ axs[0,0].set_ylabel("alone")
 axs[1,0].set_ylabel("sharded")
 axs[0,0].legend(loc="lower right", bbox_to_anchor=(0.2,1))
 
-fig.supylabel("Duration / ms")
+fig.supylabel("Duration / ms (log scale)")
 
 fig.savefig("./figs/arr_insert.pdf", bbox_inches="tight")

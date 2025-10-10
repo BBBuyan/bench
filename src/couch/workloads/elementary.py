@@ -2,6 +2,8 @@ from random import random
 from src.couch import logger
 from src.couch.db_types.Base import Base
 from src.couch import operations as op
+from src.couch import warmup
+
 
 num_of_tries = 10
 
@@ -11,6 +13,7 @@ def run_read_only(types: list[Base]):
 
     for i in range(len(types)):
         print(f"{types[i].name} | ", end=" ", flush=True)
+        warmup.read_warmup(types[i])
         type_results = []
         for _ in range(num_of_tries):
             print("r,", end=" ", flush=True)

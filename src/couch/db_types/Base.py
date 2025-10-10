@@ -46,7 +46,7 @@ class Base:
     def get_sort_query(self):
         query: dict = {
             "selector": {
-                self.memory_path: randint(0,9999)
+                self.error_path: randint(0,9999)
             },
             "sort":[
                 {self.storage_path: "asc"}

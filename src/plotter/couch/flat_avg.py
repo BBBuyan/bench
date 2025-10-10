@@ -17,6 +17,7 @@ xl=x-w/2
 xr=x+w/2
 
 categories_average = ["average only", "after update", "after insert"]
+# plt.figure(figsize=(10,5))
 
 bar01 = plt.bar(xl, alone_avg, width=w, label="alone")
 bar02 = plt.bar(xr, sharded_avg, width=w, label="sharded")
@@ -32,7 +33,7 @@ for bar in list(bar01) + list(bar02):
 
 plt.xticks(x,categories_average)
 
-plt.title("average")
+plt.tight_layout()
 plt.ylabel("Duration / ms")
 plt.legend(loc="lower right", bbox_to_anchor=(0.2,1))
 plt.savefig("./couch_figs/flat_avg.pdf", bbox_inches="tight")

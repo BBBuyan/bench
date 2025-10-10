@@ -31,7 +31,7 @@ x = np.arange(5)
 xl=x-w/2
 xr=x+w/2
 
-fig, axs = plt.subplots(1,3, sharey=True, constrained_layout=True, figsize=(10,4))
+fig, axs = plt.subplots(1,3, sharey=True, constrained_layout=True, figsize=(10,5))
 
 bar01 = axs[0].bar(xl, ca_avg_only, width=w, label="alone")
 bar02 = axs[0].bar(xr, cs_avg_only, width=w, label="sharded")
@@ -42,32 +42,32 @@ bar12 = axs[1].bar(xr, cs_after_update, width=w, label="sharded")
 bar21 = axs[2].bar(xl, ca_after_insert, width=w, label="alone")
 bar22 = axs[2].bar(xr, cs_after_insert, width=w, label="sharded")
 
-for bar in list(bar01) + list(bar02):
-    height = bar.get_height()
-    axs[0].text(
-        bar.get_x() + bar.get_width() / 2,
-        height,
-        f"{height:.0f}",
-        ha="center", va="bottom", fontsize=8
-    )
-
-for bar in list(bar11) + list(bar12):
-    height = bar.get_height()
-    axs[1].text(
-        bar.get_x() + bar.get_width() / 2,
-        height,
-        f"{height:.0f}",
-        ha="center", va="bottom", fontsize=8
-    )
-    
-for bar in list(bar21) + list(bar22):
-    height = bar.get_height()
-    axs[2].text(
-        bar.get_x() + bar.get_width() / 2,
-        height,
-        f"{height:.0f}",
-        ha="center", va="bottom", fontsize=8
-    )
+# for bar in list(bar01) + list(bar02):
+#     height = bar.get_height()
+#     axs[0].text(
+#         bar.get_x() + bar.get_width() / 2,
+#         height,
+#         f"{height:.0f}",
+#         ha="center", va="bottom", fontsize=8
+#     )
+#
+# for bar in list(bar11) + list(bar12):
+#     height = bar.get_height()
+#     axs[1].text(
+#         bar.get_x() + bar.get_width() / 2,
+#         height,
+#         f"{height:.0f}",
+#         ha="center", va="bottom", fontsize=8
+#     )
+#
+# for bar in list(bar21) + list(bar22):
+#     height = bar.get_height()
+#     axs[2].text(
+#         bar.get_x() + bar.get_width() / 2,
+#         height,
+#         f"{height:.0f}",
+#         ha="center", va="bottom", fontsize=8
+#     )
 
 levels = ["flat",1,2,4,8]
 
@@ -77,10 +77,11 @@ axs[0].set_xticks(x, levels)
 axs[1].set_xticks(x,levels)
 axs[2].set_xticks(x,levels)
 
+axs[0].set_ylabel("Duration / ms")
+
 axs[0].set_title("average only")
 axs[1].set_title("after update")
 axs[2].set_title("after insert")
 
-fig.supylabel("Duration / ms")
 fig.supxlabel("Depth")
 fig.savefig("./couch_figs/flat_obj_avg.pdf", bbox_inches="tight")

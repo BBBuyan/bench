@@ -3,5 +3,5 @@ from src.couch.db_types.Base import Base
 
 def read_warmup(type: Base):
     for _ in range(3):
-        print("wr, ", end="", flush=True)
-        op.time_read(type)
+        t = op.time_read(type)
+        print(f"{round(t)}, ", end="", flush=True)

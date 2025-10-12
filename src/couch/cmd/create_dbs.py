@@ -3,8 +3,9 @@ from ..db_types import Base
 from ..Databases import all_dbs, arr_list, obj_list, flat_list
 
 def create_databases(db: Base):
-    url = db.base_url + db.name + "?q=8&n=3"
+    url = db.base_url + db.name + "?q=8&n=1"
     res = requests.put(url)
+    print(url)
     print(res.text)
 
 if __name__ == "__main__":

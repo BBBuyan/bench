@@ -89,4 +89,4 @@ axs[0,0].legend(loc="lower right", bbox_to_anchor=(0.2,1))
 
 fig.supylabel("Duration / ms (log scale)")
 
-fig.savefig("./figs/arr_analytic.pdf", bbox_inches="tight")
+fig.savefig("./mongo_figs/arr_analytic.pdf", bbox_inches="tight")

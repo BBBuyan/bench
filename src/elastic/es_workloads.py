@@ -1,4 +1,5 @@
 from src.base_types.Base import Base
+from src.elastic import logger
 import src.elastic.es_operations as op
 
 num_of_tries = 10
@@ -15,6 +16,7 @@ def run_read_only(types: list[Base]):
             result[i] += op.time_memory_read(types[i])
         print("---")
 
+    logger.save_result(result, "read model_nr", types[0].coll_type)
     return result
 
 def run_avg_only(types: list[Base]):
@@ -28,6 +30,8 @@ def run_avg_only(types: list[Base]):
             print("a,", end=" ", flush=True)
             result[i] += op.time_avg(types[i])
         print("---")
+
+    logger.save_result(result, "avg", types[0].coll_type)
     return result
 
 def run_group_only(types: list[Base]):
@@ -41,6 +45,8 @@ def run_group_only(types: list[Base]):
             print("g,", end=" ", flush=True)
             result[i] += op.time_group(types[i])
         print("---")
+
+    logger.save_result(result, "group", types[0].coll_type)
     return result
 
 def run_info_search(types: list[Base]):
@@ -54,6 +60,8 @@ def run_info_search(types: list[Base]):
             print("g,", end=" ", flush=True)
             result[i] += op.time_info_read(types[i])
         print("---")
+
+    logger.save_result(result, "info", types[0].coll_type)
     return result
 
 def run_description_search(types: list[Base]):
@@ -67,4 +75,6 @@ def run_description_search(types: list[Base]):
             print("g,", end=" ", flush=True)
             result[i] += op.time_description_read(types[i])
         print("---")
+
+    logger.save_result(result, "description", types[0].coll_type)
     return result

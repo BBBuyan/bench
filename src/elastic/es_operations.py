@@ -27,6 +27,7 @@ def time_info_read(type: Base):
     end = perf_counter()
 
     if type.is_debug == True:
+        # print(query_)
         helper.show_res(res)
 
     return (end-start)*1000
@@ -64,6 +65,8 @@ def time_group(type: Base):
     end = perf_counter()
 
     if type.is_debug == True:
+        print(query_)
+        print(res)
         helper.show_res(res)
 
     return (end-start)*1000

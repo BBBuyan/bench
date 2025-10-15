@@ -6,7 +6,7 @@ from psycopg2.pool import ThreadedConnectionPool
 from operations import Operation
 from helpers import generate_device_mock, delete_inserted_mocks
 
-number_of_operations = 50
+number_of_operations = 10
 
 # 90% Read, 10 % Update
 def run_read_heavy(pool: ThreadedConnectionPool):

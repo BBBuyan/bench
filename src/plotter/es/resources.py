@@ -1,0 +1,30 @@
+alone_arr_read                   =      [3, 5, 9, 57]
+alone_arr_avg                        =  [3, 2, 2, 5]
+alone_arr_group                      =  [4, 3, 10, 63]
+alone_arr_info                       =  [3, 3, 5, 58]
+alone_arr_description                =  [3, 3, 6, 62]
+
+s1_arr_read                   =         [6, 8, 15, 76]
+s1_arr_avg                            = [4, 4, 4, 6]
+s1_arr_group                          = [7, 8, 16, 77]
+s1_arr_info                           = [3, 4, 10, 73]
+s1_arr_description                    = [4, 4, 7, 75]
+
+s3_arr_read                   =         [5, 6, 10, 74]
+s3_arr_avg                            = [4, 4, 4, 6]
+s3_arr_group                          = [6, 7, 12, 88]
+s3_arr_info                           = [5, 6, 11, 52]
+s3_arr_description                    = [5, 6, 9, 58]
+
+s5_arr_read                   =         [3, 4, 9, 52]
+s5_arr_avg                            = [3, 3, 4, 4]
+s5_arr_group                          = [5, 6, 9, 58]
+s5_arr_info                           = [5, 4, 7, 53]
+s5_arr_description                    = [4, 5, 6, 61]
+
+s8_arr_read                   =         [4, 5, 10, 55]
+s8_arr_avg                            = [4, 4, 4, 6]
+s8_arr_group                          = [6, 6, 11, 54]
+s8_arr_info                           = [5, 6, 10, 54]
+s8_arr_description                    = [5, 6, 8, 62]
+

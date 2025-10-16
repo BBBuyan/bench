@@ -1,10 +1,15 @@
 from psycopg2.pool import ThreadedConnectionPool
+from dotenv import load_dotenv
+from os import getenv
+
+load_dotenv()
+ip = getenv("POST_IP")
 
 pool = ThreadedConnectionPool( 
     1 
     ,4 
     , database="deep" 
-    , host="192.168.2.87" 
+    , host=ip 
     , port="5432"
     , user="user"
     , password="mypass",)

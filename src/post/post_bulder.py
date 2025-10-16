@@ -1,17 +1,18 @@
-from src.base_types import Base
+from src.post.post_types import BasePost
 
+def read_query(type: BasePost):
+    query = f"select (data) from {type.name}"
+    where = f" where (data #>> '{{ {type.model_path} }}')::int = %s"
+    return query + where
 
-def read_query(type: Base):
+def update_query(type: BasePost):
     return ""
 
-def update_query(type: Base):
+def insert_query(type: BasePost):
     return ""
 
-def insert_query(type: Base):
+def avg_query(type: BasePost):
     return ""
 
-def avg_query(type: Base):
-    return ""
-
-def sort_query(type: Base):
+def sort_query(type: BasePost):
     return ""

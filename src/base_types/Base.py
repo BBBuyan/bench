@@ -30,6 +30,7 @@ class Base:
         self.fetch_limit = 50_000
 
         self.coll_type = "base"
+        self.levels = []
 
     def add_field(self, editing_data: dict, inputs: list[str], field_name: str):
         raise NotImplementedError("Subclasses should implement")

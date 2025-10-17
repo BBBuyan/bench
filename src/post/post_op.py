@@ -10,10 +10,6 @@ def time_read(table: BasePost):
     query = table.read_query
     param = (randint(0,9999),)
 
-    if BasePost.is_debug:
-        print(query)
-        print(param)
-
     conn = pool.getconn()
     with conn.cursor() as cursor:
         start = perf_counter()
@@ -23,7 +19,9 @@ def time_read(table: BasePost):
 
     pool.putconn(conn)
     if BasePost.is_debug: 
-        pprint(res)
+        print(len(res))
+        print(query)
+        print("param ",  param[0])
 
     return (end - start) * 1000
 
@@ -41,6 +39,8 @@ def time_avg(table: BasePost):
     pool.putconn(conn)
     if BasePost.is_debug: 
         pprint(res)
+        print(query)
+        print(param[0])
     return (end - start) * 1000
 
 def time_sort(table: BasePost):
@@ -96,4 +96,4 @@ def time_insert(table: BasePost):
     conn.commit()
     pool.putconn(conn)
 
-    return (start - end) * 1000
+    return (end - start) * 1000

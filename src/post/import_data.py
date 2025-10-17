@@ -8,18 +8,14 @@ from pathlib import Path
 def get_batch_limit(type: Base)->int:
     if isinstance(type, Arr):
         return 500
-        # return 100
     else:
         return 5_000
-        # return 1000
 
 def get_log_limit(type: Base)->int:
     if isinstance(type, Arr):
         return 1_000
-        # return 100
     else:
         return 100_000
-        # return 1000
 
 def import_data(type: Base):
     print(f"---IMPORT {type.name}", end=" ", flush=True)

@@ -22,7 +22,6 @@ def run_read(tables: list[BasePost]):
 
     log.save_result(result, "READ", tables[0].coll_type)
 
-
 def run_avg(tables: list[BasePost]):
     print(f"---AVG", end=" ", flush=True)
     result = [0.0] * len(tables)

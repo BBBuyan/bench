@@ -1,8 +1,8 @@
-from src import all_types, flat_types, obj_types, arr_types
-from src.base_types import Base
 from src.post.conn import pool
+from src.post.post_types import BasePost
+from src.post.tables import flat_tables, arr_tables, all_tables, obj_tables
 
-def create_db(type: Base):
+def create_table(type: BasePost):
     print(f"---CREATE {type.name}:", end=" ", flush=True)
     conn = pool.getconn()
     cursor = conn.cursor()
@@ -15,6 +15,6 @@ def create_db(type: Base):
     print("DONE---")
 
 if __name__ == "__main__":
-    for i in all_types:
-        create_db(i)
+    for i in all_tables:
+        create_table(i)
 

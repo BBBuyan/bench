@@ -35,3 +35,12 @@ class BasePost():
 
         self.read_query =""
         self.sort_query = ""
+        self.avg_query = ""
+        self.update_storage =""
+
+        self.index = ""
+        self.index_drop = ""
+
+    def say_hi(self):
+        print("")
+

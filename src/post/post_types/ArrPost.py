@@ -1,9 +1,8 @@
 from .BasePost import BasePost
-from src.post.arr_queries import read
-
+from src.post import arr_queries as query
+from src.post import indexes
 
 class ArrPost(BasePost):
-
     def __init__(self, level: int) -> None:
         super().__init__(f"arr{level}")
 
@@ -28,5 +27,11 @@ class ArrPost(BasePost):
         self.fetch_limit = 500
 
         self.coll_type = "arr"
-        self.read_query = read[self.level]
+        self.read_query = query.read[self.level]
+        self.sort_query = query.sort[self.level]
+        self.avg_query = query.avg[self.level]
+        self.update_storage = query.update_storage[self.level]
+        
+        self.index = indexes.arr_indexes[level]
+        self.index_drop = indexes.arr_indexes_drop[level]
 

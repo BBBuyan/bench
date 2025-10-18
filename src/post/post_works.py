@@ -13,6 +13,10 @@ def execute(
     print(f"---{opType}---")
     result = [0.0] * len(tables)
     for i in range(len(tables)):
+
+        if (opType != "INSERT") or (opType != "UPDATE"):
+            warmup(op, tables[i])
+
         type_results = []
         print(f"{tables[i].name} | ", end=" ", flush=True)
         for _ in range(num_of_ops):
@@ -39,3 +43,11 @@ def run_update(tables: list[BasePost]):
 
 def run_insert(tables: list[BasePost]):
     execute(tables, op.time_insert, "INSERT")
+
+def warmup(
+    op: Callable[[BasePost], float]
+    , table: BasePost
+):
+    for _ in range(3):
+        print("w", end=", ", flush=True)
+        op(table)

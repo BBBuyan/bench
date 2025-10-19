@@ -112,49 +112,22 @@ avg = {
 
 update_storage_arr1 = """update arr1
 set data = %s
-where exists(
-    select 1
-    from 
-        jsonb_array_elements(data -> 'a1') as a1_el 
-    where (a1_el @> '{"error_count": %s}')
+where data @@ '$.a1[*].error_count == %s'
 )"""
 
 update_storage_arr2 = """update arr2
 set data = %s
-where exists(
-    select 1
-    from 
-        jsonb_array_elements(data -> 'a1') as a1_el,
-        jsonb_array_elements(a1_el -> 'a2') as a2_el
-    where (a2_el @> '{"error_count": %s}')
+where data @@ '$.a1[*].a2[*].error_count == %s'
 )"""
 
 update_storage_arr4 = """update arr4
 set data = %s
-where exists(
-    select 1
-    from 
-        jsonb_array_elements(data -> 'a1') as a1_el,
-        jsonb_array_elements(a1_el -> 'a2') as a2_el,
-        jsonb_array_elements(a2_el -> 'a3') as a3_el,
-        jsonb_array_elements(a3_el -> 'a4') as a4_el 
-    where (a4_el @> '{"error_count": %s}')
+where data @@ '$.a1[*].a2[*].a3[*].a4[*].error_count == %s'
 )"""
 
 update_storage_arr8 = """update arr8
 set data = %s
-where exists(
-    select 1
-    from 
-        jsonb_array_elements(data -> 'a1') as a1_el,
-        jsonb_array_elements(a1_el -> 'a2') as a2_el,
-        jsonb_array_elements(a2_el -> 'a3') as a3_el,
-        jsonb_array_elements(a3_el -> 'a4') as a4_el,
-        jsonb_array_elements(a4_el -> 'a5') as a5_el,
-        jsonb_array_elements(a5_el -> 'a6') as a6_el,
-        jsonb_array_elements(a6_el -> 'a7') as a7_el,
-        jsonb_array_elements(a7_el -> 'a8') as a8_el 
-    where (a8_el @> '{"error_count": %s}')
+where data @@ '$.a1[*].a2[*].a3[*].a4[*].a5[*].a6[*].a7[*].a8[*].error_count == %s'
 )"""
 
 update_storage = {

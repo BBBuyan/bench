@@ -1,5 +1,5 @@
 from .BasePost import BasePost
-from src.post import indexes
+from src.post import indexes, indexes_path_ops
 
 class ObjPost(BasePost):
     def __init__(self, level: int) -> None:
@@ -19,8 +19,8 @@ class ObjPost(BasePost):
         self.avg_query = self.get_avg_query()
         self.update_storage = self.get_update_storage()
 
-        self.index = indexes.obj_indexes[level]
-        self.index_drop = indexes.obj_indexes_drop[level]
+        self.index = indexes_path_ops.obj_indexes[level]
+        self.index_drop = indexes_path_ops.obj_indexes_drop[level]
 
     def get_read_query(self):
         select = f"select (data) "

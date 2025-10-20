@@ -1,5 +1,5 @@
 from .BasePost import BasePost
-from src.post import indexes
+from src.post import indexes, indexes_path_ops
 
 class FlatPost(BasePost):
     def __init__(self) -> None:
@@ -11,8 +11,8 @@ class FlatPost(BasePost):
         self.avg_query = self.get_avg_query()
         self.update_storage = self.get_update_storage()
 
-        self.index = indexes.flat_index
-        self.index_drop = indexes.flat_index_drop
+        self.index = indexes_path_ops.flat_index
+        self.index_drop = indexes_path_ops.flat_index_drop
  
     def get_read_query(self):
         select_from = "select (data) from flat "

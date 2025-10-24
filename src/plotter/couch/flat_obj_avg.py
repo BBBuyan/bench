@@ -31,7 +31,7 @@ x = np.arange(5)
 xl=x-w/2
 xr=x+w/2
 
-fig, axs = plt.subplots(1,3, sharey=True, constrained_layout=True, figsize=(10,5))
+fig, axs = plt.subplots(1,3, sharey=True, constrained_layout=True, figsize=(8,4))
 
 bar01 = axs[0].bar(xl, ca_avg_only, width=w, label="alone")
 bar02 = axs[0].bar(xr, cs_avg_only, width=w, label="sharded")

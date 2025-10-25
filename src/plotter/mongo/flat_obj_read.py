@@ -28,7 +28,7 @@ s_with_index = s_flat_read_with_index + s_obj_read_with_index
 
 shard_key = s_flat_read_with_shard_key + s_obj_read_with_shard_key
 
-fig, axs = plt.subplots(1,3, sharey=True, constrained_layout=True, figsize=(10,5))
+fig, axs = plt.subplots(1,3, sharey=True, constrained_layout=True, figsize=(8,4))
 
 bar01 = axs[0].bar(xl, a_no_index, width=w, label="alone")
 bar02 = axs[0].bar(xr, s_no_index, width=w, label="sharded")
@@ -39,32 +39,32 @@ bar12 = axs[1].bar(xr, s_with_index, width=w, label="sharded")
 bar21 = axs[2].bar(x, shard_key, width=w, label="alone", color="C1")
 
 
-for bar in list(bar01) + list(bar02):
-    height = bar.get_height()
-    axs[0].text(
-        bar.get_x() + bar.get_width() / 2,
-        height,
-        f"{height:.0f}",
-        ha="center", va="bottom", fontsize=8
-    )
-
-for bar in list(bar11) + list(bar12):
-    height = bar.get_height()
-    axs[1].text(
-        bar.get_x() + bar.get_width() / 2,
-        height,
-        f"{height:.0f}",
-        ha="center", va="bottom", fontsize=8
-    )
-for bar in list(bar21):
-    height = bar.get_height()
-    axs[2].text(
-        bar.get_x() + bar.get_width() / 2,
-        height,
-        f"{height:.0f}",
-        ha="center", va="bottom", fontsize=8
-    )
-
+# for bar in list(bar01) + list(bar02):
+#     height = bar.get_height()
+#     axs[0].text(
+#         bar.get_x() + bar.get_width() / 2,
+#         height,
+#         f"{height:.0f}",
+#         ha="center", va="bottom", fontsize=8
+#     )
+#
+# for bar in list(bar11) + list(bar12):
+#     height = bar.get_height()
+#     axs[1].text(
+#         bar.get_x() + bar.get_width() / 2,
+#         height,
+#         f"{height:.0f}",
+#         ha="center", va="bottom", fontsize=8
+#     )
+# for bar in list(bar21):
+#     height = bar.get_height()
+#     axs[2].text(
+#         bar.get_x() + bar.get_width() / 2,
+#         height,
+#         f"{height:.0f}",
+#         ha="center", va="bottom", fontsize=8
+#     )
+#
 
 levels = ["flat","1","2","4","8"]
 axs[0].legend(loc="lower right", bbox_to_anchor=(0.2,1))

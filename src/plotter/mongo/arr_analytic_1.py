@@ -68,6 +68,6 @@ axs[3].set_title("with index")
 axs[0].set_ylabel("Duration / ms (log scale)")
 axs[0].set_yscale("log")
 
-axs[0].legend(loc="lower right", bbox_to_anchor=(0.2,1))
+axs[0].legend(loc="lower right", bbox_to_anchor=(1,1.1))
 
 fig.savefig("./mongo_figs/arr_analytic.pdf", bbox_inches="tight")

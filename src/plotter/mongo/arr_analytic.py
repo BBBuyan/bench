@@ -73,6 +73,8 @@ axs[0,1].set_xticks(x, [1,2,4,8])
 axs[1,0].set_xticks(x, [1,2,4,8])
 axs[1,1].set_xticks(x, [1,2,4,8])
 
+axs[0,0].set_ylabel("Duration / ms (log scale)")
+
 axs[0,0].set_title("average")
 axs[0,1].set_title("group")
 
@@ -86,7 +88,4 @@ axs[0,0].set_yscale("log")
 axs[1,0].set_yscale("log")
 
 axs[0,0].legend(loc="lower right", bbox_to_anchor=(0.2,1))
-
-fig.supylabel("Duration / ms (log scale)")
-
 fig.savefig("./mongo_figs/arr_analytic.pdf", bbox_inches="tight")

@@ -12,7 +12,7 @@ x = np.arange(4)
 xl=x-w/2
 xr=x+w/2
 
-fig, axs = plt.subplots(1,2, sharey=True, constrained_layout=True, figsize=(8,5))
+fig, axs = plt.subplots(1,2, sharey=True, constrained_layout=True, figsize=(8,4))
 
 bars01 = axs[0].bar(xl, a_read_wo_index, width=w, label="alone")
 bars02 = axs[0].bar(xr, s_read_wo_index, width=w, label="sharded")
@@ -40,6 +40,7 @@ for bar in list(bars11) + list(bars12):
 
 axs[0].legend(loc="lower right", bbox_to_anchor=(0.2,1))
 axs[0].set_yscale("log")
+axs[0].set_ylabel("Duration / ms (log scale)")
 
 axs[0].set_title("no index")
 axs[1].set_title("with index")
@@ -48,6 +49,5 @@ axs[0].set_xticks(x, [1,2,4,8])
 axs[1].set_xticks(x, [1,2,4,8])
 
 fig.supxlabel("Depth")
-fig.supylabel("Duration / ms (log scale)")
 
 fig.savefig("./mongo_figs/arr_read.pdf", bbox_inches="tight")

@@ -34,13 +34,13 @@ xr=x+w/2
 fig, axs = plt.subplots(1,3, sharey=True, constrained_layout=True, figsize=(8,4))
 
 bar01 = axs[0].bar(xl, ca_avg_only, width=w, label="alone")
-bar02 = axs[0].bar(xr, cs_avg_only, width=w, label="sharded")
+bar02 = axs[0].bar(xr, cs_avg_only, width=w, label="cluster")
 
 bar11 = axs[1].bar(xl, ca_after_update, width=w, label="alone")
-bar12 = axs[1].bar(xr, cs_after_update, width=w, label="sharded")
+bar12 = axs[1].bar(xr, cs_after_update, width=w, label="cluster")
 
 bar21 = axs[2].bar(xl, ca_after_insert, width=w, label="alone")
-bar22 = axs[2].bar(xr, cs_after_insert, width=w, label="sharded")
+bar22 = axs[2].bar(xr, cs_after_insert, width=w, label="cluster")
 
 # for bar in list(bar01) + list(bar02):
 #     height = bar.get_height()

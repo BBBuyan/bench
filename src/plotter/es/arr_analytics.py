@@ -49,5 +49,4 @@ axs[1].set_title("Average")
 axs[0].set_xticks(x, levels)
 axs[1].set_xticks(x, levels)
 
-
 fig.savefig("./es_figs/arr_analytics.pdf", bbox_inches="tight")

@@ -41,22 +41,22 @@ xr=x+w/2
 fig, axs = plt.subplots(2,3, sharey=True, constrained_layout=True, figsize=(10,8))
 
 bar01 = axs[0,0].bar(xl, a_read_only, width=w, label="alone")
-bar02 = axs[0,0].bar(xr, s_read_only, width=w, label="sharded")
+bar02 = axs[0,0].bar(xr, s_read_only, width=w, label="cluster")
 
 bar11 = axs[0,1].bar(xl, a_read_after_update, width=w, label="alone")
-bar12 = axs[0,1].bar(xr, s_read_after_update, width=w, label="sharded")
+bar12 = axs[0,1].bar(xr, s_read_after_update, width=w, label="cluster")
 
 bar21 = axs[0,2].bar(xl, a_read_after_insert, width=w, label="alone")
-bar22 = axs[0,2].bar(xr, s_read_after_insert, width=w, label="sharded")
+bar22 = axs[0,2].bar(xr, s_read_after_insert, width=w, label="cluster")
 
 bar_01 = axs[1,0].bar(xl, a_sort_only, width=w, label="alone")
-bar_02 = axs[1,0].bar(xr, s_sort_only, width=w, label="sharded")
+bar_02 = axs[1,0].bar(xr, s_sort_only, width=w, label="cluster")
 
 bar_11 = axs[1,1].bar(xl, a_sort_after_update, width=w, label="alone")
-bar_12 = axs[1,1].bar(xr, s_sort_after_update, width=w, label="sharded")
+bar_12 = axs[1,1].bar(xr, s_sort_after_update, width=w, label="cluster")
 
 bar_21 = axs[1,2].bar(xl, a_sort_after_insert, width=w, label="alone")
-bar_22 = axs[1,2].bar(xr, s_sort_after_insert, width=w, label="sharded")
+bar_22 = axs[1,2].bar(xr, s_sort_after_insert, width=w, label="cluster")
 
 # for bar in list(bar01) + list(bar02):
 #     height = bar.get_height()

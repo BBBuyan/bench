@@ -1,4 +1,4 @@
-flat_index_arrow = "create index idx_flat_arrow on flat using btree (((data -> 'error_count')::int))"
+flat_index_arrow = "create index idx_flat_arrow on flat using btree (((data ->> 'error_count')::int))"
 flat_index_arrow_drop = "drop index idx_flat_arrow"
 
 obj1_index_arrow = "create index idx_obj1_arrow on obj1 using btree (((data->'l1'->>'error_count')::int))"

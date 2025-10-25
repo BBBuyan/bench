@@ -16,7 +16,8 @@ def time_memory_read(type: Base):
     end = perf_counter()
 
     if type.is_debug == True:
-        helper.show_res(res)
+        print(res)
+        # helper.show_res(res)
 
     return (end-start)*1000
 
